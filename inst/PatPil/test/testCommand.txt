@@ -1,0 +1,19 @@
+COMMAND test
+
+
+RMSMALLSEQ:
+ ./PatPil rmSmallSeq -f ./test/R1.fastq -o ./test/test_rmSmallSeq/test.fq -t 124
+
+REMOVEN
+ ./PatPil RemoveN -f ./test/R1.fastq -o ./test/test_RemoveN/test.fastq
+
+SIMPLE TAG:
+ ./PatPil D_simple_tag -f ./test/R1.fastq -o ./test/test_D_simple_tag/ -b ./test/barcodesV9test.txt -mismatch
+
+DOUBLE TAG:
+ ./PatPil D_double_tag -f ./test/RDoubletest.fastq -o ./test/test_D_double_tag/ -bF ./test/ForwardTag.txt -bR ./test/ReverseTagComplement.txt -pF ./test/PrimerForward.txt -pR ./test/PrimerReverse.txt -mismatch
+
+DEREP:
+ ./PatPil derep -folder ./test/test_derepRaph/cleanErase/ -good ./test/test_derepRaph/testPassed.fa -bad ./test/test_derepRaph/testNotPassed.fa -s 3
+
+
