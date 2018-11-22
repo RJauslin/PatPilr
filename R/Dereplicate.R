@@ -11,7 +11,7 @@
 #' Dereplicate(pathFolder)
 #' }
 #
-Dereplicate <- function(derep_folder,
+Dereplicate <- function(pathFolder,
                         within = 3,
                         between = 2){
 
