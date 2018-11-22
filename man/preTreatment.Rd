@@ -46,7 +46,9 @@ A folder is create named "demultiplex" which contains the demultiplexed file.
 3) Finally, the function call the qualChek function of the tool PatPil. A folder is create named "clean" which contains the fasta files clean by the TARA quality check \url{http://taraoceans.sb-roscoff.fr/EukDiv/}.
 }
 \examples{
+\dontrun{
 pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/testRpackage/"
 pathFolder <- "M:/R/PatPil-master/Rpackage/pipeline2R/inst/PatPil/test/"
 preTreatment(pathFolder)
+}
 }

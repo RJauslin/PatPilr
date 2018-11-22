@@ -12,8 +12,3 @@ Dereplicate(derep_folder, within = 3, between = 2)
 \description{
 Dereplicate
 }
-\examples{
-
-pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
-Dereplicate(pathFolder)
-}

@@ -9,12 +9,16 @@ PR2V4(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
   l_max = 500)
 }
 \arguments{
+\item{pathFile}{path to the file}
+
 \item{l_max}{}
 }
 \description{
 Title
 }
 \examples{
+\dontrun{
 pathfile <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PR2/PR2.fa"
 PR2V4(pathfile)
+}
 }
