@@ -6,9 +6,11 @@
 #' @export
 #'
 #' @examples
-#'
-#' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
+#' \dontrun{
+#'' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
 #' Dereplicate(pathFolder)
+#' }
+#
 Dereplicate <- function(derep_folder,
                         within = 3,
                         between = 2){

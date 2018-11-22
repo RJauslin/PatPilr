@@ -7,7 +7,10 @@
 #'
 #' @importFrom seqinr write.fasta
 #' @examples
-# pr2full <- pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
+#' \dontrun{
+#' pr2full <- pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
+#' }
+#
  pr2Tofasta <- function(file){
    pr2 <- as.data.frame(pr2)
 

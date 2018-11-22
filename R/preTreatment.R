@@ -29,9 +29,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/testRpackage/"
 #' pathFolder <- "M:/R/PatPil-master/Rpackage/pipeline2R/inst/PatPil/test/"
 #' preTreatment(pathFolder)
+#' }
 preTreatment <- function(pathFolder,
                          m = 10,
                          M = 100,

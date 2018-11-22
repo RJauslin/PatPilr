@@ -7,7 +7,6 @@
 #'
 #' @return
 #' @export
-#'
 as.fasta <- function(pr2full,pr2clean){
   pr2 <- list()
   name <- names(pr2full)[pr2clean$Fasta$index]
