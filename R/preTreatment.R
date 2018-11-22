@@ -50,8 +50,8 @@ preTreatment <- function(pathFolder,
   install.PatPil()
   info <- Sys.info()
 
-  pathFlash <- system.file("flash", package = "pipelineR")
-  pathPatPil <- system.file("PatPil", package = "pipelineR")
+  pathFlash <- system.file("flash", package = "PatPilr")
+  pathPatPil <- system.file("PatPil", package = "PatPilr")
 
   if(info[1] == "Linux"){
     pathFlash <- paste(pathFlash,"/flash",sep = "")
@@ -109,7 +109,7 @@ preTreatment <- function(pathFolder,
 
 
 
-  pathPatPil <- system.file("PatPil", package = "pipelineR")
+  pathPatPil <- system.file("PatPil", package = "PatPilr")
   pathPatPil <- paste(pathPatPil,"/PatPil",sep = "")
 
 

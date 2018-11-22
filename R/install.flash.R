@@ -15,7 +15,7 @@ install.flash <- function(){
   info <- Sys.info()
   if(info[1] == "Linux"){
     filIni <- getwd()
-    path <- system.file("flash", package = "pipelineR")
+    path <- system.file("flash", package = "PatPilr")
     setwd(path)
     system2("make")
     setwd(filIni)

@@ -20,7 +20,7 @@ Dereplicate <- function(derep_folder,
   install.PatPil()
   info <- Sys.info()
 
-  pathPatPil <- system.file("PatPil", package = "pipelineR")
+  pathPatPil <- system.file("PatPil", package = "PatPilr")
   if(info[1] == "Linux"){
     pathPatPil <- paste(pathPatPil,"/PatPil",sep = "")
   }else if(info[1] == "Windows"){
