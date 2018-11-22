@@ -14,7 +14,7 @@ using namespace std;
 //' @param primer2 vector of all possible primer 2 to consider
 //'
 //' @export
-//' @useDynLib pipelineR
+//' @useDynLib PatPilr
 //' @importFrom Rcpp sourceCpp
 // [[Rcpp::export]]
 Rcpp::List CheckPrimer(Rcpp::List pr2,

@@ -10,7 +10,7 @@
 #' @param primer2 vector of all possible primer 2 to consider
 #'
 #' @export
-#' @useDynLib pipelineR
+#' @useDynLib PatPilr
 #' @importFrom Rcpp sourceCpp
 CheckPrimer <- function(pr2, primer1, primer2, l_min, l_max) {
     .Call('_PatPilr_CheckPrimer', PACKAGE = 'PatPilr', pr2, primer1, primer2, l_min, l_max)
