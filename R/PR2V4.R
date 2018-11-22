@@ -1,6 +1,6 @@
 #' Title
 #'
-#' @param pathFile
+#' @param pathFile path to the file
 #' @param primer1
 #' @param primer2
 #' @param trim
