@@ -4,7 +4,7 @@
 \alias{Dereplicate}
 \title{Dereplicate}
 \usage{
-Dereplicate(derep_folder, within = 3, between = 2)
+Dereplicate(pathFolder, within = 3, between = 2)
 }
 \arguments{
 \item{derep_folder}{}
