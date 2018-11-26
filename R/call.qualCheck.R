@@ -33,7 +33,7 @@ call.qualCheck <- function(fastq_path,
                            m = 60){
 
   pathIni <- getwd()
-  path <- system.file("PatPil", package = "pipelineR")
+  path <- system.file("PatPil", package = "PatPilr")
   path <- paste(path,"/PatPil",sep = "")
 
   system2(path,args = c('qualCheck','-f',fastq_path,'-o',outputFolder,'-t',t,'-s',s,'-m',m))

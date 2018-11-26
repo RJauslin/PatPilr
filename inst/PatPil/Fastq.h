@@ -12,12 +12,12 @@ class Fastq
 {
     public:
 
-        //CONSTRUCTOR
+      //CONSTRUCTOR
     	Fastq();
     	Fastq(std::string nameFile);
-        Fastq(std::string nameFile,bool fasta);
-        Fastq(std::string nameFile,std::stringstream& ss);
-
+      Fastq(std::string nameFile,bool fasta);
+      Fastq(std::string nameFile,std::stringstream& ss);
+      Fastq(std::string nameFile,std::stringstream& ss,bool fasta);
         //GET SET ..
     	void afficher();
         std::map<std::string,std::string> getSeq();
@@ -28,10 +28,11 @@ class Fastq
         void writeFasta(std::string path, bool app);
         void writeFastaDerep(std::string path);
 
-        
+
 
         //METHODS (PROGRAMS)
         void removeN();
+        void removeNfasta();
         void rmSmallSeq(unsigned int minLen);
         void reverseComplement();
         void demultiplex(std::string pathBarcode,
@@ -46,7 +47,7 @@ class Fastq
         void qualCheck(double expErrThreshold,
             unsigned int slindingWindow,
             unsigned int minsize);
-        
+
 
 
     private:

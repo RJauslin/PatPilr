@@ -13,6 +13,7 @@
 
 #include "Fastq.h"
 #include "RemoveN.h"
+#include "RemoveNfasta.h"
 #include "rmSmallSeq.h"
 #include "D_simple_tag.h"
 #include "D_double_tag.h"
@@ -29,13 +30,13 @@ void Help(int argc, const char **argv) {
 
     cout << "Usage: " << argv[0] << endl << endl;
     cout << "The program PatPil has four functions implemented : " << endl << endl;
-    
+
     cout << "************ RemoveN ************" << endl
-      << "Remove the N nucleotide in the sequence\n" 
+      << "Remove the N nucleotide in the sequence\n"
       << "\nOptions :\n"
       << "-f\t filepath to the fastq\n"
       << "-o\t filepath to the output folder with name file\n\n";
-      
+
 
     cout << "************ rmSmallSeq ************" << endl
       << "Remove the sequence that have less than a fixed number of nucleotide in the sequence " << endl
@@ -76,15 +77,15 @@ void Help(int argc, const char **argv) {
       << "-bF\t .txt file that contains the barcode forward\n"
       << "-bR\t .txt file that contains the barcode reverse\n"
       << "-pF\t .txt file that contains ALL the primer forward\n"
-      << "-pR\t .txt file that contains ALL the primer reverse\n";   
+      << "-pR\t .txt file that contains ALL the primer reverse\n";
 }
 
 
-std::mutex mtx; 
+std::mutex mtx;
 
 
 void qualCheckCall(Fastq f, string path, double err, unsigned int sl, int m)
-{ 
+{
   mtx.lock();
   f.qualCheck(err,sl,m);
   f.writeFasta(path,true);
@@ -93,25 +94,8 @@ void qualCheckCall(Fastq f, string path, double err, unsigned int sl, int m)
 
 
 
-/*
-void demultiplexCall(Fastq f, string pathBarcode, string folder)
-{  
-  //f.qualCheck(err,sl,m);
-  map<string, string> tmp;
-  
-  tmp = f.demultiplexThread(pathBarcode);
-  if(tmp.size()!= 0){
-    //cout << tmp.size() << endl;
-    mtx.lock();
-    f.writeDemultiFastq(tmp,pathBarcode,folder);
-    mtx.unlock();
-  }
-}
-*/
-
-
 int main(int argc,const char **argv){
-  //const clock_t begin_time = clock();
+
   using namespace std::chrono;
   high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
@@ -121,38 +105,38 @@ int main(int argc,const char **argv){
     }
     if (argc > 1) {
         string arg1 = argv[1];
-       
+
         if(arg1 == "-h"){
           Help(argc,argv);
           return 0;
-        }else if((arg1 == "RemoveN" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "D_simple_tag" or arg1 == "D_double_tag") && argc > 3){
+        }else if((arg1 == "RemoveN" or arg1 == "RemoveNfasta" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "D_simple_tag" or arg1 == "D_double_tag") && argc > 3){
           string f_opt = argv[2];
-     
+
           if(f_opt == "-f" && argc > 5){
-            
+
             string pathFqIn = argv[3];
             ifstream flux(pathFqIn.c_str());
 
             string o = argv[4];
-            
+
             if(o == "-o"){
-              
+
               string pathFqFolder = argv[5];
 
 
               cout << "\n------- " << arg1 <<" -------\n";
               if(flux){
                 while(flux){
-                  int count(0); 
+                  int count(0);
                   string ligne;
                   stringstream tmp;
 
                   //for the multi-threading
-              
+
                   stringstream tmp2;
                   stringstream tmp3;
                   stringstream tmp4;
-                  
+
 
                   //IT CONSIDER 10^6 SEQUENCES (POSSIBLY THIS COULD BE CHANGED DEPENDING ON THE AVAILABLE RAM)
                   while(count < 500000*4){
@@ -169,17 +153,17 @@ int main(int argc,const char **argv){
                           } else if( count >= 500000*3 && count < 500000*4){
                             tmp4 << ligne << '\n';
                           }
-                          ++count; 
+                          ++count;
                         }
                       }else{
                         if(ligne.find('\n') == std::string::npos){
-                          
+
                             tmp << ligne << '\n';
-                            ++count; 
+                            ++count;
                         }
                       }
                     }else{
-                      
+
 
                       high_resolution_clock::time_point t2 = high_resolution_clock::now();
                       duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
@@ -195,30 +179,30 @@ int main(int argc,const char **argv){
                   }//END WHILE CHUNK
 
 
-
-                  Fastq fastqChunk(pathFqIn,tmp);
-                
-
                   if(arg1 == "RemoveN"){
-          
+                    Fastq fastqChunk(pathFqIn,tmp);
 
                     RemoveN(fastqChunk, pathFqFolder);
 
 
-                  }else if(arg1 == "rmSmallSeq"){
-              
+                  }else if(arg1 == "RemoveNfasta"){
+                    Fastq fastaChunk(pathFqIn,tmp,true);
 
+                    RemoveNfasta(fastaChunk, pathFqFolder);
+                  }else if(arg1 == "rmSmallSeq"){
+
+                    Fastq fastqChunk(pathFqIn,tmp);
                     int fstate = rmSmallSeq(fastqChunk, pathFqFolder, argc, argv);
                     if(fstate == 1){
                       cout << "ERROR in rmSmallSeq function" << endl;
                       return 1;
                     }
-                    
+
 
 
                   }else if(arg1 == "qualCheck"){
-                    
 
+                    Fastq fastqChunk(pathFqIn,tmp);
                     Fastq fastqChunk2(pathFqIn,tmp2);
                     Fastq fastqChunk3(pathFqIn,tmp3);
                     Fastq fastqChunk4(pathFqIn,tmp4);
@@ -233,8 +217,8 @@ int main(int argc,const char **argv){
                       string arg10 = argv[10];// -m
                       int minsize = atoi(argv[11]);//
 
-  
-                      
+
+
                       std::thread t1(qualCheckCall,fastqChunk,pathFqFolder,expErrThreshold,slindingWindow,minsize);
                       std::thread t2(qualCheckCall,fastqChunk2,pathFqFolder,expErrThreshold,slindingWindow,minsize);
                       std::thread t3(qualCheckCall,fastqChunk3,pathFqFolder,expErrThreshold,slindingWindow,minsize);
@@ -243,10 +227,11 @@ int main(int argc,const char **argv){
                       t2.join();
                       t3.join();
                       t4.join();
-                      
+
                     }
                   }else if(arg1 == "D_simple_tag"){
-                    
+                    Fastq fastqChunk(pathFqIn,tmp);
+
                     int fstate = D_simple_tag(fastqChunk, pathFqFolder, argc, argv);
                     if(fstate == 1){
                       cout << "ERROR in D_simple_tag function" << endl;
@@ -255,16 +240,17 @@ int main(int argc,const char **argv){
 
 
                   }else if(arg1 == "D_double_tag"){
-                    
+
+                    Fastq fastqChunk(pathFqIn,tmp);
 
                     int fstate = D_double_tag(fastqChunk, pathFqFolder, argc, argv);
                     if(fstate == 1){
                       cout << "ERROR in D_double_tag function" << endl;
                       return 1;
                     }
-                    
+
                   }
-                  
+
                 }//END WHILE FLUX
               }else{
                 cerr << "ERROR cannot open the fastq file try to add ./ and check that it is the right name" << endl << endl;
@@ -279,7 +265,7 @@ int main(int argc,const char **argv){
             return 1;
           }//END IF ( -f )
         }else if(arg1 == "derep"){
-          
+
           int f_state = derep(argc,argv);
           if(f_state == 1){
             cerr << "Error in derep function" << endl;
@@ -294,7 +280,7 @@ int main(int argc,const char **argv){
         }else{
           Help(argc,argv);
           return 1;
-        }// END IF ( -h )  
+        }// END IF ( -h )
     }// END IF ( argc > 1 )
 
    return 0;

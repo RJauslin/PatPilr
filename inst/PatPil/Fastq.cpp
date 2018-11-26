@@ -40,6 +40,7 @@ Fastq constructor :
   it takes the path in string to the file and a boolean value
   to specify that we work on a fasta file
   (the map of phred score is not initialized)
+ IT IS USED ONLY IN derep.cpp
 */
 Fastq::Fastq(string nameFile,bool fasta) : nameFile(nameFile)
 {
@@ -63,6 +64,32 @@ Fastq::Fastq(string nameFile,bool fasta) : nameFile(nameFile)
       }
     }
 }
+
+
+/*
+ Fasta constructor :
+ it takes a stringstream by reference to construct the map of string
+ It is used to work on chunk of the file and do not dump the ram in trying to load
+ a bif file in the RAM.
+ */
+Fastq::Fastq(string nameFile,stringstream& ss,bool fasta) : nameFile(nameFile)
+{
+  string ligne;
+  string titre;
+  int indexLigne(0);
+  if(fasta == true){
+    while(std::getline(ss,ligne,'\n')){
+      if(indexLigne % 2 == 0){
+        titre = ligne;
+      }else{
+        seq.insert(pair<string, string>(titre, ligne));
+      }
+      indexLigne++;
+    }
+  }
+}
+
+
 
 
 /*
@@ -320,6 +347,29 @@ void Fastq::removeN()
   }
   cout << "Sequences with 'N' removed : " << count << endl << endl;
 }
+
+
+/*
+ This method is used to remove the N in a .fastq file
+ */
+void Fastq::removeNfasta()
+{
+  map<string,string>::iterator i = seq.begin();
+  unsigned int count(0);
+  cout << "Total number of sequences : " << seq.size() << endl;
+  while(i != seq.end()){
+    string tmp = i -> second;
+    if(tmp.find('N') != std::string::npos){
+      i = seq.erase(i);
+      ++count;
+    }else{
+      ++i;
+    }
+  }
+  cout << "Sequences with 'N' removed : " << count << endl << endl;
+}
+
+
 
 
 /*
@@ -797,19 +847,19 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
                       if(i->first == j->first){
                         string newseq  = (i->second);
                         string newphred = (j -> second);
-                        
+
                         newseq.erase(R + primerR[l].size(), (i->second).length()); // on efface le deuxième tag
                         newphred.erase(R + primerR[l].size(), (j->second).length());
-                        
+
                         newseq.erase(R,primerR[l].size()); // on efface le primer reverse
                         newphred.erase(R,primerR[l].size());
-                        
+
                         newseq.erase(0,F);//efface premier tag
                         newphred.erase(0,F);
-                        
+
                         newseq.erase(0,primerF[s].size()); // on efface le primer forward
                         newphred.erase(0,primerF[s].size());
-                        
+
 
                         *(u -> second) << i -> first << endl << newseq << endl << '+' << endl << j -> second << endl;
                         checkUnknown = true;
@@ -818,26 +868,26 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
                           //break;
                       }
                     }else if((seqBegin == barF && nbrOfMismatchR == 1) || (seqEnd == barR && nbrOfMismatchF == 1) || (nbrOfMismatchF == 1 && nbrOfMismatchR == 1)){
-                     
+
 
 
 
                       if(i->first == j->first){
                         string newseq  = (i->second);
                         string newphred = (j -> second);
-                        
+
                         newseq.erase(R + primerR[l].size(), (i->second).length()); // on efface le deuxième tag
                         newphred.erase(R + primerR[l].size(), (j->second).length());
-                        
+
                         newseq.erase(R,primerR[l].size()); // on efface le primer reverse
                         newphred.erase(R,primerR[l].size());
-                        
+
                         newseq.erase(0,F);//efface premier tag
                         newphred.erase(0,F);
-                        
+
                         newseq.erase(0,primerF[s].size()); // on efface le primer forward
                         newphred.erase(0,primerF[s].size());
-                        
+
 
                         *(u -> second) << i -> first << endl << newseq << endl << '+' << endl << j -> second << endl;
                         checkUnknown = true;
@@ -852,19 +902,19 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
 
                         string newseq  = (i->second);
                         string newphred = (j -> second);
-                        
+
                         newseq.erase(R + primerR[l].size(), (i->second).length()); // on efface le deuxième tag
                         newphred.erase(R + primerR[l].size(), (j->second).length());
-                        
+
                         newseq.erase(R,primerR[l].size()); // on efface le primer reverse
                         newphred.erase(R,primerR[l].size());
-                        
+
                         newseq.erase(0,F);//efface premier tag
                         newphred.erase(0,F);
-                        
+
                         newseq.erase(0,primerF[s].size()); // on efface le primer forward
                         newphred.erase(0,primerF[s].size());
-                        
+
 
                         *(u -> second) << i -> first << endl << newseq << endl << '+' << endl << j -> second << endl;
                         checkUnknown = true;
@@ -929,19 +979,19 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
                         if(i->first == j->first){
                           string newseq  = tmpSeq;
                           string newphred = tmpPhred;
-                          
+
                           newseq.erase(R + primerR[l].size(), tmpSeq.length()); // on efface le deuxième tag
                           newphred.erase(R + primerR[l].size(),tmpPhred.length());
-                         
+
                           newseq.erase(R,primerR[l].size()); // on efface le primer reverse
                           newphred.erase(R,primerR[l].size());
-                         
+
                           newseq.erase(0,F);//efface premier tag
                           newphred.erase(0,F);
-                          
+
                           newseq.erase(0,primerF[s].size()); // on efface le primer forward
                           newphred.erase(0,primerF[s].size());
-                          
+
                           *(u -> second) << i -> first << endl << newseq << endl << '+' << endl << j -> second << endl;
                           checkUnknown = true;
                           writeSeq = true;
@@ -953,19 +1003,19 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
                         if(i->first == j->first){
                           string newseq  = tmpSeq;
                           string newphred = tmpPhred;
-                          
+
                           newseq.erase(R + primerR[l].size(), tmpSeq.length()); // on efface le deuxième tag
                           newphred.erase(R + primerR[l].size(),tmpPhred.length());
-                         
+
                           newseq.erase(R,primerR[l].size()); // on efface le primer reverse
                           newphred.erase(R,primerR[l].size());
-                         
+
                           newseq.erase(0,F);//efface premier tag
                           newphred.erase(0,F);
-                          
+
                           newseq.erase(0,primerF[s].size()); // on efface le primer forward
                           newphred.erase(0,primerF[s].size());
-                          
+
                           *(u -> second) << i -> first << endl << newseq << endl << '+' << endl << j -> second << endl;
                           checkUnknown = true;
                           writeSeq = true;
@@ -981,19 +1031,19 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
                         if(i->first == j->first){
                           string newseq  = tmpSeq;
                           string newphred = tmpPhred;
-                          
+
                           newseq.erase(R + primerR[l].size(), tmpSeq.length()); // on efface le deuxième tag
                           newphred.erase(R + primerR[l].size(),tmpPhred.length());
-                         
+
                           newseq.erase(R,primerR[l].size()); // on efface le primer reverse
                           newphred.erase(R,primerR[l].size());
-                         
+
                           newseq.erase(0,F);//efface premier tag
                           newphred.erase(0,F);
-                          
+
                           newseq.erase(0,primerF[s].size()); // on efface le primer forward
                           newphred.erase(0,primerF[s].size());
-                          
+
                           *(u -> second) << i -> first << endl << newseq << endl << '+' << endl << j -> second << endl;
                           checkUnknown = true;
                           writeSeq = true;
