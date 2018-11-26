@@ -27,7 +27,7 @@ call.D_simple_tag <- function(fastq_path,
     stop("You have to give the path where you put your files")
   }
   pathIni <- getwd()
-  path <- system.file("PatPil", package = "pipelineR")
+  path <- system.file("PatPil", package = "PatPilr")
   path <- paste(path,"/PatPil",sep = "")
   if(mismatch == TRUE){
     system2(path,args = c('D_simple_tag','-f',fastq_path,'-o',outputFolder,'-b',barcode_path,'-mismatch'))
