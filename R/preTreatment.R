@@ -30,8 +30,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/testRpackage/"
-#' pathFolder <- "M:/R/PatPil-master/Rpackage/pipeline2R/inst/PatPil/test/"
+#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/"
 #' preTreatment(pathFolder)
 #' }
 preTreatment <- function(pathFolder,
@@ -105,12 +104,6 @@ preTreatment <- function(pathFolder,
   if(!dir.exists(pathDemulti)){
     dir.create(pathDemulti)
   }
-
-
-
-
-  pathPatPil <- system.file("PatPil", package = "PatPilr")
-  pathPatPil <- paste(pathPatPil,"/PatPil",sep = "")
 
 
 

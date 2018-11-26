@@ -22,7 +22,7 @@ call.D_simple_tag <- function(fastq_path,
                              outputFolder,
                              barcode_path,
                              mismatch = TRUE){
-  
+
   info <- Sys.info()
   path <- system.file("PatPil", package = "PatPilr")
   if(info[1] == "Linux"){
