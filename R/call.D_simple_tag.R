@@ -22,13 +22,21 @@ call.D_simple_tag <- function(fastq_path,
                              outputFolder,
                              barcode_path,
                              mismatch = TRUE){
+  
+  info <- Sys.info()
+  path <- system.file("PatPil", package = "PatPilr")
+  if(info[1] == "Linux"){
+    path <- paste(path,"/PatPil",sep = "")
+  }else if(info[1] == "Windows"){
+    path <- paste(path,"/PatPil.exe",sep = "")
+  }
 
   if(missing(fastq_path)){
     stop("You have to give the path where you put your files")
   }
   pathIni <- getwd()
-  path <- system.file("PatPil", package = "PatPilr")
-  path <- paste(path,"/PatPil",sep = "")
+  #path <- system.file("PatPil", package = "PatPilr")
+  #path <- paste(path,"/PatPil",sep = "")
   if(mismatch == TRUE){
     system2(path,args = c('D_simple_tag','-f',fastq_path,'-o',outputFolder,'-b',barcode_path,'-mismatch'))
   }else{
