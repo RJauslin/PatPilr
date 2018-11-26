@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' pathfile <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PR2/PR2.fa"
+#' pathfile <- "/home/raphael/Documents/PR2.fa"
 #' PR2V4(pathfile)
 #' }
 PR2V4 <- function(pathFile,
