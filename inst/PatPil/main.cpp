@@ -165,11 +165,6 @@ int main(int argc,const char **argv){
                     }else{
 
 
-                      high_resolution_clock::time_point t2 = high_resolution_clock::now();
-                      duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
-                      std::cout << "It took me " << time_span.count() << " seconds."<<endl;
-
-                      cout << "------- finished -------" << endl;
                       break;
                       /*
                       IF THE END OF THE FILE IS REACH INSIDE THE CURRENT CHUNKS
@@ -282,6 +277,10 @@ int main(int argc,const char **argv){
           return 1;
         }// END IF ( -h )
     }// END IF ( argc > 1 )
+    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+    std::cout << "It took me " << time_span.count() << " seconds."<<endl;
 
+    cout << "------- finished -------" << endl;
    return 0;
 }
