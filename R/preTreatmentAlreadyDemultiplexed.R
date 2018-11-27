@@ -32,12 +32,12 @@
 #' @examples
 #' \dontrun{
 #' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/Pilonel_P6_18S/"
-#' preTreatment(pathFolder)
+#' preTreatmentAlreadyDemultiplexed(pathFolder)
 #' }
 preTreatmentAlreadyDemultiplexed <- function(pathFolder,
                                              sep = "_R",
                                              m = 10,
-                                             M = 100,
+                                             M = 250,
                                              x = 0.25,
                                              t = 4,
                                              err = 0.01,

@@ -131,7 +131,7 @@ preTreatment <- function(pathFolder,
   for(i in 1:length(prefixfile)){
     call.qualCheck(fastq_path = file.path(pathFolder,"demultiplex/",prefixfile[i],".",ext,fsep = ""),
                    outputFolder = file.path(pathFolder,"clean/",prefixfile[i],".fa",fsep = ""),
-                   t = 0.01,
+                   t = err,
                    s = slide,
                    m = minlength)
   }
