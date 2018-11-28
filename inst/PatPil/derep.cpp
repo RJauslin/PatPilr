@@ -1,3 +1,26 @@
+/*
+ * derep.cpp: core algorithm of the dereplication tools
+ *
+ */
+
+/*
+ * Copyright (C) 2019 Raphaël Jauslin
+ *
+ * This file is part of PatPil
+ *
+ * PatPil is free software; you can redistribute it and/or modify it under the
+ *  terms of the GNU General Public License as published by the Free
+ *  Software Foundation; either version 3 of the License, or (at your option) any later version.
+ *
+ * PatPil is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with PatPil; if not, see http://www.gnu.org/licenses/.
+ */
+
 #include <iostream>
 #include <fstream>
 
@@ -11,7 +34,7 @@
 #include <sstream>
 #include <cmath>
 
- 
+
 
 #include <dirent.h>
 #include <unistd.h>
@@ -22,12 +45,12 @@
 using namespace std;
 
 int derep(int argc,const char **argv){
-	
+
 
   	//./PatPil	derep	-folder	dossier	-good	nameoffasta.fasta	-bad	nameoffasta.fasta	-s seuil
   	//0			1		2		3		4		5					6		7					8	9
-  	
-  	string arg1 = argv[1]; //derep 
+
+  	string arg1 = argv[1]; //derep
 
 
   	string arg2 = argv[2]; // -folder
@@ -68,7 +91,7 @@ int derep(int argc,const char **argv){
     	Sechs.insert( nomFa.c_str() );
   	}
 
-  	
+
   	/*
 	Le programme fonctionne comme suit :
 	1) On va parcourir l'ensemble des fichiers présent dans le dossier
@@ -77,11 +100,11 @@ int derep(int argc,const char **argv){
 	4) On écrit la ligne dans le ofstream en mettant toutes les infos importantes :
 		(> id seq_total - nomfichier _abondance du fichier - ...-  )
 	5) On stock la sequence dans une map < seq_id, abondance total >
-	6) On supprime au fur et a mesure les sequences deja observé de tous les fichiers. 
+	6) On supprime au fur et a mesure les sequences deja observé de tous les fichiers.
 	7) Dans l'étape 4) on vérifie que l'on a jamais observé cette séquence précédemment
 
-	EDIT: 
-	
+	EDIT:
+
   	*/
 
 
@@ -109,19 +132,19 @@ int derep(int argc,const char **argv){
     	//RECUPERE LA map< ID_SEQ ; SEQ >
     	map<string,string> mainFiles = Fastq(pathFaIn,fastaFile).getSeq();
     	map<string,string>::iterator s = mainFiles.begin();
-    	
+
     	//PARCOUR LES SEQUENCES DU MAIN FILES
  		while(s != mainFiles.end()){
- 		
 
- 			//RECUPERE LE NOMBRE DE FOIS QUE 
+
+ 			//RECUPERE LE NOMBRE DE FOIS QUE
     		//string scoremain = s->second;
     		//scoremain.erase(0,1);
 
     		//string valueMainseqString = scoremain.substr(scoremain.find('_')+1,scoremain.length());
 	    	//std::stringstream convert(valueMainseqString);
             //int valueMainseq(0);
-            //if (!(convert >> valueMainseq)){ 
+            //if (!(convert >> valueMainseq)){
             //    valueMainseq = 0;
             // }
 
@@ -129,7 +152,7 @@ int derep(int argc,const char **argv){
  			int total(0);
 	    	string IdSeq;
 
-	    	// COMPTEUR POUR LE NOMBRE DE PRESENCE DE LA SEQUENCE DANS LES FICHIERS 
+	    	// COMPTEUR POUR LE NOMBRE DE PRESENCE DE LA SEQUENCE DANS LES FICHIERS
 	    	int obsEch(0);
 
 	    	set<string>::iterator k = Sechs.begin();
@@ -147,14 +170,14 @@ int derep(int argc,const char **argv){
 
 
 	    		string nameFile( (*k).substr(0,(*k).find('.')));
-				
 
-	    		
+
+
 	    		if(fastaTmp.count(s->first) >0){ //SI ON TROUVE LA SEQ DANS LE FICHIER FASTATMP
 	    			string nameSeq = fastaTmp[s->first];
 	    			nameSeq.erase(0,1);
 	    			string valueString = nameSeq.substr(nameSeq.find('_')+1,nameSeq.length());
-	    		
+
 
 	    			std::stringstream convert(valueString);
                     int value(0);
@@ -162,10 +185,10 @@ int derep(int argc,const char **argv){
                         value = 0;
                     }
 
-                    
+
 	    			total += value;
 	    			IdSeq +=  (nameFile+"_"+ valueString+'-');
-				
+
 
 					obsEch++;
 
@@ -181,8 +204,8 @@ int derep(int argc,const char **argv){
 	    			IdSeq +=  (nameFile+"_"+ "0"+'-');
 
 	    		}
-	    		
-	    		
+
+
 	    		k++;
 	    	}
 
@@ -196,7 +219,7 @@ int derep(int argc,const char **argv){
  					outPathNotPassed << '>' << counter2 <<"_" << total << '-' << IdSeq << endl << s->first << endl;
  					counter2++;
  				}
- 			}    	
+ 			}
 	    s++;
 	    }
     	it++;

@@ -4,7 +4,7 @@ Title: Tools to simplify NGS data treatment
 Version: 1.0.0
 Author: Raphaël Jauslin
 Description: This package incorpore the program PatPil in an R package.
-License: What license is it under?
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0

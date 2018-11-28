@@ -1,3 +1,26 @@
+/*
+ * derep_ech.cpp: core algorithm of the dereplication tools for a praticular file
+ *
+ */
+
+/*
+ * Copyright (C) 2019 Raphaël Jauslin
+ *
+ * This file is part of PatPil
+ *
+ * PatPil is free software; you can redistribute it and/or modify it under the
+ *  terms of the GNU General Public License as published by the Free
+ *  Software Foundation; either version 3 of the License, or (at your option) any later version.
+ *
+ * PatPil is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with PatPil; if not, see http://www.gnu.org/licenses/.
+ */
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -15,16 +38,16 @@ using namespace std;
 
 
 int derep_ech( int argc,const char **argv) {
-    
+
 
   //./PatPil  derep_ech -f dossier -o nameoffasta.fasta -s seuil
   //0           1        2   3     4          5           6  7
 
   cout << "patate" << endl;
-  
+
   // établissement du flux pour l'ouverture des fichiers fastq
 
-  string arg1 = argv[1]; //derep 
+  string arg1 = argv[1]; //derep
 
 
   string arg2 = argv[2]; // -f
@@ -48,7 +71,7 @@ int derep_ech( int argc,const char **argv) {
   ofstream outPathFH( pathFaOut );
 
   // parcourt du faIn
-  
+
   string ligneFaIn;
   int indLigne( 1 );
   map<string, int> MseqCnt;
@@ -57,7 +80,7 @@ int derep_ech( int argc,const char **argv) {
     while( getline( inPathFH, ligneFaIn ) ) {
 
       if( ligneFaIn.find( '>' ) != 0 ) {
-        
+
         if( MseqCnt.count( ligneFaIn ) == 0 ) {
           int cnt( 1 );
           MseqCnt.insert( pair<string, int>( ligneFaIn, cnt ) );
@@ -68,7 +91,7 @@ int derep_ech( int argc,const char **argv) {
           MseqCnt.erase( ligneFaIn );
           MseqCnt.insert( pair<string, int>( ligneFaIn, cnt ) );
         }
-      
+
       }
 
       if( indLigne % 100000 == 0 ) {
@@ -79,7 +102,7 @@ int derep_ech( int argc,const char **argv) {
     }
 
     // swap cnt et seq
-    
+
     int indSeq( 1 );
     multimap<int, string> MMcntSeq;
 
@@ -88,7 +111,7 @@ int derep_ech( int argc,const char **argv) {
       int cnt( it->second );
 
       MMcntSeq.insert( pair<int, string>( cnt, seq ) );
-      
+
       //if( indSeq % 10000 == 0 ) {
       //  cout << "swap " << indSeq << " / " << MseqCnt.size() << endl;
       //}
@@ -101,7 +124,7 @@ int derep_ech( int argc,const char **argv) {
     indSeq = 1;
 
     for( multimap<int, string>::reverse_iterator rit = MMcntSeq.rbegin(); rit != MMcntSeq.rend(); rit++ ){
-      
+
       //cout << rit->first << endl;
       if(rit ->first >= seuil){
         outPathFH << '>' << indSeq << '_' << rit->first << endl << rit->second << endl;

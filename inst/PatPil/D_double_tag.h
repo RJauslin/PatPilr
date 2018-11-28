@@ -1,4 +1,4 @@
-#ifndef D_double_tag_H    
+#ifndef D_double_tag_H
 #define D_double_tag_H
 
 #include <string>
