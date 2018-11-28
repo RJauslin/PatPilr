@@ -10,6 +10,6 @@ Implementation of the tools PatPil in R
 
 ``` r
 install.packages(devtools)
-devtools::install_github("Rjauslin/PatPilr")
+devtools::install_github("Rjauslin/PatPilr@master")
 
 ```
