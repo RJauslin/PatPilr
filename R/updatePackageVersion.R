@@ -1,6 +1,6 @@
 #' Update the package version
 #'
-#' @param packageLocation
+#' @param packageLocation location of the main folder of the package
 #'
 #' @examples
 #' \dontrun{

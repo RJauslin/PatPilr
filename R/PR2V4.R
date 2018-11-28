@@ -1,14 +1,15 @@
-#' Title
+#' PR2
 #'
 #' @param pathFile path to the file
-#' @param primer1
-#' @param primer2
-#' @param trim
-#' @param l_min
-#' @param l_max
+#' @param primer1 primer forward
+#' @param primer2 primer reverse
+#' @param trim number of nucleotide that you want possibly trim to the primer
+#' @param l_min min length of the keep sequences
+#' @param l_max max lenght of the keep sequences
 #'
-#' @return
+#' @return nothing but the file is created in pathFile
 #' @export
+#'
 #'
 #' @examples
 #' \dontrun{

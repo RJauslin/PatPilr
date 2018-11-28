@@ -1,8 +1,10 @@
 #' Dereplicate
 #'
-#' @param derep_folder
+#' @param pathFolder the path to the folder files
+#' @param within the number of occurence of each sequences in a file.
+#' @param between the number of occurence of each sequence between files.
 #'
-#' @return
+#' @return nothing but works on the files
 #' @export
 #'
 #' @examples
@@ -10,7 +12,6 @@
 #'' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
 #' Dereplicate(pathFolder)
 #' }
-#
 Dereplicate <- function(pathFolder,
                         within = 3,
                         between = 2){

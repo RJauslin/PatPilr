@@ -7,7 +7,12 @@
 as.fasta(pr2full, pr2clean)
 }
 \arguments{
-\item{pr2clean}{}
+\item{pr2full}{the full pr2}
+
+\item{pr2clean}{the clean pr2}
+}
+\value{
+the pr2 as a list
 }
 \description{
 Transform output from CheckPrimer to a list that can be write with write.fasta
