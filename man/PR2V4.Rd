@@ -2,7 +2,7 @@
 % Please edit documentation in R/PR2V4.R
 \name{PR2V4}
 \alias{PR2V4}
-\title{Title}
+\title{PR2}
 \usage{
 PR2V4(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
   primerReverse = "CRAAGAYGATYAGATACCRT", trim = 0, l_min = 100,
@@ -11,10 +11,21 @@ PR2V4(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
 \arguments{
 \item{pathFile}{path to the file}
 
-\item{l_max}{}
+\item{trim}{number of nucleotide that you want possibly trim to the primer}
+
+\item{l_min}{min length of the keep sequences}
+
+\item{l_max}{max lenght of the keep sequences}
+
+\item{primer1}{primer forward}
+
+\item{primer2}{primer reverse}
+}
+\value{
+nothing but the file is created in pathFile
 }
 \description{
-Title
+PR2
 }
 \examples{
 \dontrun{

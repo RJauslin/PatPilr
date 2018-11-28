@@ -7,7 +7,14 @@
 Dereplicate(pathFolder, within = 3, between = 2)
 }
 \arguments{
-\item{derep_folder}{}
+\item{pathFolder}{the path to the folder files}
+
+\item{within}{the number of occurence of each sequences in a file.}
+
+\item{between}{the number of occurence of each sequence between files.}
+}
+\value{
+nothing but works on the files
 }
 \description{
 Dereplicate

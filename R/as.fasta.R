@@ -2,10 +2,10 @@
 #'
 #' Transform output from CheckPrimer to a list that can be write with write.fasta
 #'
-#' @param pr2full
-#' @param pr2clean
+#' @param pr2full the full pr2
+#' @param pr2clean the clean pr2
 #'
-#' @return
+#' @return the pr2 as a list
 #' @export
 as.fasta <- function(pr2full,pr2clean){
   pr2 <- list()
