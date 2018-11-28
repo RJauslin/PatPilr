@@ -8,7 +8,8 @@ Implementation of the tools PatPil in R
 
 ## Installation
 
+``` r
 install.packages(devtools)
 devtools::install_github("Rjauslin/PatPilr")
 
-
+```
