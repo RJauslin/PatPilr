@@ -1,7 +1,7 @@
 Package: PatPilr
 Type: Package
 Title: Tools to simplify NGS data treatment
-Version: 1.0.0
+Version: 1.0.2
 Author: Raphaël Jauslin
 Description: This package incorpore the program PatPil in an R package.
 License: GPL-3
