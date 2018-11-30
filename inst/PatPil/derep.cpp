@@ -33,6 +33,8 @@
 #include <map>
 #include <sstream>
 #include <cmath>
+#include <random>
+#include <chrono>
 
 
 
@@ -41,8 +43,11 @@
 #include <sys/stat.h>
 
 #include "Fastq.h"
+#include "DNA.h"
 
 using namespace std;
+
+
 
 int derep(int argc,const char **argv){
 
@@ -116,13 +121,17 @@ int derep(int argc,const char **argv){
   	int counter2(1); // COMPTE LE NOMBRE DE SEQ REFUSE
 
 
+    vector<int> dnainfo;
+    dnainfo = dna(0,5,1);
   	//PARCOURT LE MAIN FILE
   	while(it != Sechs.end()) {
 
 
 
     	string pathFaIn( pathDosFaIn  + *it );
-    	cout << "Work in progress in the file : " <<pathFaIn << endl << endl;
+
+  	  dnainfo = dna(dnainfo[0],dnainfo[1],dnainfo[2]);
+    	// cout << "Work in progress in the file : " <<pathFaIn << endl << endl;
     	string nameFilemain( (*it).substr(0,(*it).find('.')));
 
 
@@ -135,6 +144,7 @@ int derep(int argc,const char **argv){
 
     	//PARCOUR LES SEQUENCES DU MAIN FILES
  		while(s != mainFiles.end()){
+
 
 
  			//RECUPERE LE NOMBRE DE FOIS QUE

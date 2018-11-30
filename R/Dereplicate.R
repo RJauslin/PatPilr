@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
+#' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
 #' Dereplicate(pathFolder)
 #' }
 Dereplicate <- function(pathFolder,

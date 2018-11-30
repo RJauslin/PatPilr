@@ -30,7 +30,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/"
+#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/"
 #' preTreatment(pathFolder)
 #' }
 preTreatment <- function(pathFolder,
