@@ -47,7 +47,7 @@ A folder is create named "demultiplex" which contains the demultiplexed file.
 }
 \examples{
 \dontrun{
-pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/"
+pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/"
 preTreatment(pathFolder)
 }
 }

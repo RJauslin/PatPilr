@@ -1,13 +1,13 @@
-CC = g++
+CC = g++ -std=c++11
 CFLAGS = -Wall -O3
 LDFLAGS = -lm -pthread
 
 all : PatPil
 
-PatPil : main.o Fastq.o RemoveN.o RemoveNfasta.o rmSmallSeq.o D_simple_tag.o D_double_tag.o derep.o derep_ech.o DNA.o
+PatPil : main.o Fastq.o RemoveN.o RemoveNfasta.o rmSmallSeq.o D_simple_tag.o D_double_tag.o derep.o derep_ech.o swmPrePars.o DNA.o
 	$(CC) $^ -o $@ $(LDFLAGS)
 
-main.o  : main.cpp Fastq.h RemoveN.h RemoveNfasta.h rmSmallSeq.h D_simple_tag.h derep.h derep_ech.h DNA.h
+main.o  : main.cpp Fastq.h RemoveN.h RemoveNfasta.h rmSmallSeq.h D_simple_tag.h derep.h derep_ech.h swmPrePars.h DNA.h
 	$(CC) main.cpp -c $(CFLAGS)
 
 Fastq.o : Fastq.h Fastq.cpp
@@ -32,6 +32,9 @@ derep.o : derep.h Fastq.h derep.cpp DNA.h
 	$(CC) $*.cpp -c $(CFLAGS)
 
 derep_ech.o : derep_ech.h Fastq.h derep_ech.cpp DNA.h
+	$(CC) $*.cpp -c $(CFLAGS)
+
+swmPrePars.o : swmPrePars.h swmPrePars.cpp DNA.h
 	$(CC) $*.cpp -c $(CFLAGS)
 
 DNA.o : DNA.h DNA.cpp

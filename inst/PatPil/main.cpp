@@ -43,7 +43,7 @@
 #include "derep.h"
 #include "derep_ech.h"
 #include "DNA.h"
-
+#include "swmPrePars.h"
 
 using namespace std;
 
@@ -298,6 +298,12 @@ int main(int argc,const char **argv){
           int f_state = derep_ech(argc,argv);
           if(f_state == 1){
             cerr << "Error in derep_ech function" << endl;
+            return 1;
+          }
+        }else if (arg1 == "swmPrePars"){
+          int f_state = swmPrePars(argc,argv);
+          if(f_state == 1){
+            cerr << "Error in swmPrePars function" << endl;
             return 1;
           }
         }else{
