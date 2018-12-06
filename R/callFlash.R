@@ -2,11 +2,15 @@
 #'
 #' Function that call the FLASH program. \url{https://ccb.jhu.edu/software/FLASH/}.
 #'
-#' @param file_path A character string containing the path to the fastq file. The extenstion must be *.fastq
-#' @param fastq1 A character string containing the path to the output folder with the namefile. The extenstion must be *.fastq and contains R1.
-#' @param fastq2 A character string containing the path to the output folder with the namefile. The extenstion must be *.fastq and contains R2.
-#' @param m A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.  Default 10.
-#' @param M A scalar value that represent the maximum overlap length expected in approximately 90% of read pairs. Default 100.
+#' @param file_path A character string containing the path to the fastq file. The extenstion must be .fastq
+#' @param fastq1 A character string containing the path to the output folder with the namefile.
+#'  The extenstion must be .fastq and contains R1.
+#' @param fastq2 A character string containing the path to the output folder with the namefile.
+#'  The extenstion must be .fastq and contains R2.
+#' @param m A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.
+#'   Default 10.
+#' @param M A scalar value that represent the maximum overlap length expected in approximately ninety percent of read pairs.
+#'  Default 100.
 #' @param x A scalar value that represent the maximum allowed ratio between the number of mismatched base pairs and the overlap length. Default 0.25.
 #' @param t A scalar value that represent the number of worker threads. Default t = 4.
 #'

@@ -2,14 +2,19 @@
 #'
 #' Function that apply a pre-treatment on the fasq files
 #'
-#' @param pathFolder A character string containing the path where the program will work.  It should contains the two *.fastq file with R1 and R2 inside the name.
-#' @param m A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.  Default 10.
-#' @param M A scalar value that represent the maximum overlap length expected in approximately 90% of read pairs. Default 100.
-#' @param x A scalar value that represent the maximum allowed ratio between the number of mismatched base pairs and the overlap length. Default 0.25.
+#' @param pathFolder A character string containing the path where the program will work.
+#'  It should contains the two .fastq file with R1 and R2 inside the name.
+#' @param m A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.
+#'   Default 10.
+#' @param M A scalar value that represent the maximum overlap length expected in approximately ninety percent of read pairs.
+#'  Default 100.
+#' @param x A scalar value that represent the maximum allowed ratio between the number
+#'  of mismatched base pairs and the overlap length. Default 0.25.
 #' @param t A scalar value that represent the number of worker threads. Default t = 4.
 #' @param err A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.
 #' @param slide A scalar that represent the size of the sliding window. Default = 50.
 #' @param minlength A scalar that represent the minimum size of the sequence to be keep. Default = 60.
+#' @param sep A character string that separate the name and the R1 or R2 content.
 #'
 #' @details
 #'

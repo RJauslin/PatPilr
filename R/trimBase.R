@@ -1,11 +1,11 @@
 #' trim the primer of a reference database
 #'
 #' @param pathFile path to the file
-#' @param primer1 primer forward
-#' @param primer2 primer reverse
 #' @param trim number of nucleotide that you want possibly trim to the primer
 #' @param l_min min length of the keep sequences
 #' @param l_max max lenght of the keep sequences
+#' @param primerForward character string that represent the forward primer
+#' @param primerReverse character string that represent the reverse primer
 #'
 #' @return nothing but the file is created in pathFile
 #' @export

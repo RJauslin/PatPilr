@@ -11,15 +11,15 @@ trimBase(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
 \arguments{
 \item{pathFile}{path to the file}
 
+\item{primerForward}{character string that represent the forward primer}
+
+\item{primerReverse}{character string that represent the reverse primer}
+
 \item{trim}{number of nucleotide that you want possibly trim to the primer}
 
 \item{l_min}{min length of the keep sequences}
 
 \item{l_max}{max lenght of the keep sequences}
-
-\item{primer1}{primer forward}
-
-\item{primer2}{primer reverse}
 }
 \value{
 nothing but the file is created in pathFile

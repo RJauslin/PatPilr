@@ -2,17 +2,21 @@
 #'
 #' Function that apply a pre-treatment on the fasq file R1 and R2.
 #'
-#' @param pathFolder A character string containing the path where the program will work.  It should contains the two *.fastq file with R1 and R2 inside the name.
-#' @param m A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.  Default 10.
-#' @param M A scalar value that represent the maximum overlap length expected in approximately 90% of read pairs. Default 100.
-#' @param x A scalar value that represent the maximum allowed ratio between the number of mismatched base pairs and the overlap length. Default 0.25.
-#' @param t A scalar value that represent the number of worker threads. Default t = 4.
-#' @param mismatch A boolean value if one mismatch is allowed inside the barcode. Default = FALSE
-#' @param err A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.
-#' @param slide A scalar that represent the size of the sliding window. Default = 50.
-#' @param minlength A scalar that represent the minimum size of the sequence to be keep. Default = 60.
+#'@param pathFolder A character string containing the path where the program will work.
+#'  It should contains the two .fastq file with R1 and R2 inside the name.
+#'@param m A scalar value that represent the minimum required overlap length between
+#' two reads to provide a confident overlap.  Default 10.
+#'@param M A scalar value that represent the maximum overlap length expected
+#' in approximately ninety percent of read pairs. Default 100.
+#'@param x A scalar value that represent the maximum allowed ratio between the number
+#' of mismatched base pairs and the overlap length. Default 0.25.
+#'@param t A scalar value that represent the number of worker threads. Default t = 4.
+#'@param mismatch A boolean value if one mismatch is allowed inside the barcode. Default = FALSE
+#'@param err A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.
+#'@param slide A scalar that represent the size of the sliding window. Default = 50.
+#'@param minlength A scalar that represent the minimum size of the sequence to be keep. Default = 60.
 #'
-#' @details
+#'@details
 #'
 #' The pathFolder argument should contain : namefile_R1.fastq namefile_r2.fastq barcode.txt. The function create the different folder by its own.
 #'

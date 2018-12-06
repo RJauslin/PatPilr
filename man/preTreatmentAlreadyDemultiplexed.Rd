@@ -9,13 +9,19 @@ preTreatmentAlreadyDemultiplexed(pathFolder, sep = "_R", m = 10,
   minlength = 60)
 }
 \arguments{
-\item{pathFolder}{A character string containing the path where the program will work.  It should contains the two *.fastq file with R1 and R2 inside the name.}
+\item{pathFolder}{A character string containing the path where the program will work.
+It should contains the two .fastq file with R1 and R2 inside the name.}
 
-\item{m}{A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.  Default 10.}
+\item{sep}{A character string that separate the name and the R1 or R2 content.}
 
-\item{M}{A scalar value that represent the maximum overlap length expected in approximately 90% of read pairs. Default 100.}
+\item{m}{A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.
+Default 10.}
 
-\item{x}{A scalar value that represent the maximum allowed ratio between the number of mismatched base pairs and the overlap length. Default 0.25.}
+\item{M}{A scalar value that represent the maximum overlap length expected in approximately ninety percent of read pairs.
+Default 100.}
+
+\item{x}{A scalar value that represent the maximum allowed ratio between the number
+of mismatched base pairs and the overlap length. Default 0.25.}
 
 \item{t}{A scalar value that represent the number of worker threads. Default t = 4.}
 

@@ -8,6 +8,8 @@
 #' @param pr2 pr2 data.frame
 #' @param primer1 vector of all possible primer 1 to consider
 #' @param primer2 vector of all possible primer 2 to consider
+#' @param l_min bla
+#' @param l_max bla
 #'
 #' @export
 #' @useDynLib PatPilr
