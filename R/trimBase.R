@@ -1,4 +1,4 @@
-#' PR2
+#' trim the primer of a reference database
 #'
 #' @param pathFile path to the file
 #' @param primer1 primer forward
@@ -16,7 +16,7 @@
 #' pathfile <- "/home/raphael/Documents/PR2.fa"
 #' PR2V4(pathfile)
 #' }
-PR2V4 <- function(pathFile,
+trimBase <- function(pathFile,
                   primerForward = "CYGCGGTAATTCCAGCTC",
                   primerReverse =  "CRAAGAYGATYAGATACCRT",
                   trim = 0,
