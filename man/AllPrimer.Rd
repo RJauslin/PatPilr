@@ -41,6 +41,6 @@ Careful about the number of wobble in the primer, the number of possible combina
 primer <- "CYGCGGTAATTCCAGCTC"
 primer <- "CRAAGAYGATYAGATSWMBACCRT"
 \dontrun{
-AllPrimer(primer,direction = "forward",trim_nuc = 4)
+AllPrimer(primer,direction = "forward",trim_nuc = 2)
 }
 }

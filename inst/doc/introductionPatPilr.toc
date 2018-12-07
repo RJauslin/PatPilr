@@ -5,5 +5,5 @@
 \contentsline {subsection}{\numberline {2.2}Demultiplexing}{4}
 \contentsline {subsubsection}{\numberline {2.2.1}Simple tag}{4}
 \contentsline {subsubsection}{\numberline {2.2.2}Double tag}{4}
-\contentsline {subsection}{\numberline {2.3}Quality check}{4}
+\contentsline {subsection}{\numberline {2.3}Quality check}{5}
 \contentsline {section}{\numberline {3}Dereplication}{5}

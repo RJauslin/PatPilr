@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.7)  7 DEC 2018 14:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.7)  7 DEC 2018 15:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -601,7 +601,11 @@ Overfull \hbox (20.41077pt too wide) in paragraph at lines 148--148
  []
 
 Package color Info: Redefining color shadecolor on input line 156.
-(./introductionPatPilr.bbl [4]) [5] (./introductionPatPilr.aux) ) 
+Package color Info: Redefining color shadecolor on input line 178.
+Package color Info: Redefining color shadecolor on input line 190.
+[4]
+Package color Info: Redefining color shadecolor on input line 202.
+ (./introductionPatPilr.bbl) [5] (./introductionPatPilr.aux) ) 
 Here is how much of TeX's memory you used:
  4158 strings out of 494894
  59397 string characters out of 6179473
@@ -610,20 +614,20 @@ Here is how much of TeX's memory you used:
  14918 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  51i,6n,40p,859b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/raphae
-l/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/rap
-hael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </home/
-raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </ho
-me/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <
-/home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1000.600pk
-> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.60
-0pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000
-.600pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1
-440.600pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ec
-rm1000.600pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecrm1200.600pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen
-/ec/ecrm1728.600pk>
-Output written on introductionPatPilr.pdf (5 pages, 96625 bytes).
+ </home/raphael/.
+texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/raphae
+l/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </home/rap
+hael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </home/
+raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </ho
+me/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1000.600pk> <
+/home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk
+> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.60
+0pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440
+.600pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1
+000.600pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ec
+rm1200.600pk> </home/raphael/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecrm1728.600pk>
+Output written on introductionPatPilr.pdf (5 pages, 96910 bytes).
 PDF statistics:
  380 PDF objects out of 1000 (max. 8388607)
  56 compressed objects within 1 object stream

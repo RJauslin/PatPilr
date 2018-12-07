@@ -109,6 +109,28 @@ CTCGCGTGTC	08.fq
 \subsubsection{Double tag}
 
 
+
+<<forwardTag,cache=FALSE,eval=FALSE>>=
+ACACACAC	ForwardTag1
+ACGACTCT	ForwardTag2
+ACGCTAGT	ForwardTag3
+ACTATCAT	ForwardTag4
+...
+@
+
+<<reverseTag,cache=FALSE,eval=FALSE>>=
+ACACACAC	ReverseTag1
+ACGACTCT	ReverseTag2
+ACGCTAGT	ReverseTag3
+ACTATCAT	ReverseTag4
+...
+@
+
+<<Primertxt,cache=FALSE,eval=FALSE>>=
+CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
+@
+
+
 \subsection{Quality check}
 \label{subsec:qualcheck}
 
