@@ -1,0 +1,15 @@
+\begin{thebibliography}{}
+
+\bibitem[Edgar and Flyvbjerg, 2015]{Edgar2015}
+Edgar, R.~C. and Flyvbjerg, H. (2015).
+\newblock {Error filtering, pair assembly and error correction for
+  next-generation sequencing reads}.
+\newblock {\em Bioinformatics}.
+
+\bibitem[Mago{\v{c}} and Salzberg, 2011]{Magoc2011}
+Mago{\v{c}}, T. and Salzberg, S.~L. (2011).
+\newblock {FLASH: Fast length adjustment of short reads to improve genome
+  assemblies}.
+\newblock {\em Bioinformatics}.
+
+\end{thebibliography}

@@ -53,8 +53,10 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[english,francais]{babel}
+\usepackage[english,french]{babel}
 \usepackage{url}
+\usepackage{scrextend}
+\addtokomafont{labelinglabel}{\sffamily}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
@@ -63,10 +65,13 @@
 
 \title{An Introduction to PatPilr}
 
-\author{Raphaël Jauslin}
+\author{Rapha\"el Jauslin}
 
 \maketitle
 
+\newpage
+
+\tableofcontents
 \newpage
 
 \section{Overview}
@@ -82,20 +87,107 @@ This package is a tool to facilitate the pre-treatment and the treatment of NGS 
 \end{kframe}
 \end{knitrout}
 
-
-
 \section{Pre-treatment}
+\label{sec:pretreatment}
+This is the first step of the pipeline. The input are the original files from the server they are generally named \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the informations needed for the demultiplexing (see Section \ref{subsec:demux}).
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(PatPilr)}
+
+\hlcom{#Linux}
+\hlstd{pathFolder} \hlkwb{<-} \hlstr{"/home/raphael/Documents/......./working_directory/"}
+\hlcom{#Windows}
+\hlstd{pathFolderWindows} \hlkwb{<-} \hlstr{"C:/Users/raphael/......./working_directory/"}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+All the pre-treatment is wrap inside a function that call the different functions. So you only have to check the parameter of the function and click enter.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{preTreatment}\hlstd{(pathFolder,}
+  \hlkwc{m} \hlstd{=} \hlnum{10}\hlstd{,} \hlcom{# min overlap}
+  \hlkwc{M} \hlstd{=} \hlnum{100}\hlstd{,} \hlcom{# max overlap}
+  \hlkwc{x} \hlstd{=} \hlnum{0.25}\hlstd{,} \hlcom{# max mismatch density}
+  \hlkwc{t} \hlstd{=} \hlnum{4}\hlstd{,} \hlcom{# number of threads}
+  \hlkwc{mismatch} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlcom{# allows 1 mismatch in tag if TRUE}
+  \hlkwc{err} \hlstd{=} \hlnum{0.01}\hlstd{,} \hlcom{#}
+  \hlkwc{slide} \hlstd{=} \hlnum{50}\hlstd{,} \hlcom{#}
+  \hlkwc{minlength} \hlstd{=} \hlnum{60}\hlstd{)} \hlcom{# parameters for qual check}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
 
 \subsection{Merging}
+\label{subsec:merge}
+
+The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allows some possible parameters
+
+\begin{labeling}{mcccc}
+\item [m] The minimum required overlap length between two reads to provide a confident overlap.
+\item [M] Maximum overlap length expected in approximately 90\% of read pairs.
+\item [x] Maximum allowed ratio between the number of mismatched base pairs and the overlap length.
+\item [t] Set the number of worker threads.
+\end{labeling}
 
 \subsection{Demultiplexing}
+\label{subsec:demux}
+
+
+\subsubsection{Simple tag}
+The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls the tools \texttt{D\_simple\_tag} that could be used from the shell by the following command.
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+./PatPil D_simple_tag -f ./merged.fastq -o ./outputFolder/ -b ./barcodes.txt -mismatch
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+The only thing that you should care is that your barcode.txt file is of the following form.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+ACGAGTGCGT	01.fq
+ACGCTCGACA	02.fq
+AGACGCACTC	03.fq
+AGCACTGTAG	04.fq
+ATCAGACACG	05.fq
+ATATCGCGAG	06.fq
+CGTGTCTCTA	07.fq
+CTCGCGTGTC	08.fq
+...
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\textbf{More important the separator between the tags and the names of the files should be a tab.}
+
+\subsubsection{Double tag}
+
 
 \subsection{Quality check}
+\label{subsec:qualcheck}
 
-\section{Treatment}
+\cite{Edgar2015}
 
 
-\section{Overview}
 
+\section{Dereplication}
+
+
+
+
+
+
+\bibliographystyle{apalike} % Le style est mis entre accolades.
+\bibliography{patpil} % mon fichier de base de données s'appelle bibli.bib
 
 \end{document}
