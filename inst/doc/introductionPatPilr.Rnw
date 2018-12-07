@@ -1,0 +1,53 @@
+\documentclass{article}[12pt]
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,francais]{babel}
+\usepackage{url}
+
+
+\begin{document}
+
+<<setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+# set global chunk options
+opts_chunk$set(fig.path='figure/minimal-', fig.align='center', fig.show='hold')
+options(formatR.arrow=TRUE,width=90)
+@
+
+
+\title{An Introduction to PatPilr}
+
+\author{Raphaël Jauslin}
+
+\maketitle
+
+\newpage
+
+\section{Overview}
+
+This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools are implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. This will supposed that you have two .fastq R1 and R2 and a barcode file that contains the informations for the demultiplexing step. Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. You should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
+
+<<install,cache=FALSE,eval=FALSE>>=
+install.packages("devtools")
+devtools::install_github("Rjauslin/PatPilr@master")
+@
+
+
+
+\section{Pre-treatment}
+
+\subsection{Merging}
+
+\subsection{Demultiplexing}
+
+\subsection{Quality check}
+
+\section{Treatment}
+
+
+\section{Overview}
+
+
+\end{document}
