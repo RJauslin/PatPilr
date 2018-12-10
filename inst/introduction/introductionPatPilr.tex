@@ -55,19 +55,142 @@
 \usepackage[T1]{fontenc}
 \usepackage[english,french]{babel}
 \usepackage{url}
+\usepackage{graphicx}
+
 \usepackage{scrextend}
 \addtokomafont{labelinglabel}{\sffamily}
+
+\usepackage[colorlinks = true, linkcolor=blue, citecolor= dgreen,urlcolor = Levanda]{hyperref}
+\usepackage[top = 3cm,bottom = 3cm,right = 3cm,left = 3cm]{geometry}
+% \usepackage[paperwidth=8.5in, paperheight=10.75in]{geometry}
+% \usepackage{tabularx}
+% \usepackage{xcolor}
+% \usepackage{lscape}
+% % \usepackage{eulervm,mathtools}
+% \usepackage{caption}
+% % \usepackage{here}
+% % \renewcommand{\fnum@figure}{Figure \thefigure}
+% % \captionsetup[figure]{name={Figure}}
+%
+% % \usepackage{background}
+% \usepackage{tabularx}
+% \usepackage{hyperref}
+% %\usepackage{pp4link}
+% % \usepackage{mpmulti}
+% \usepackage{graphicx}
+% \graphicspath{{./figure/}}
+%
+%
+% \usepackage{subfig}
+%
+% % \usepackage[display]{texpower}
+% % \usepackage{pause}
+\usepackage{titlesec}
+% % \usepackage{fancyhdr}
+% % \usepackage{enumerate}
+%
+ \definecolor{Headcolor}{cmyk}{0,0,0,1}  %{0,0,0,0.65}  %
+ \renewcommand\normalcolor{\color{Headcolor}}
+
+ \definecolor{Textcolor}{cmyk}{0,0,0,1} % currently black (duh)
+ \definecolor{Highlight}{cmyk}{0,0.89,0.94,0.1} % currently BrickRed
+ \definecolor{Seagreen}{cmyk}{0.47,0,0.37,0.36} %0.26
+ \definecolor{Beige}{cmyk}{0,0.02,0.20,0.06}
+ \definecolor{LsteelB}{cmyk}{0.6, 0.3, 0, 0.2}
+ \definecolor{Levanda}{cmyk}{.21, .37, 0, .53}
+ \definecolor{Salm}{cmyk}{0,.4,0.5,0.2}
+ \definecolor{dgrey}{cmyk}{0,0,0,0.995} %%{0,0,0,0.65}
+ \definecolor{dgreen}{cmyk}{.90, 0, .7, .6}
+ \definecolor{darkpastelblue}{rgb}{0.47, 0.62, 0.8}
+ \definecolor{lightblue}{rgb}{0.68, 0.85, 0.9}
+ \definecolor{lightskyblue}{rgb}{0.53, 0.81, 0.98}
+ \definecolor{pastelgreen}{rgb}{0.47, 0.87, 0.47}
+
+ \newcommand\beige{\color{Beige}}
+ \newcommand\Leva{\color{Levanda}}
+ \newcommand\Text{\color{Textcolor}}
+ \newcommand\High{\color{Highlight}}
+ \newcommand\SeaG{\color{Seagreen}}
+ \newcommand\LstB{\color{LsteelB}}
+ \newcommand\head{\color{Headcolor}}
+ \newcommand\Salm{\color{Salm}}
+ \newcommand\dgrey{\color{dgrey}}
+ \newcommand\dgreen{\color{dgreen}}
+ \newcommand\dpastelblue{\color{darkpastelblue}}
+ \newcommand\lblue{\color{lightblue}}
+ \newcommand\lightskyblue{\color{lightskyblue}}
+ \newcommand\pastelgreen{\color{pastelgreen}}
+%
+%
+%\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+%\theoremstyle{plain}
+\newtheorem{thrm}{Theorem}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{ex}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemme}{Lemma}[section]
+\newtheorem{coro}{Corollary}[section]
+%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rplus}{\mathbb{R_+}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\intI}{\int_{0}^\infty}
+\newcommand{\D}{\displaystyle}
+%
+% \numberwithin{equation}{section}
+
+% %
+\titleformat{\section}
+{\dpastelblue\Large\scshape\raggedright\vspace{1.75cm}}
+    {\thesection}
+    {1em}
+    {}[{\titlerule[1.75pt]}]
+% %
+\titleformat{\subsection}
+    {\dpastelblue\large\scshape\raggedright\vspace{0cm}}
+    {\thesubsection}
+    {1em}
+    {}[]
+%  \backgroundsetup{color=black,scale=3,contents={}} % remove DRAFT in red
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 
 
 
-\title{An Introduction to PatPilr}
+%-----------------------------------------------------------------------------------
+%	TITLE INFORMATIONS
+%-----------------------------------------------------------------------------------
 
-\author{Rapha\"el Jauslin}
+ \begin{titlepage}
+ % \centering
+ % \includegraphics[width=.6\textwidth]{epfl}\par\vspace{1cm}
+ % \vspace{1cm}
+ % \textsc{\Large Master Thesis}\\[0.5cm] % Thesis type
+ % \vspace{1.5cm}
+ \hrule
+ \vspace{0.5cm}
+ {\huge\centering \bfseries An Introduction to PatPilr  \par}
+ \vspace{0.5cm}
+ \hrule
+ \vspace{1.5cm}
+ {\huge\bfseries \par}
+ \vspace{2cm}
+ {\Large\itshape Rapha\"el Jauslin\par}
+ \vfill
+ % supervised by\par
+ % Professor Stephan \textsc{Morgenthaler}
+ \vfill
+ {\large \today\par}
+ \end{titlepage}
 
-\maketitle
 
 \newpage
 
