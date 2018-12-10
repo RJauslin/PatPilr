@@ -753,7 +753,7 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
 
     // UNKNOWN FILE INTIALIZATION
     string tmp = outputFolder;
-    ofstream unknown(tmp.append("unknown"),std::ios_base::app);
+    ofstream unknown(tmp.append("unknown.fastq"),std::ios_base::app);
     if(unknown){
 
 
@@ -765,7 +765,7 @@ void Fastq::demultiplexDoubleTagPrimer(string pathBarcodeForward,
       for(map<string,string>::iterator k = barcodeForward.begin(); k != barcodeForward.end(); ++k){
         for(map<string,string>::iterator l = barcodeReverse.begin(); l != barcodeReverse.end(); ++l){
           string tmp = outputFolder;
-          string nameFile = (k -> first) + '_' + (l -> first);
+          string nameFile = (k -> first) + '_' + (l -> first) + ".fastq";
           output[(k->second+'_'+l->second)] = new ofstream(tmp.append(nameFile),std::ios_base::app);// std::ios_base::app is creating the file if it does not exist but append in the other case
         }
       }

@@ -34,10 +34,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/"
+#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testSimple/"
 #' preTreatment(pathFolder)
 #' }
 preTreatment <- function(pathFolder,
+                         sep = "_R",
                          m = 10,
                          M = 100,
                          x = 0.25,
@@ -70,51 +71,140 @@ preTreatment <- function(pathFolder,
   #   MERGING
   #############################
 
-  files <- list.files(pathFolder)
-  filesPAIREND <- files[c(which(grepl("R1",files)),which(grepl("R2",files)))]
+  #-----------------
+  # GET THE NAMEFILE FOR R1 AND R2 and THE BARCODE, TAG, PRIMER
+  #-----------------
+  files <- list.files(pathFolder) # GET THE ALL NAMEFILES
+  filesPAIREND <- files[c(which(grepl("R1",files)),which(grepl("R2",files)))] # CHECK LES R1 et R2
+  filesPrimerTag <- files[c(which(grepl("barcode",files)),
+                            which(grepl("tag",files)),
+                            which(grepl("primer",files)))] # CHECK LES primer ou tag
 
-  namefile <- do.call(rbind,strsplit(filesPAIREND,"_R"))[1,1]
-  R1 <- file.path(pathFolder,filesPAIREND[which(grepl("R1",filesPAIREND))],fsep = "")
-  R2 <- file.path(pathFolder,filesPAIREND[which(grepl("R2",filesPAIREND))],fsep = "")
+  namefile <- do.call(rbind,strsplit(filesPAIREND,sep))[,1]
+  namefile <- unique(namefile)
 
+
+
+  # namefile <- do.call(rbind,strsplit(filesPAIREND,"_R"))[1,1]
+  # R1 <- file.path(pathFolder,filesPAIREND[which(grepl("R1",filesPAIREND))],fsep = "")
+  # R2 <- file.path(pathFolder,filesPAIREND[which(grepl("R2",filesPAIREND))],fsep = "")
+
+  #-----------------
+  # CREATE THE FOLDER merged
+  #-----------------
   if(!dir.exists(file.path(pathFolder,"merged",fsep ="" ))){
     dir.create(file.path(pathFolder,"merged",fsep ="" ))
   }
 
+  #-----------------
+  # LOOP ON THE R1 AND R2
+  #-----------------
+  for( i in 1:length(namefile)){
+    tmp <- filesPAIREND[which(grepl(namefile[i],filesPAIREND))]
 
+    R1 <- tmp[which(grepl("R1",tmp))]
+    R2 <- tmp[which(grepl("R2",tmp))]
 
+    R1 <- file.path(pathFolder,R1,fsep = "")
+    R2 <- file.path(pathFolder,R2,fsep = "")
 
+    system2(pathFlash,args = c('-m',m,
+                               '-M',M,
+                               '-x',x,
+                               '-t',t,
+                               '-d',file.path(pathFolder,"merged",fsep ="" ),
+                               '-o',namefile[i],
+                               R1,
+                               R2))
+  }
 
-  system2(pathFlash,args = c('-m',m,
-                             '-M',M,
-                             '-x',x,
-                             '-t',t,
-                             '-d',file.path(pathFolder,"merged",fsep ="" ),
-                             '-o',namefile,
-                             R1,
-                             R2))
+  #-----------------
+  # ORGANIZED THE FILES IN merged
+  #-----------------
+  if(!dir.exists(file.path(pathFolder,"merged/extFrags",fsep ="" ))){
+    dir.create(file.path(pathFolder,"merged/extFrags",fsep ="" ))
+  }
+
+  if(!dir.exists(file.path(pathFolder,"merged/histFrags",fsep ="" ))){
+    dir.create(file.path(pathFolder,"merged/hFrags",fsep ="" ))
+  }
+  if(!dir.exists(file.path(pathFolder,"merged/notCombFrags",fsep ="" ))){
+    dir.create(file.path(pathFolder,"merged/notCombFrags",fsep ="" ))
+  }
+
+  extended <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
+  extended <- extended[which(grepl("extendedFrags",extended))]
+
+  histo <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
+  histo <- histo[which(grepl("hist",histo))]
+
+  notComb <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
+  notComb <- notComb[which(grepl("notCombined",notComb))]
+
+  for(i in 1:length(extended)){
+    file.rename(from =  file.path(pathFolder,"merged/",extended[i],fsep ="" ),
+                to =  file.path(pathFolder,"merged/extFrags/",extended[i],fsep ="" ))
+  }
+  for(i in 1:length(histo)){
+    file.rename(from =  file.path(pathFolder,"merged/",histo[i],fsep ="" ),
+                to =  file.path(pathFolder,"merged/hFrags/",histo[i],fsep ="" ))
+  }
+  for(i in 1:length(notComb)){
+    file.rename(from =  file.path(pathFolder,"merged/",notComb[i],fsep ="" ),
+                to =  file.path(pathFolder,"merged/notCombFrags/",notComb[i],fsep ="" ))
+  }
 
 
   #############################
   #   DEMULTIPLEXING
   #############################
 
-  fileBarcode <- file.path(pathFolder,files[which(grepl("barcode",files))],fsep = "")
-
+  nfiles <- length(list.files(file.path(pathFolder,"merged/extFrags/",fsep = "")))
   ## CREATE DEMULTIPLEX FOLDER
-
   pathDemulti <- file.path(pathFolder,"demultiplex/",fsep ="" )
-
   if(!dir.exists(pathDemulti)){
     dir.create(pathDemulti)
   }
 
 
+  if(nfiles == 1){
 
- call.D_simple_tag(fastq_path = file.path(pathFolder,"merged/",namefile,".extendedFrags.fastq",fsep= ""),
-                    outputFolder = pathDemulti,
-                    barcode_path = fileBarcode,
-                    mismatch = TRUE)
+
+    if(any(grepl("barcode",filesPrimerTag))){
+      fileBarcode <- file.path(pathFolder,files[which(grepl("barcode",files))],fsep = "")
+
+      call.D_simple_tag(fastq_path = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
+                        outputFolder = pathDemulti,
+                        barcode_path = fileBarcode,
+                        mismatch = mismatch)
+
+    }else{
+      filePrimer <-  file.path(pathFolder,files[which(grepl("primer",files))],fsep = "")
+      fileForwardTag <- file.path(pathFolder,files[which(grepl("forwardtag",files))],fsep = "")
+      fileReverseTag <- file.path(pathFolder,files[which(grepl("reversetag",files))],fsep = "")
+
+
+      if(length(filePrimer) != 0 && length(fileReverseTag) != 0 && length(fileForwardTag) != 0 ){
+        primerForDemux(pathFolder)
+        call.D_double_tag(fastq_path = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
+                          outputFolder = pathDemulti,
+                          bF = file.path(pathFolder,files[which(grepl("forwardtag",files))],fsep = ""),
+                          bR = file.path(pathFolder,files[which(grepl("reversetag",files))],fsep = ""),
+                          pF = file.path(pathFolder,"primerforward.txt",fsep = ""),
+                          pR = file.path(pathFolder,"primerreverse.txt",fsep = ""),
+                          mismatch = FALSE)
+
+      }
+    }
+  }else{
+
+    for(i in 1:length(extended)){
+      file.rename(from =  file.path(pathFolder,"merged/extFrags/",extended[i],fsep ="" ),
+                  to =  file.path(pathDemulti,extended[i],fsep ="" ))
+    }
+
+
+  }
 
   #############################
   #   CLEANING

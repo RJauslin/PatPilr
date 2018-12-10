@@ -10,14 +10,14 @@
 #' }
 #'
 primerForDemux <-function(pathFile){
-  Primer <- as.data.frame(read.delim(file.path(pathFile,"Primer.txt",fsep ="") ,header = FALSE))
+  Primer <- as.data.frame(read.delim(file.path(pathFile,"primer.txt",fsep ="") ,header = FALSE))
   forward <- AllPrimer(primer = as.character(Primer$V1),direction = "none",trim_nuc = 0)
   reverse <- AllPrimer(primer = as.character(Primer$V2),direction = "none",trim_nuc = 0)
-  write.table(x = forward, file = file.path(pathFile,"PrimerForward.txt",fsep = ""),
+  write.table(x = forward, file = file.path(pathFile,"primerforward.txt",fsep = ""),
               quote = FALSE,
               col.names = FALSE,
               row.names = FALSE)
-  write.table(x = reverse, file = file.path(pathFile,"PrimerReverse.txt",fsep = ""),
+  write.table(x = reverse, file = file.path(pathFile,"primerreverse.txt",fsep = ""),
               quote = FALSE,
               col.names = FALSE,
               row.names = FALSE)
