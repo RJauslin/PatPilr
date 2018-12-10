@@ -35,7 +35,9 @@
 #' @examples
 #' \dontrun{
 #' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testSimple/"
-#' preTreatment(pathFolder)
+#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDouble/"
+#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testAlready/"
+#' preTreatment(pathFolder,M = 250)
 #' }
 preTreatment <- function(pathFolder,
                          sep = "_R",
@@ -210,6 +212,7 @@ preTreatment <- function(pathFolder,
   #   CLEANING
   #############################
 
+
   pathClean <- file.path(pathFolder,"clean/",fsep ="" )
   if(!dir.exists(pathClean)){
     dir.create(pathClean)
@@ -218,12 +221,15 @@ preTreatment <- function(pathFolder,
 
 
   filesDemultiplexed <- list.files(file.path(pathFolder,"/demultiplex"))
-  filesDemultiplexed <- filesDemultiplexed[-which(filesDemultiplexed == "unknown.fastq")]
-  prefixfile <- do.call(rbind,strsplit(filesDemultiplexed,split = "[.]"))[,1]
-  ext <- unique(do.call(rbind,strsplit(filesDemultiplexed,split = "[.]"))[,2])
+  if(length(which(filesDemultiplexed =="unknown.fastq")) != 0){
+    filesDemultiplexed <- filesDemultiplexed[-which(filesDemultiplexed == "unknown.fastq")]
+  }
+  prefixfile <- do.call(rbind,strsplit(filesDemultiplexed,split = ".extendedFrags"))[,1]
+  ext <- unique(do.call(rbind,strsplit(filesDemultiplexed,split = ".extendedFrags"))[,2])
+
 
   for(i in 1:length(prefixfile)){
-    call.qualCheck(fastq_path = file.path(pathFolder,"demultiplex/",prefixfile[i],".",ext,fsep = ""),
+    call.qualCheck(fastq_path = file.path(pathFolder,"demultiplex/",prefixfile[i],".extendedFrags",ext,fsep = ""),
                    outputFolder = file.path(pathFolder,"clean/",prefixfile[i],".fa",fsep = ""),
                    t = err,
                    s = slide,
