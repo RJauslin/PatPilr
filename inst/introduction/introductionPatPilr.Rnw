@@ -165,7 +165,7 @@ devtools::install_github("Rjauslin/PatPilr@master")
 
 \section{Pre-treatment}
 \label{sec:pretreatment}
-This is the first step of the pipeline. The input are the original files from the server they are generally named \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the informations needed for the demultiplexing (see Section \ref{subsec:demux}).
+This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the informations needed for the demultiplexing (see Section \ref{subsec:demux}).
 
 <<load,cache=FALSE,eval=FALSE>>=
 library(PatPilr)
@@ -177,7 +177,7 @@ pathFolderWindows <- "C:/Users/raphael/......./working_directory/"
 
 @
 
-All the pre-treatment is wrap inside a function that call the different functions. So you only have to check the parameter of the function and click enter.
+All the pre-treatment is wrap inside a function that call the different programs. So you only have to check the parameter of the main function \texttt{preTreatment}.
 
 <<mainfunc,cache=FALSE,eval=FALSE>>=
 preTreatment(pathFolder,
@@ -186,16 +186,16 @@ preTreatment(pathFolder,
   x = 0.25, # max mismatch density
   t = 4, # number of threads
   mismatch = FALSE, # allows 1 mismatch in tag if TRUE
-  err = 0.01, #
-  slide = 50, #
-  minlength = 60) # parameters for qual check
+  err = 0.01, # expected error
+  slide = 50, # sliding window
+  minlength = 60) # minimum length of sequences considered
 @
 
 
 \subsection{Merging}
 \label{subsec:merge}
 
-The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allows some possible parameters
+The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allows some possible changes.
 
 \begin{labeling}{mcccc}
 \item [m] The minimum required overlap length between two reads to provide a confident overlap.
@@ -206,33 +206,34 @@ The merging step currently implemented is done by the program FLASH \cite{Magoc2
 
 \subsection{Demultiplexing}
 \label{subsec:demux}
-
+We will here define the requirements for the demultiplexing part.
 
 \subsubsection{Simple tag}
-The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls the tools \texttt{D\_simple\_tag} that could be used from the shell by the following command.
+ In case of simple barcode you should only put one additional file called \texttt{barcode.txt}. The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls the tools \texttt{D\_simple\_tag} that could be used from the shell by the following command. So it is really important that the barcode file have the right format.
 
 <<demultiplex_simple,cache=FALSE,eval=FALSE,size ='footnotesize'>>=
 ./PatPil D_simple_tag -f ./merged.fastq -o ./outputFolder/ -b ./barcodes.txt -mismatch
 @
 
-The only thing that you should care is that your barcode.txt file is of the following form.
+The only thing that you should care is that your \texttt{barcode.txt} file is of the following form. \textbf{Specifically, it is really important to add the .fastq and not another extension file and you should verify that the separator between the tags and the names of the files is a tab.}
 
 <<barcode,cache=FALSE,eval=FALSE>>=
-ACGAGTGCGT	01.fq
-ACGCTCGACA	02.fq
-AGACGCACTC	03.fq
-AGCACTGTAG	04.fq
-ATCAGACACG	05.fq
-ATATCGCGAG	06.fq
-CGTGTCTCTA	07.fq
-CTCGCGTGTC	08.fq
+ACGAGTGCGT	01.fastq
+ACGCTCGACA	02.fastq
+AGACGCACTC	03.fastq
+AGCACTGTAG	04.fastq
+ATCAGACACG	05.fastq
+ATATCGCGAG	06.fastq
+CGTGTCTCTA	07.fastq
+CTCGCGTGTC	08.fastq
 ...
 @
 
-\textbf{More important the separator between the tags and the names of the files should be a tab.}
+If your barcode file follow all these requirements, the demultiplexing part should work proprely.
 
 \subsubsection{Double tag}
-
+ In case of double barcode you should only put three additional files called \texttt{forwardtag.txt},
+ \texttt{reversetag.txt} and \texttt{primer.txt}. The forwardtag and reversetag contains the barcodes that it supposed to be at the beginning and at the end of your sequences. \textbf{You should not include some extension file such as .fastq or .fq in these two files}.
 
 
 <<forwardTag,cache=FALSE,eval=FALSE>>=
@@ -251,15 +252,33 @@ ACTATCAT	ReverseTag4
 ...
 @
 
+
+The \texttt{primer.txt} should contains only two informations, that forward primer and the reverse primer \textbf{in this order}.
+The primers could have some incertain nucleotide. The program transform and do all the combination by creating two new file called primerforward and primerreverse. The transformations are done with the following table.
+
 <<Primertxt,cache=FALSE,eval=FALSE>>=
 CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
 @
 
+<<wobble,cache=FALSE,eval=FALSE>>=
+R = AG
+Y = CT
+S = GC
+W = AT
+K = GT
+M = AC
+B = CGT
+D = AGT
+H = ACT
+V = ACG
+@
+
+If you named your file with the good title, with the right format, the demultiplexing part should work proprely.
 
 \subsection{Quality check}
 \label{subsec:qualcheck}
 
-\cite{Edgar2015}
+The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
 
 
 
