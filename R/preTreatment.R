@@ -82,14 +82,26 @@ preTreatment <- function(pathFolder,
                             which(grepl("tag",files)),
                             which(grepl("primer",files)))] # CHECK LES primer ou tag
 
+  #-----------------
+  ###  DELETES THE FOLDER ALREADY CREATE IF THE preTreatment is rerun
+  #-----------------
+  if(any(grepl("merged",files))){
+    unlink(file.path(pathFolder,"merged",fsep = ""),recursive = TRUE)
+  }
+  if(any(grepl("demultiplex",files))){
+    unlink(file.path(pathFolder,"demultiplex",fsep = ""),recursive = TRUE)
+  }
+  if(any(grepl("clean",files))){
+    unlink(file.path(pathFolder,"clean",fsep = ""),recursive = TRUE)
+  }
+
+
+  #-----------------
+  # GET THE NAMEFILE (argument sep)
+  #-----------------
   namefile <- do.call(rbind,strsplit(filesPAIREND,sep))[,1]
   namefile <- unique(namefile)
 
-
-
-  # namefile <- do.call(rbind,strsplit(filesPAIREND,"_R"))[1,1]
-  # R1 <- file.path(pathFolder,filesPAIREND[which(grepl("R1",filesPAIREND))],fsep = "")
-  # R2 <- file.path(pathFolder,filesPAIREND[which(grepl("R2",filesPAIREND))],fsep = "")
 
   #-----------------
   # CREATE THE FOLDER merged
@@ -127,7 +139,7 @@ preTreatment <- function(pathFolder,
     dir.create(file.path(pathFolder,"merged/extFrags",fsep ="" ))
   }
 
-  if(!dir.exists(file.path(pathFolder,"merged/histFrags",fsep ="" ))){
+  if(!dir.exists(file.path(pathFolder,"merged/hFrags",fsep ="" ))){
     dir.create(file.path(pathFolder,"merged/hFrags",fsep ="" ))
   }
   if(!dir.exists(file.path(pathFolder,"merged/notCombFrags",fsep ="" ))){
@@ -200,9 +212,12 @@ preTreatment <- function(pathFolder,
     }
   }else{
 
+    prefixfile <- do.call(rbind,strsplit(extended,split = ".extendedFrags"))[,1]
+    # ext <- unique(do.call(rbind,strsplit(filesDemultiplexed,split = ".extendedFrags"))[,2])
+
     for(i in 1:length(extended)){
       file.rename(from =  file.path(pathFolder,"merged/extFrags/",extended[i],fsep ="" ),
-                  to =  file.path(pathDemulti,extended[i],fsep ="" ))
+                  to =  file.path(pathDemulti,prefixfile[i],".fastq",fsep ="" ))
     }
 
 
@@ -218,18 +233,15 @@ preTreatment <- function(pathFolder,
     dir.create(pathClean)
   }
 
-
-
   filesDemultiplexed <- list.files(file.path(pathFolder,"/demultiplex"))
   if(length(which(filesDemultiplexed =="unknown.fastq")) != 0){
     filesDemultiplexed <- filesDemultiplexed[-which(filesDemultiplexed == "unknown.fastq")]
   }
-  prefixfile <- do.call(rbind,strsplit(filesDemultiplexed,split = ".extendedFrags"))[,1]
-  ext <- unique(do.call(rbind,strsplit(filesDemultiplexed,split = ".extendedFrags"))[,2])
-
+  prefixfile <- do.call(rbind,strsplit(filesDemultiplexed,split = "[.]"))[,1] # GET WARNINGS IF THERE IS MORE
+  ext <- ".fastq"
 
   for(i in 1:length(prefixfile)){
-    call.qualCheck(fastq_path = file.path(pathFolder,"demultiplex/",prefixfile[i],".extendedFrags",ext,fsep = ""),
+    call.qualCheck(fastq_path = file.path(pathFolder,"demultiplex/",prefixfile[i],ext,fsep = ""),
                    outputFolder = file.path(pathFolder,"clean/",prefixfile[i],".fa",fsep = ""),
                    t = err,
                    s = slide,
