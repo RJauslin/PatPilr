@@ -7,13 +7,17 @@
 as.fasta(pr2full, pr2clean)
 }
 \arguments{
-\item{pr2full}{the full pr2}
+\item{pr2full}{the full database (as.list) pr2}
 
-\item{pr2clean}{the clean pr2}
+\item{pr2clean}{the cleaned database (as.list) pr2}
 }
 \value{
-the pr2 as a list
+the cleaned database in the right format
 }
 \description{
-Transform output from CheckPrimer to a list that can be write with write.fasta
+Internal function that is used in \code{\link{trimBasePR2}}.
+}
+\details{
+Transform output from \code{\link{CheckPrimer}} to
+a list that can be write with \code{\link[seqinr:write.fasta]{write.fasta}}
 }

@@ -7,17 +7,11 @@
 install.pr2(force = FALSE)
 }
 \arguments{
-\item{force}{force argument of install_github}
+\item{force}{force argument of \code{\link[devtools:install_github]{install_gitub}}}
 }
 \value{
 Nothing
 }
 \description{
-install pr2
-}
-\examples{
-\dontrun{
-# install.packages(devtools)
-}
-
+install the PR2 package \url{https://github.com/pr2database/pr2database}
 }
