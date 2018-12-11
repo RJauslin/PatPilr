@@ -17,6 +17,7 @@ pr2Tofasta
 }
 \examples{
 \dontrun{
-pr2full <- pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
+pr2full <-
+pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
 }
 }

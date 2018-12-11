@@ -19,3 +19,9 @@ nothing but works on the files
 \description{
 Dereplicate
 }
+\examples{
+\dontrun{
+pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
+Dereplicate(pathFolder)
+}
+}

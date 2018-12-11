@@ -8,7 +8,8 @@
 #' @importFrom seqinr write.fasta
 #' @examples
 #' \dontrun{
-#' pr2full <- pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
+#' pr2full <-
+#' pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
 #' }
 #
  pr2Tofasta <- function(file){
@@ -24,7 +25,7 @@
   if(missing(file)){
     cat("No file write")
   }else{
-    write.fasta(sequences = seqPR2,names = name,file.out = file,nbchar = 100000)
+    seqinr::write.fasta(sequences = seqPR2,names = name,file.out = file,nbchar = 100000)
   }
   return(seqPR2)
 }

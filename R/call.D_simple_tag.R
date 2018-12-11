@@ -3,9 +3,9 @@
 #' Function that call the simple tag demultiplexing program of the tool PatPil.
 #'
 #'
-#' @param fastq_path A character string containing the path to the fastq file. The extenstion must be *.fastq
+#' @param fastq_path A character string containing the path to the fastq file. The extenstion must be .fastq
 #' @param outputFolder A character string containing the path to the output folder.
-#' @param barcode_path A character string containing the path to the barcode file. The extension must be a *.txt
+#' @param barcode_path A character string containing the path to the barcode file. The extension must be a .txt
 #' @param mismatch A boolean value, if you allow one mismatch or not.
 #'
 #' @return Nothing for now (but work on the file)

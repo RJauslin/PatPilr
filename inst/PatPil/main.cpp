@@ -31,7 +31,8 @@
 #include <cmath>
 #include <thread>
 #include <mutex>
-
+#include <random>
+#include <chrono>
 
 #include "Fastq.h"
 #include "RemoveN.h"
@@ -41,8 +42,8 @@
 #include "D_double_tag.h"
 #include "derep.h"
 #include "derep_ech.h"
-
-
+#include "DNA.h"
+#include "swmPrePars.h"
 
 using namespace std;
 
@@ -102,7 +103,6 @@ void Help(int argc, const char **argv) {
       << "-pR\t .txt file that contains ALL the primer reverse\n";
 }
 
-
 std::mutex mtx;
 
 
@@ -120,6 +120,7 @@ int main(int argc,const char **argv){
 
   using namespace std::chrono;
   high_resolution_clock::time_point t1 = high_resolution_clock::now();
+
 
     if(argc <= 1){
      Help(argc,argv);
@@ -147,6 +148,8 @@ int main(int argc,const char **argv){
 
 
               cout << "\n------- " << arg1 <<" -------\n";
+              vector<int> dnainfo;
+              dnainfo = dna(0,5,1);
               if(flux){
                 while(flux){
                   int count(0);
@@ -180,6 +183,7 @@ int main(int argc,const char **argv){
                       }else{
                         if(ligne.find('\n') == std::string::npos){
 
+
                             tmp << ligne << '\n';
                             ++count;
                         }
@@ -194,6 +198,8 @@ int main(int argc,const char **argv){
                       */
                     }
                   }//END WHILE CHUNK
+
+                  dnainfo = dna(dnainfo[0],dnainfo[1],dnainfo[2]);
 
 
                   if(arg1 == "RemoveN"){
@@ -292,6 +298,12 @@ int main(int argc,const char **argv){
           int f_state = derep_ech(argc,argv);
           if(f_state == 1){
             cerr << "Error in derep_ech function" << endl;
+            return 1;
+          }
+        }else if (arg1 == "swmPrePars"){
+          int f_state = swmPrePars(argc,argv);
+          if(f_state == 1){
+            cerr << "Error in swmPrePars function" << endl;
             return 1;
           }
         }else{

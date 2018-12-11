@@ -1,0 +1,295 @@
+\documentclass{article}[12pt]
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,french]{babel}
+\usepackage{url}
+\usepackage{graphicx}
+
+\usepackage{scrextend}
+\addtokomafont{labelinglabel}{\sffamily}
+
+\usepackage[colorlinks = true, linkcolor=blue, citecolor= dgreen,urlcolor = Levanda]{hyperref}
+\usepackage[top = 3cm,bottom = 3cm,right = 3cm,left = 3cm]{geometry}
+% \usepackage[paperwidth=8.5in, paperheight=10.75in]{geometry}
+% \usepackage{tabularx}
+% \usepackage{xcolor}
+% \usepackage{lscape}
+% % \usepackage{eulervm,mathtools}
+% \usepackage{caption}
+% % \usepackage{here}
+% % \renewcommand{\fnum@figure}{Figure \thefigure}
+% % \captionsetup[figure]{name={Figure}}
+%
+% % \usepackage{background}
+% \usepackage{tabularx}
+% \usepackage{hyperref}
+% %\usepackage{pp4link}
+% % \usepackage{mpmulti}
+% \usepackage{graphicx}
+% \graphicspath{{./figure/}}
+%
+%
+% \usepackage{subfig}
+%
+% % \usepackage[display]{texpower}
+% % \usepackage{pause}
+\usepackage{titlesec}
+% % \usepackage{fancyhdr}
+% % \usepackage{enumerate}
+%
+ \definecolor{Headcolor}{cmyk}{0,0,0,1}  %{0,0,0,0.65}  %
+ \renewcommand\normalcolor{\color{Headcolor}}
+
+ \definecolor{Textcolor}{cmyk}{0,0,0,1} % currently black (duh)
+ \definecolor{Highlight}{cmyk}{0,0.89,0.94,0.1} % currently BrickRed
+ \definecolor{Seagreen}{cmyk}{0.47,0,0.37,0.36} %0.26
+ \definecolor{Beige}{cmyk}{0,0.02,0.20,0.06}
+ \definecolor{LsteelB}{cmyk}{0.6, 0.3, 0, 0.2}
+ \definecolor{Levanda}{cmyk}{.21, .37, 0, .53}
+ \definecolor{Salm}{cmyk}{0,.4,0.5,0.2}
+ \definecolor{dgrey}{cmyk}{0,0,0,0.995} %%{0,0,0,0.65}
+ \definecolor{dgreen}{cmyk}{.90, 0, .7, .6}
+ \definecolor{darkpastelblue}{rgb}{0.47, 0.62, 0.8}
+ \definecolor{lightblue}{rgb}{0.68, 0.85, 0.9}
+ \definecolor{lightskyblue}{rgb}{0.53, 0.81, 0.98}
+ \definecolor{pastelgreen}{rgb}{0.47, 0.87, 0.47}
+
+ \newcommand\beige{\color{Beige}}
+ \newcommand\Leva{\color{Levanda}}
+ \newcommand\Text{\color{Textcolor}}
+ \newcommand\High{\color{Highlight}}
+ \newcommand\SeaG{\color{Seagreen}}
+ \newcommand\LstB{\color{LsteelB}}
+ \newcommand\head{\color{Headcolor}}
+ \newcommand\Salm{\color{Salm}}
+ \newcommand\dgrey{\color{dgrey}}
+ \newcommand\dgreen{\color{dgreen}}
+ \newcommand\dpastelblue{\color{darkpastelblue}}
+ \newcommand\lblue{\color{lightblue}}
+ \newcommand\lightskyblue{\color{lightskyblue}}
+ \newcommand\pastelgreen{\color{pastelgreen}}
+%
+%
+%\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+%\theoremstyle{plain}
+\newtheorem{thrm}{Theorem}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{ex}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemme}{Lemma}[section]
+\newtheorem{coro}{Corollary}[section]
+%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rplus}{\mathbb{R_+}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\intI}{\int_{0}^\infty}
+\newcommand{\D}{\displaystyle}
+%
+% \numberwithin{equation}{section}
+
+% %
+\titleformat{\section}
+{\dpastelblue\Large\scshape\raggedright\vspace{1.75cm}}
+    {\thesection}
+    {1em}
+    {}[{\titlerule[1.75pt]}]
+% %
+\titleformat{\subsection}
+    {\dpastelblue\large\scshape\raggedright\vspace{0cm}}
+    {\thesubsection}
+    {1em}
+    {}[]
+%  \backgroundsetup{color=black,scale=3,contents={}} % remove DRAFT in red
+
+
+
+\begin{document}
+
+<<setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+# set global chunk options
+opts_chunk$set(fig.path='figure/minimal-', fig.align='center', fig.show='hold')
+options(formatR.arrow=TRUE,width=90)
+@
+
+
+%-----------------------------------------------------------------------------------
+%	TITLE INFORMATIONS
+%-----------------------------------------------------------------------------------
+
+ \begin{titlepage}
+ % \centering
+ % \includegraphics[width=.6\textwidth]{epfl}\par\vspace{1cm}
+ % \vspace{1cm}
+ % \textsc{\Large Master Thesis}\\[0.5cm] % Thesis type
+ % \vspace{1.5cm}
+ \hrule
+ \vspace{0.5cm}
+ {\huge\centering \bfseries An Introduction to PatPilr  \par}
+ \vspace{0.5cm}
+ \hrule
+ \vspace{1.5cm}
+ {\huge\bfseries \par}
+ \vspace{2cm}
+ {\Large\itshape Rapha\"el Jauslin\par}
+ \vfill
+ % supervised by\par
+ % Professor Stephan \textsc{Morgenthaler}
+ \vfill
+ {\large \today\par}
+ \end{titlepage}
+
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Overview}
+
+This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools are implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. This will supposed that you have two .fastq R1 and R2 and a barcode file that contains the informations for the demultiplexing step. Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. You should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
+
+<<install,cache=FALSE,eval=FALSE>>=
+install.packages("devtools")
+devtools::install_github("Rjauslin/PatPilr@master")
+@
+
+\section{Pre-treatment}
+\label{sec:pretreatment}
+This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the informations needed for the demultiplexing (see Section \ref{subsec:demux}).
+
+<<load,cache=FALSE,eval=FALSE>>=
+library(PatPilr)
+
+#Linux
+pathFolder <- "/home/raphael/Documents/......./working_directory/"
+#Windows
+pathFolderWindows <- "C:/Users/raphael/......./working_directory/"
+
+@
+
+All the pre-treatment is wrap inside a function that call the different programs. So you only have to check the parameter of the main function \texttt{preTreatment}.
+
+<<mainfunc,cache=FALSE,eval=FALSE>>=
+preTreatment(pathFolder,
+  m = 10, # min overlap
+  M = 100, # max overlap
+  x = 0.25, # max mismatch density
+  t = 4, # number of threads
+  mismatch = FALSE, # allows 1 mismatch in tag if TRUE
+  err = 0.01, # expected error
+  slide = 50, # sliding window
+  minlength = 60) # minimum length of sequences considered
+@
+
+
+\subsection{Merging}
+\label{subsec:merge}
+
+The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allows some possible changes.
+
+\begin{labeling}{mcccc}
+\item [m] The minimum required overlap length between two reads to provide a confident overlap.
+\item [M] Maximum overlap length expected in approximately 90\% of read pairs.
+\item [x] Maximum allowed ratio between the number of mismatched base pairs and the overlap length.
+\item [t] Set the number of worker threads.
+\end{labeling}
+
+\subsection{Demultiplexing}
+\label{subsec:demux}
+We will here define the requirements for the demultiplexing part.
+
+\subsubsection{Simple tag}
+ In case of simple barcode you should only put one additional file called \texttt{barcode.txt}. The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls the tools \texttt{D\_simple\_tag} that could be used from the shell by the following command. So it is really important that the barcode file have the right format.
+
+<<demultiplex_simple,cache=FALSE,eval=FALSE,size ='footnotesize'>>=
+./PatPil D_simple_tag -f ./merged.fastq -o ./outputFolder/ -b ./barcodes.txt -mismatch
+@
+
+The only thing that you should care is that your \texttt{barcode.txt} file is of the following form. \textbf{Specifically, it is really important to add the .fastq and not another extension file and you should verify that the separator between the tags and the names of the files is a tab.}
+
+<<barcode,cache=FALSE,eval=FALSE>>=
+ACGAGTGCGT	01.fastq
+ACGCTCGACA	02.fastq
+AGACGCACTC	03.fastq
+AGCACTGTAG	04.fastq
+ATCAGACACG	05.fastq
+ATATCGCGAG	06.fastq
+CGTGTCTCTA	07.fastq
+CTCGCGTGTC	08.fastq
+...
+@
+
+If your barcode file follow all these requirements, the demultiplexing part should work proprely.
+
+\subsubsection{Double tag}
+ In case of double barcode you should only put three additional files called \texttt{forwardtag.txt},
+ \texttt{reversetag.txt} and \texttt{primer.txt}. The forwardtag and reversetag contains the barcodes that it supposed to be at the beginning and at the end of your sequences. \textbf{You should not include some extension file such as .fastq or .fq in these two files}.
+
+
+<<forwardTag,cache=FALSE,eval=FALSE>>=
+ACACACAC	ForwardTag1
+ACGACTCT	ForwardTag2
+ACGCTAGT	ForwardTag3
+ACTATCAT	ForwardTag4
+...
+@
+
+<<reverseTag,cache=FALSE,eval=FALSE>>=
+ACACACAC	ReverseTag1
+ACGACTCT	ReverseTag2
+ACGCTAGT	ReverseTag3
+ACTATCAT	ReverseTag4
+...
+@
+
+
+The \texttt{primer.txt} should contains only two informations, that forward primer and the reverse primer \textbf{in this order}.
+The primers could have some incertain nucleotide. The program transform and do all the combination by creating two new file called primerforward and primerreverse. The transformations are done with the following table.
+
+<<Primertxt,cache=FALSE,eval=FALSE>>=
+CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
+@
+
+<<wobble,cache=FALSE,eval=FALSE>>=
+R = AG
+Y = CT
+S = GC
+W = AT
+K = GT
+M = AC
+B = CGT
+D = AGT
+H = ACT
+V = ACG
+@
+
+If you named your file with the good title, with the right format, the demultiplexing part should work proprely.
+
+\subsection{Quality check}
+\label{subsec:qualcheck}
+
+The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
+
+
+
+\section{Dereplication}
+
+
+
+
+
+
+\bibliographystyle{apalike} % Le style est mis entre accolades.
+\bibliography{patpil} % mon fichier de base de données s'appelle bibli.bib
+
+\end{document}

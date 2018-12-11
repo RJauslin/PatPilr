@@ -7,5 +7,5 @@
 install.PatPil()
 }
 \description{
-source : https://github.com/Rjauslin/PatPil
+source : \url{https://github.com/Rjauslin/PatPil}
 }

@@ -12,6 +12,8 @@ using namespace std;
 //' @param pr2 pr2 data.frame
 //' @param primer1 vector of all possible primer 1 to consider
 //' @param primer2 vector of all possible primer 2 to consider
+//' @param l_min bla
+//' @param l_max bla
 //'
 //' @export
 //' @useDynLib PatPilr
@@ -41,7 +43,7 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
     // insert pr2 in a std::string
     std::string tmp = pr2(i);
     if (i % 10000 == 0){
-      std::cout<<i<<std::endl;
+      // std::cout<<i<<std::endl;
     }
     // LOOP ON THE FIRST PRIMER
     for(int j = 0; j < m1; j++){

@@ -1,0 +1,25 @@
+\begin{thebibliography}{}
+
+\bibitem[{De Vargas} et~al., 2015]{DeVargas2015}
+{De Vargas}, C., Audic, S., Henry, N., Decelle, J., Mah{\'{e}}, F., Logares,
+  R., Lara, E., Berney, {\'{C}}., {Le Bescot}, N., Probert, I., Carmichael, M.,
+  Poulain, J., Romac, S., Colin, S., Aury, J.~M., Bittner, L., Chaffron, S.,
+  Dunthorn, M., Engelen, S., Flegontova, O., Guidi, L., Hor{\'{a}}k, A.,
+  Jaillon, O., Lima-Mendez, G., Luke{\v{s}}, J., Malviya, S., Morard, R.,
+  Mulot, M., Scalco, E., Siano, R., Vincent, F., Zingone, A., Dimier, C.,
+  Picheral, M., Searson, S., Kandels-Lewis, S., Acinas, S.~G., Bork, P.,
+  Bowler, C., Gorsky, G., Grimsley, N., Hingamp, P., Iudicone, D., Not, F.,
+  Ogata, H., Pesant, S., Raes, J., Sieracki, M.~E., Speich, S., Stemmann, L.,
+  Sunagawa, S., Weissenbach, J., Wincker, P., Karsenti, E., Boss, E., Follows,
+  M., Karp-Boss, L., Krzic, U., Reynaud, E.~G., Sardet, C., Sullivan, M.~B.,
+  and Velayoudon, D. (2015).
+\newblock {Eukaryotic plankton diversity in the sunlit ocean}.
+\newblock {\em Science}, 348(6237).
+
+\bibitem[Mago{\v{c}} and Salzberg, 2011]{Magoc2011}
+Mago{\v{c}}, T. and Salzberg, S.~L. (2011).
+\newblock {FLASH: Fast length adjustment of short reads to improve genome
+  assemblies}.
+\newblock {\em Bioinformatics}.
+
+\end{thebibliography}

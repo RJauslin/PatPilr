@@ -4,17 +4,22 @@
 \alias{preTreatment}
 \title{preTreatment}
 \usage{
-preTreatment(pathFolder, m = 10, M = 100, x = 0.25, t = 4,
-  mismatch = FALSE, err = 0.01, slide = 50, minlength = 60)
+preTreatment(pathFolder, sep = "_R", m = 10, M = 100, x = 0.25,
+  t = 4, mismatch = FALSE, err = 0.01, slide = 50,
+  minlength = 60)
 }
 \arguments{
-\item{pathFolder}{A character string containing the path where the program will work.  It should contains the two *.fastq file with R1 and R2 inside the name.}
+\item{pathFolder}{A character string containing the path where the program will work.
+It should contains the two .fastq file with R1 and R2 inside the name.}
 
-\item{m}{A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.  Default 10.}
+\item{m}{A scalar value that represent the minimum required overlap length between
+two reads to provide a confident overlap.  Default 10.}
 
-\item{M}{A scalar value that represent the maximum overlap length expected in approximately 90% of read pairs. Default 100.}
+\item{M}{A scalar value that represent the maximum overlap length expected
+in approximately ninety percent of read pairs. Default 100.}
 
-\item{x}{A scalar value that represent the maximum allowed ratio between the number of mismatched base pairs and the overlap length. Default 0.25.}
+\item{x}{A scalar value that represent the maximum allowed ratio between the number
+of mismatched base pairs and the overlap length. Default 0.25.}
 
 \item{t}{A scalar value that represent the number of worker threads. Default t = 4.}
 
@@ -47,7 +52,9 @@ A folder is create named "demultiplex" which contains the demultiplexed file.
 }
 \examples{
 \dontrun{
-pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/"
-preTreatment(pathFolder)
+pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testSimple/"
+pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDouble/"
+pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testAlready/"
+preTreatment(pathFolder,M = 250)
 }
 }

@@ -8,11 +8,11 @@ call.D_simple_tag(fastq_path, outputFolder, barcode_path,
   mismatch = TRUE)
 }
 \arguments{
-\item{fastq_path}{A character string containing the path to the fastq file. The extenstion must be *.fastq}
+\item{fastq_path}{A character string containing the path to the fastq file. The extenstion must be .fastq}
 
 \item{outputFolder}{A character string containing the path to the output folder.}
 
-\item{barcode_path}{A character string containing the path to the barcode file. The extension must be a *.txt}
+\item{barcode_path}{A character string containing the path to the barcode file. The extension must be a .txt}
 
 \item{mismatch}{A boolean value, if you allow one mismatch or not.}
 }

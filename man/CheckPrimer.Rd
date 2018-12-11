@@ -12,6 +12,10 @@ CheckPrimer(pr2, primer1, primer2, l_min, l_max)
 \item{primer1}{vector of all possible primer 1 to consider}
 
 \item{primer2}{vector of all possible primer 2 to consider}
+
+\item{l_min}{bla}
+
+\item{l_max}{bla}
 }
 \description{
 blabla

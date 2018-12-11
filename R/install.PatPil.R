@@ -1,9 +1,8 @@
 #' install the program PatPil
 #'
-#' source : https://github.com/Rjauslin/PatPil
+#' source : \url{https://github.com/Rjauslin/PatPil}
 #'
 #' @export
-#'
 install.PatPil <- function(){
   info <- Sys.info()
   if(info[1] == "Linux"){
