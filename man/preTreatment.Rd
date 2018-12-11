@@ -4,8 +4,9 @@
 \alias{preTreatment}
 \title{preTreatment}
 \usage{
-preTreatment(pathFolder, m = 10, M = 100, x = 0.25, t = 4,
-  mismatch = FALSE, err = 0.01, slide = 50, minlength = 60)
+preTreatment(pathFolder, sep = "_R", m = 10, M = 100, x = 0.25,
+  t = 4, mismatch = FALSE, err = 0.01, slide = 50,
+  minlength = 60)
 }
 \arguments{
 \item{pathFolder}{A character string containing the path where the program will work.
@@ -51,7 +52,9 @@ A folder is create named "demultiplex" which contains the demultiplexed file.
 }
 \examples{
 \dontrun{
-pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/"
-preTreatment(pathFolder)
+pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testSimple/"
+pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDouble/"
+pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testAlready/"
+preTreatment(pathFolder,M = 250)
 }
 }
