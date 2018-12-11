@@ -2,7 +2,7 @@
 Implementation of the tools PatPil in R
 
 ## Current version
-* Current version : 1.0.12
+* Current version : 1.1.0
 * Last update : 2018-12-11
 
 
