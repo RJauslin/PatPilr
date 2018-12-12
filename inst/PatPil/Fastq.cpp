@@ -395,6 +395,29 @@ void Fastq::removeNfasta()
 
 
 
+/*
+ This method is used to remove the sequences that have less than
+ a fixed number of nucleotide in the fastq file
+ */
+void Fastq::rmSmallSeqfasta(unsigned int minLen)
+{
+  map<string,string>::iterator i=seq.begin();
+  unsigned int count(0);
+  cout << "Total number of sequences : " << seq.size() << endl;
+  while(i != seq.end()){
+    string tmp = i -> second;
+    if(tmp.size() <= minLen){
+        i = seq.erase(i);
+        ++count;
+    }else{
+      ++i;
+    }
+    // cout << tmp << endl;
+  }
+  cout << "Sequences smaller than "<< minLen << ": " << count << endl << endl;
+}
+
+
 
 /*
 This method is used to remove the sequences that have less than

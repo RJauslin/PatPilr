@@ -199,7 +199,7 @@
 
 \section{Overview}
 
-This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools are implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. This will supposed that you have two .fastq R1 and R2 and a barcode file that contains the informations for the demultiplexing step. Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. You should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
+This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools an implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. This will supposed that you have two .fastq R1 and R2 and a barcode file that contains the information for the demultiplexing step. Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. You should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -212,7 +212,7 @@ This package is a tool to facilitate the pre-treatment and the treatment of NGS 
 
 \section{Pre-treatment}
 \label{sec:pretreatment}
-This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the informations needed for the demultiplexing (see Section \ref{subsec:demux}).
+This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the information needed for the demultiplexing (see Section \ref{subsec:demux}).
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -263,7 +263,7 @@ The merging step currently implemented is done by the program FLASH \cite{Magoc2
 We will here define the requirements for the demultiplexing part.
 
 \subsubsection{Simple tag}
- In case of simple barcode you should only put one additional file called \texttt{barcode.txt}. The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls the tools \texttt{D\_simple\_tag} that could be used from the shell by the following command. So it is really important that the barcode file have the right format.
+ In case of simple barcode you should only put one additional file called \texttt{barcode.txt}. The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls tools \texttt{D\_simple\_tag} that could be used from the shell by the following command. So it is really important that the barcode file have the right format.
 
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -295,7 +295,7 @@ If your barcode file follow all these requirements, the demultiplexing part shou
 
 \subsubsection{Double tag}
  In case of double barcode you should only put three additional files called \texttt{forwardtag.txt},
- \texttt{reversetag.txt} and \texttt{primer.txt}. The forwardtag and reversetag contains the barcodes that it supposed to be at the beginning and at the end of your sequences. \textbf{You should not include some extension file such as .fastq or .fq in these two files}.
+ \texttt{reversetag.txt} and \texttt{primer.txt}. The forwardtag and reversetag contains the barcodes that it supposed to be at the beginning and at the end of your sequences. \textbf{You should not include some extensions file such as .fastq or .fq in these two files}.
 
 
 \begin{knitrout}
@@ -323,8 +323,8 @@ ACTATCAT	ReverseTag4
 \end{knitrout}
 
 
-The \texttt{primer.txt} should contains only two informations, that forward primer and the reverse primer \textbf{in this order}.
-The primers could have some incertain nucleotide. The program transform and do all the combination by creating two new file called primerforward and primerreverse. The transformations are done with the following table.
+The \texttt{primer.txt} should contain only two information, that forward primer and the reverse primer \textbf{in this order}.
+The primers could have some uncertain nucleotide. The program transform and do all the combination by creating two new files called primerforward and primerreverse. The transformations are done with the following table.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -351,7 +351,7 @@ CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
 \end{kframe}
 \end{knitrout}
 
-If you named your file with the good title, with the right format, the demultiplexing part should work proprely.
+If you named your file with the good title, with the right format, the demultiplexing part should work properly.
 
 \subsection{Quality check}
 \label{subsec:qualcheck}

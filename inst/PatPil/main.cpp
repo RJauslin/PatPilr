@@ -38,6 +38,7 @@
 #include "RemoveN.h"
 #include "RemoveNfasta.h"
 #include "rmSmallSeq.h"
+#include "rmSmallSeqfasta.h"
 #include "D_simple_tag.h"
 #include "D_double_tag.h"
 #include "derep.h"
@@ -132,7 +133,7 @@ int main(int argc,const char **argv){
         if(arg1 == "-h"){
           Help(argc,argv);
           return 0;
-        }else if((arg1 == "RemoveN" or arg1 == "RemoveNfasta" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "D_simple_tag" or arg1 == "D_double_tag") && argc > 3){
+        }else if((arg1 == "RemoveN" or arg1 == "RemoveNfasta" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "rmSmallSeqfasta" or arg1 == "D_simple_tag" or arg1 == "D_double_tag") && argc > 3){
           string f_opt = argv[2];
 
           if(f_opt == "-f" && argc > 5){
@@ -221,7 +222,15 @@ int main(int argc,const char **argv){
                       return 1;
                     }
 
+                  }else if(arg1 == "rmSmallSeqfasta"){
 
+                    Fastq fastaChunk(pathFqIn,tmp,true);
+
+                    int fstate = rmSmallSeqfasta(fastaChunk, pathFqFolder, argc, argv);
+                    if(fstate == 1){
+                      cout << "ERROR in rmSmallSeq function" << endl;
+                      return 1;
+                    }
 
                   }else if(arg1 == "qualCheck"){
 
