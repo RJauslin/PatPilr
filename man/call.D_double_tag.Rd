@@ -26,5 +26,20 @@ call.D_double_tag(fastq_path, outputFolder, bF, bR, pF, pR,
 Nothing for now (but work on the file)
 }
 \description{
-Function that call the double tag demultiplexing program of the tool PatPil.
+This function calls the double tag demultiplexing program of the tool PatPil.
+}
+\examples{
+\dontrun{
+fastq_path<-".../test/R1.fastq"
+outputFolder <- ".../test_D_double_tag/"
+bF <- "..../forwardtag.txt"
+bR <- "..../reversetag.txt"
+pR <- "..../primerreverse.txt"
+pF <- "..../primerforward.txt"
+call.D_double_tag(fastq_path,
+     outputFolder,
+     bF,
+     bR,
+     pF,
+     pR)}
 }

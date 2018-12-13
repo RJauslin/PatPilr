@@ -1,6 +1,6 @@
 #' call.D_double_tag
 #'
-#' Function that call the double tag demultiplexing program of the tool PatPil.
+#' This function calls the double tag demultiplexing program of the tool PatPil.
 #'
 #' @param fastq_path A character string containing the path to the fastq file. The extenstion must be .fastq
 #' @param outputFolder A character string containing the path to the output folder.
@@ -12,6 +12,20 @@
 #'
 #' @return Nothing for now (but work on the file)
 #' @export
+#' @examples
+#' \dontrun{
+#' fastq_path<-".../test/R1.fastq"
+#' outputFolder <- ".../test_D_double_tag/"
+#' bF <- "..../forwardtag.txt"
+#' bR <- "..../reversetag.txt"
+#' pR <- "..../primerreverse.txt"
+#' pF <- "..../primerforward.txt"
+#' call.D_double_tag(fastq_path,
+#'      outputFolder,
+#'      bF,
+#'      bR,
+#'      pF,
+#'      pR)}
 call.D_double_tag <- function(fastq_path,
                               outputFolder,
                               bF,
@@ -29,8 +43,6 @@ call.D_double_tag <- function(fastq_path,
   }
 
   pathIni <- getwd()
-  #path <- system.file("PatPil", package = "PatPilr")
-  #path <- paste(path,"/PatPil",sep = "")
   if(mismatch == TRUE){
     system2(path,args = c('D_double_tag',
                           '-f',fastq_path,

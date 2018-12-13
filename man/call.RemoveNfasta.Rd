@@ -2,14 +2,14 @@
 % Please edit documentation in R/call.RemoveNfasta.R
 \name{call.RemoveNfasta}
 \alias{call.RemoveNfasta}
-\title{call RemoveNfasta}
+\title{call.RemoveNfasta}
 \usage{
-call.RemoveNfasta(fasta_path, outputFolder)
+call.RemoveNfasta(fastaPath, outputFasta)
 }
 \arguments{
-\item{fasta_path}{path to the fasta file}
+\item{fastaPath}{path to the fasta file}
 
-\item{outputFolder}{path to the output fasta file}
+\item{outputFasta}{path to the output fasta file}
 }
 \value{
 Nothing
@@ -19,11 +19,12 @@ call RemoveNfasta function of the PatPil program.
 }
 \details{
 This function applies the RemoveNfasta tools of the PatPil program.
+It simply removes the sequences that contains at least one nucleotide 'N' .
 }
 \examples{
 \dontrun{
-path <- "/home/raphael/Documents/PatPilr_source/fastaTest.fa"
-outputFolder <- "/home/raphael/Documents/PatPilr_source/fastaTest_N.fa"
+fastaPath <- ".../fastaTest.fa"
+outputFasta <- ".../fastaTest_N.fa"
 call.RemoveNfasta(path,outputFolder)
 }
 }

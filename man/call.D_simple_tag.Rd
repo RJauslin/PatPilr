@@ -4,11 +4,10 @@
 \alias{call.D_simple_tag}
 \title{call.D_simple_tag}
 \usage{
-call.D_simple_tag(fastq_path, outputFolder, barcode_path,
-  mismatch = TRUE)
+call.D_simple_tag(fastqPath, outputFolder, barcode_path, mismatch = TRUE)
 }
 \arguments{
-\item{fastq_path}{A character string containing the path to the fastq file. The extenstion must be .fastq}
+\item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq}
 
 \item{outputFolder}{A character string containing the path to the output folder.}
 
@@ -22,11 +21,16 @@ Nothing for now (but work on the file)
 \description{
 Function that call the simple tag demultiplexing program of the tool PatPil.
 }
+\details{
+call the tools D_simple_tag of the program PatPil.
+For each sequence the program check teh begining of the sequence to see at which file it belongs to.
+Only the begining of the sequence is checked and hence no primer is needed.
+}
 \examples{
 \dontrun{
-  fastq_path<-"./inst/PatPil_source/test/R1.fastq"
-  outputFolder <- "./inst/PatPil_source/test/test_D_simple_tag/R1.fastq"
-  barcode_path <- "./inst/PatPil_source/test/barcodesV9test.txt"
-  call.D_simple_tag(fastq_path,outputFolder,barcode_path)
+  fastqPath<-".../test/R1.fastq"
+  outputFolder <- ".../test_D_simple_tag/R1.fastq"
+  barcode_path <- ".../test/barcodesV9test.txt"
+  call.D_simple_tag(fastqPath,outputFolder,barcode_path)
 }
 }

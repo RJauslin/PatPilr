@@ -15,12 +15,14 @@
 #'@param err A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.
 #'@param slide A scalar that represent the size of the sliding window. Default = 50.
 #'@param minlength A scalar that represent the minimum size of the sequence to be keep. Default = 60.
+#' @param sepFile A character string representing the separator to get the name fo the files used. Meaning that
+#' the names kept are on the left and side of the separator. Default = "_R"
 #'
 #'@details
 #'
 #' The pathFolder argument should contain : namefile_R1.fastq namefile_r2.fastq barcode.txt. The function create the different folder by its own.
 #'
-#' 1) The function will firstly apply the FLASH to merge the R1 and R2 fastq file. A folder is create named "merged" with the output of the FLASH programs
+#' 1) The function will firstly apply the FLASH to merge the R1 and R2 fastq file. A folder is created, named "merged", with the output of the FLASH programs
 #'
 #' 2) Secondly the function call the simple demultiplexing function of the tool PatPil. The main folder needs to contains a barcode.txt file such that :
 #'
@@ -40,7 +42,7 @@
 #' preTreatment(pathFolder,M = 250)
 #' }
 preTreatment <- function(pathFolder,
-                         sep = "_R",
+                         sepFile = "_R",
                          m = 10,
                          M = 100,
                          x = 0.25,
@@ -99,7 +101,7 @@ preTreatment <- function(pathFolder,
   #-----------------
   # GET THE NAMEFILE (argument sep)
   #-----------------
-  namefile <- do.call(rbind,strsplit(filesPAIREND,sep))[,1]
+  namefile <- do.call(rbind,strsplit(filesPAIREND,sepFile))[,1]
   namefile <- unique(namefile)
 
 
@@ -187,7 +189,7 @@ preTreatment <- function(pathFolder,
     if(any(grepl("barcode",filesPrimerTag))){
       fileBarcode <- file.path(pathFolder,files[which(grepl("barcode",files))],fsep = "")
 
-      call.D_simple_tag(fastq_path = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
+      call.D_simple_tag(fastqPath = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
                         outputFolder = pathDemulti,
                         barcode_path = fileBarcode,
                         mismatch = mismatch)
@@ -241,8 +243,8 @@ preTreatment <- function(pathFolder,
   ext <- ".fastq"
 
   for(i in 1:length(prefixfile)){
-    call.qualCheck(fastq_path = file.path(pathFolder,"demultiplex/",prefixfile[i],ext,fsep = ""),
-                   outputFolder = file.path(pathFolder,"clean/",prefixfile[i],".fa",fsep = ""),
+    call.qualCheck(fastqPath = file.path(pathFolder,"demultiplex/",prefixfile[i],ext,fsep = ""),
+                   outputFasta = file.path(pathFolder,"clean/",prefixfile[i],".fa",fsep = ""),
                    t = err,
                    s = slide,
                    m = minlength)

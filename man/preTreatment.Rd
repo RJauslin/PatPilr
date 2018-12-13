@@ -4,13 +4,16 @@
 \alias{preTreatment}
 \title{preTreatment}
 \usage{
-preTreatment(pathFolder, sep = "_R", m = 10, M = 100, x = 0.25,
+preTreatment(pathFolder, sepFile = "_R", m = 10, M = 100, x = 0.25,
   t = 4, mismatch = FALSE, err = 0.01, slide = 50,
   minlength = 60)
 }
 \arguments{
 \item{pathFolder}{A character string containing the path where the program will work.
 It should contains the two .fastq file with R1 and R2 inside the name.}
+
+\item{sepFile}{A character string representing the separator to get the name fo the files used. Meaning that
+the names kept are on the left and side of the separator. Default = "_R"}
 
 \item{m}{A scalar value that represent the minimum required overlap length between
 two reads to provide a confident overlap.  Default 10.}
@@ -40,7 +43,7 @@ Function that apply a pre-treatment on the fasq file R1 and R2.
 \details{
 The pathFolder argument should contain : namefile_R1.fastq namefile_r2.fastq barcode.txt. The function create the different folder by its own.
 
-1) The function will firstly apply the FLASH to merge the R1 and R2 fastq file. A folder is create named "merged" with the output of the FLASH programs
+1) The function will firstly apply the FLASH to merge the R1 and R2 fastq file. A folder is created, named "merged", with the output of the FLASH programs
 
 2) Secondly the function call the simple demultiplexing function of the tool PatPil. The main folder needs to contains a barcode.txt file such that :
 

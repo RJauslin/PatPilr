@@ -2,8 +2,8 @@
 #'
 #' Function that call the quality check program of the tool PatPil.
 #'
-#' @param fastq_path A character string containing the path to the fastq file. The extenstion must be *.fastq
-#' @param outputFolder A character string containing the path to the output folder with the namefile. The extension must be *.fa
+#' @param fastqPath A character string containing the path to the fastq file. The extenstion must be .fastq
+#' @param outputFasta A character string containing the path to the output folder with the namefile. The extension must be .fasta
 #' @param t A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.
 #' @param s A scalar that represent the size of the sliding window. Default = 50.
 #' @param m A scalar that represent the minimum size of the sequence to be keep. Default = 60.
@@ -18,26 +18,33 @@
 #' @examples
 #'
 #' \dontrun{
-#'   fastq_path<-"./inst/PatPil_source/test/R1.fastq"
-#'   outputFolder <- "./inst/PatPil_source/test/test_D_simple_tag/R1.fastq"
-#'   barcode_path <- "./inst/PatPil_source/test/barcodesV9test.txt"
-#'   call.D_simple_tag(fastq_path,outputFolder,barcode_path)
-#'
+#'   fastqPath<-".../test/R1.fastq"
+#'   outputFasta <- ".../test/R1.fasta"
+#'   call.qualCheck(fastqPath,
+#'        outputFasta,
+#'        t = 0.01,
+#'        s = 50,
+#'        m = 60)
 #' }
-#'
-#'
-call.qualCheck <- function(fastq_path,
-                           outputFolder,
+call.qualCheck <- function(fastqPath,
+                           outputFasta,
                            t = 0.01,
                            s = 50,
                            m = 60){
-
-  pathIni <- getwd()
+  info <- Sys.info()
   path <- system.file("PatPil", package = "PatPilr")
-  path <- paste(path,"/PatPil",sep = "")
+  if(info[1] == "Linux"){
+    path <- paste(path,"/PatPil",sep = "")
+  }else if(info[1] == "Windows"){
+    path <- paste(path,"/PatPil.exe",sep = "")
+  }
 
-  system2(path,args = c('qualCheck','-f',fastq_path,'-o',outputFolder,'-t',t,'-s',s,'-m',m))
 
+  system2(path,args = c('qualCheck',
+                        '-f',fastqPath,
+                        '-o',outputFasta,
+                        '-t',t,
+                        '-s',s,
+                        '-m',m))
 
-  setwd(pathIni)
 }
