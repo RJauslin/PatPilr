@@ -4,11 +4,11 @@
 \alias{call.D_double_tag}
 \title{call.D_double_tag}
 \usage{
-call.D_double_tag(fastq_path, outputFolder, bF, bR, pF, pR,
+call.D_double_tag(fastqPath, outputFolder, bF, bR, pF, pR,
   mismatch = FALSE)
 }
 \arguments{
-\item{fastq_path}{A character string containing the path to the fastq file. The extenstion must be .fastq}
+\item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq}
 
 \item{outputFolder}{A character string containing the path to the output folder.}
 
@@ -30,13 +30,13 @@ This function calls the double tag demultiplexing program of the tool PatPil.
 }
 \examples{
 \dontrun{
-fastq_path<-".../test/R1.fastq"
+fastqPath<-".../test/R1.fastq"
 outputFolder <- ".../test_D_double_tag/"
 bF <- "..../forwardtag.txt"
 bR <- "..../reversetag.txt"
 pR <- "..../primerreverse.txt"
 pF <- "..../primerforward.txt"
-call.D_double_tag(fastq_path,
+call.D_double_tag(fastqPath,
      outputFolder,
      bF,
      bR,

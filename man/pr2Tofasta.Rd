@@ -22,6 +22,6 @@ Check \code{\link{trimBasePR2}} if you would like trimmed database PR2.
 \examples{
 \dontrun{
 pr2full <-
-pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
+pr2Tofasta("/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2.fasta")
 }
 }

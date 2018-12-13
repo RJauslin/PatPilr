@@ -31,20 +31,25 @@ call.qualCheck <- function(fastqPath,
                            t = 0.01,
                            s = 50,
                            m = 60){
-  info <- Sys.info()
-  path <- system.file("PatPil", package = "PatPilr")
-  if(info[1] == "Linux"){
-    path <- paste(path,"/PatPil",sep = "")
-  }else if(info[1] == "Windows"){
-    path <- paste(path,"/PatPil.exe",sep = "")
+
+  if(file.exists(fastqPath)){
+    info <- Sys.info()
+    path <- system.file("PatPil", package = "PatPilr")
+    if(info[1] == "Linux"){
+      path <- paste(path,"/PatPil",sep = "")
+    }else if(info[1] == "Windows"){
+      path <- paste(path,"/PatPil.exe",sep = "")
+    }
+
+
+    system2(path,args = c('qualCheck',
+                          '-f',fastqPath,
+                          '-o',outputFasta,
+                          '-t',t,
+                          '-s',s,
+                          '-m',m))
+  }else{
+    stop("call.qualCheck : the file of the argument fastqPath does not exist...")
   }
-
-
-  system2(path,args = c('qualCheck',
-                        '-f',fastqPath,
-                        '-o',outputFasta,
-                        '-t',t,
-                        '-s',s,
-                        '-m',m))
 
 }

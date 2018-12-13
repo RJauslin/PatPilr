@@ -8,6 +8,7 @@
 #' @param l_max A value that represent the maximum length of the kept sequences.
 #' @param primerForward A character string that represent the forward primer (uncertain nucleotide allowed)
 #' @param primerReverse A character string that represent the reverse primer (uncertain nucleotide allowed)
+#' @param keepPrimer A boolean value, if you want to keep the primer?
 #'
 #' @return nothing but the file is created in pathFile
 #' @export
@@ -15,15 +16,17 @@
 #'
 #' @examples
 #' \dontrun{
-#' pathfile <- "/home/raphael/Documents/PR2.fa"
-#' trimBasePR2(pathfile)
+#' pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2CleanKept.fasta"
+#' pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2Clean.fasta"
+#' trimBasePR2(pathfile,keepPrimer = FALSE)
 #' }
 trimBasePR2 <- function(pathFile,
                   primerForward = "CYGCGGTAATTCCAGCTC",
                   primerReverse =  "CRAAGAYGATYAGATACCRT",
                   trim = 0,
                   l_min = 100,
-                  l_max = 500){
+                  l_max = 500,
+                  keepPrimer = TRUE){
 
   #GET LAST VERSION OF pr2database
   devtools::install_github("pr2database/pr2database")
@@ -39,7 +42,8 @@ trimBasePR2 <- function(pathFile,
                         comb1,
                         comb2,
                         l_min,
-                        l_max)
+                        l_max,
+                        keepPrimer = keepPrimer)
 
   #TRANSFORM DATABASE
   pr2Rstudio <- as.fasta(pr2full,pr2tmp)

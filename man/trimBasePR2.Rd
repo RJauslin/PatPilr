@@ -6,7 +6,7 @@
 \usage{
 trimBasePR2(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
   primerReverse = "CRAAGAYGATYAGATACCRT", trim = 0, l_min = 100,
-  l_max = 500)
+  l_max = 500, keepPrimer = TRUE)
 }
 \arguments{
 \item{pathFile}{A character string that represent the path to file (absolute path needed)}
@@ -20,6 +20,8 @@ trimBasePR2(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
 \item{l_min}{A value that represent the mininum length of the kept sequences.}
 
 \item{l_max}{A value that represent the maximum length of the kept sequences.}
+
+\item{keepPrimer}{A boolean value, if you want to keep the primer?}
 }
 \value{
 nothing but the file is created in pathFile
@@ -29,7 +31,8 @@ This function load, trim and write the PR2 database on a selected directory.
 }
 \examples{
 \dontrun{
-pathfile <- "/home/raphael/Documents/PR2.fa"
-trimBasePR2(pathfile)
+pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2CleanKept.fasta"
+pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2Clean.fasta"
+trimBasePR2(pathfile,keepPrimer = FALSE)
 }
 }

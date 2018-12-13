@@ -4,7 +4,7 @@
 \alias{CheckPrimer}
 \title{CheckPrimer}
 \usage{
-CheckPrimer(pr2, primer1, primer2, l_min, l_max)
+CheckPrimer(pr2, primer1, primer2, l_min, l_max, keepPrimer)
 }
 \arguments{
 \item{pr2}{pr2 data.frame}

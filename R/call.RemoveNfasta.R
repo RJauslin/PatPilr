@@ -16,21 +16,26 @@
 #' @examples
 #' \dontrun{
 #' fastaPath <- ".../fastaTest.fa"
-#' outputFasta <- ".../fastaTest_N.fa"
-#' call.RemoveNfasta(path,outputFolder)
+#' fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest.fasta"
+#' outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest_N.fasta"
+#' call.RemoveNfasta(fastaPath,outputFasta)
 #' }
 call.RemoveNfasta <- function(fastaPath,
                               outputFasta){
-  info <- Sys.info()
-  path <- system.file("PatPil", package = "PatPilr")
-  if(info[1] == "Linux"){
-    path <- paste(path,"/PatPil",sep = "")
-  }else if(info[1] == "Windows"){
-    path <- paste(path,"/PatPil.exe",sep = "")
+
+  if(file.exists(fastaPath)){ #check if fasta files exists
+    info <- Sys.info()
+    path <- system.file("PatPil", package = "PatPilr")
+    if(info[1] == "Linux"){
+      path <- paste(path,"/PatPil",sep = "")
+    }else if(info[1] == "Windows"){
+      path <- paste(path,"/PatPil.exe",sep = "")
+    }
+
+    system2(path,args = c('RemoveNfasta',
+                          '-f',fastaPath,
+                          '-o',outputFasta))
+  }else{
+    stop("call.RemoveNfasta : the file of the argument fastaPath does not exist...")
   }
-
-  system2(path,args = c('RemoveNfasta',
-                        '-f',fastaPath,
-                        '-o',outputFasta))
-
 }

@@ -23,7 +23,8 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
                      Rcpp::StringVector primer1,
                      Rcpp::StringVector primer2,
                      int l_min,
-                     int l_max)
+                     int l_max,
+                     bool keepPrimer)
   {
 
   // OUTPUT
@@ -43,7 +44,7 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
     // insert pr2 in a std::string
     std::string tmp = pr2(i);
     if (i % 10000 == 0){
-      // std::cout<<i<<std::endl;
+      Rcout<<i<<std::endl;
     }
     // LOOP ON THE FIRST PRIMER
     for(int j = 0; j < m1; j++){
@@ -51,6 +52,7 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
       if (tmp.find(primer1[j]) != std::string::npos) {
         // std::cout << "found primer1 !" << '\n';
         std::size_t pos1 = tmp.find(primer1[j]);
+        int len_pos1 = primer1[j].size();
         // LOOP ON THE FIRST PRIMER
         for(int k = 0; k < m2; k++){
 
@@ -62,15 +64,20 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
             std::size_t pos2 = tmp.find(primer2[k]);
             std::size_t len = pos2 + len_pos2 - pos1;
             std::string str3 = tmp.substr (pos1,len);
+            std::string strSeq = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
+
+            if(keepPrimer == false){
+              str3 = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
+            }
 
             if (std::find(out2.begin(), out2.end(), str3) != out2.end()){
               dbl.push_back((i+1));
              break;
             }else{
-              if(str3.length() >= l_min & str3.length() <= l_max){
-                out2.push_back(str3);
-                out.push_back((i+1));
-                break;
+              if(strSeq.length() >= l_min & strSeq.length() <= l_max){
+                  out2.push_back(str3);
+                  out.push_back((i+1));
+                  break;
               }else{
                 break;
               }

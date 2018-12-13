@@ -202,7 +202,7 @@ preTreatment <- function(pathFolder,
 
       if(length(filePrimer) != 0 && length(fileReverseTag) != 0 && length(fileForwardTag) != 0 ){
         primerForDemux(pathFolder)
-        call.D_double_tag(fastq_path = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
+        call.D_double_tag(fastqPath = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
                           outputFolder = pathDemulti,
                           bF = file.path(pathFolder,files[which(grepl("forwardtag",files))],fsep = ""),
                           bR = file.path(pathFolder,files[which(grepl("reversetag",files))],fsep = ""),

@@ -24,7 +24,8 @@ It simply removes the sequences that contains at least one nucleotide 'N' .
 \examples{
 \dontrun{
 fastaPath <- ".../fastaTest.fa"
-outputFasta <- ".../fastaTest_N.fa"
-call.RemoveNfasta(path,outputFolder)
+fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest.fasta"
+outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest_N.fasta"
+call.RemoveNfasta(fastaPath,outputFasta)
 }
 }

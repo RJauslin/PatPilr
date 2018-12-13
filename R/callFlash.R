@@ -25,7 +25,13 @@
 #'   fastq2 <- "16.02.22_David_Singer_PlateVI_V9_R2.fastq"
 #'   callFlash(file_path,fastq1,fastq2)
 #' }
-callFlash <- function(file_path,fastq1,fastq2,m = 10,M = 100,x = 0.25,t = 4){
+callFlash <- function(file_path,
+                      fastq1,
+                      fastq2,
+                      m = 10,
+                      M = 100,
+                      x = 0.25,
+                      t = 4){
 
   if(missing(file_path)){
     stop("You have to give the path where you put your files")

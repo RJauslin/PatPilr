@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // CheckPrimer
-Rcpp::List CheckPrimer(Rcpp::List pr2, Rcpp::StringVector primer1, Rcpp::StringVector primer2, int l_min, int l_max);
-RcppExport SEXP _PatPilr_CheckPrimer(SEXP pr2SEXP, SEXP primer1SEXP, SEXP primer2SEXP, SEXP l_minSEXP, SEXP l_maxSEXP) {
+Rcpp::List CheckPrimer(Rcpp::List pr2, Rcpp::StringVector primer1, Rcpp::StringVector primer2, int l_min, int l_max, bool keepPrimer);
+RcppExport SEXP _PatPilr_CheckPrimer(SEXP pr2SEXP, SEXP primer1SEXP, SEXP primer2SEXP, SEXP l_minSEXP, SEXP l_maxSEXP, SEXP keepPrimerSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -16,13 +16,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::StringVector >::type primer2(primer2SEXP);
     Rcpp::traits::input_parameter< int >::type l_min(l_minSEXP);
     Rcpp::traits::input_parameter< int >::type l_max(l_maxSEXP);
-    rcpp_result_gen = Rcpp::wrap(CheckPrimer(pr2, primer1, primer2, l_min, l_max));
+    Rcpp::traits::input_parameter< bool >::type keepPrimer(keepPrimerSEXP);
+    rcpp_result_gen = Rcpp::wrap(CheckPrimer(pr2, primer1, primer2, l_min, l_max, keepPrimer));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_PatPilr_CheckPrimer", (DL_FUNC) &_PatPilr_CheckPrimer, 5},
+    {"_PatPilr_CheckPrimer", (DL_FUNC) &_PatPilr_CheckPrimer, 6},
     {NULL, NULL, 0}
 };
 

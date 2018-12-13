@@ -4,10 +4,7 @@
 \alias{install.pr2}
 \title{install pr2}
 \usage{
-install.pr2(force = FALSE)
-}
-\arguments{
-\item{force}{force argument of \code{\link[devtools:install_github]{install_gitub}}}
+install.pr2()
 }
 \value{
 Nothing
