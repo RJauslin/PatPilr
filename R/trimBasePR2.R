@@ -10,9 +10,14 @@
 #' @param primerReverse A character string that represent the reverse primer (uncertain nucleotide allowed)
 #' @param keepPrimer A boolean value, if you want to keep the primer?
 #'
+#' @details
+#' This function will extract from the PR2 the portion of interested of the sequences. Schematically we have :
+#' \itemize{
+#' \item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
+#' }
+#'
 #' @return nothing but the file is created in pathFile
 #' @export
-#'
 #'
 #' @examples
 #' \dontrun{

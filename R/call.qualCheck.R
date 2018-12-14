@@ -12,6 +12,10 @@
 #'
 #' See the \url{http://taraoceans.sb-roscoff.fr/EukDiv/} for more informations on how the quality check is performed.
 #'
+#' IMPORTANT : if this function is called in an other manners than by the function \link{preTreatment},
+#' then the function append the files if it is called several times.
+#' Hence you should erase your files if your would like to recall the function.
+#'
 #' @return Nothing, but it work on the called file.
 #' @export
 #'
@@ -20,6 +24,11 @@
 #' \dontrun{
 #'   fastqPath<-".../test/R1.fastq"
 #'   outputFasta <- ".../test/R1.fasta"
+#'
+#'   fastqPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testqualCheck/unknown.fastq"
+#'   outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testqualCheck/unknownClean.fasta"
+#'
+#'
 #'   call.qualCheck(fastqPath,
 #'        outputFasta,
 #'        t = 0.01,

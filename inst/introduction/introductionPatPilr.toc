@@ -6,4 +6,8 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Simple tag}{3}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Double tag}{3}{subsubsection.2.2.2}
 \contentsline {subsection}{\numberline {2.3}Quality check}{4}{subsection.2.3}
-\contentsline {section}{\numberline {3}Dereplication}{4}{section.3}
+\contentsline {subsection}{\numberline {2.4}Remove 'N' fasta}{4}{subsection.2.4}
+\contentsline {section}{\numberline {3}Database}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}PR2}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Other base}{4}{subsection.3.2}
+\contentsline {section}{\numberline {4}Dereplication}{4}{section.4}

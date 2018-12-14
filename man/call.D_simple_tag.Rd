@@ -22,15 +22,29 @@ Nothing for now (but work on the file)
 Function that call the simple tag demultiplexing program of the tool PatPil.
 }
 \details{
-call the tools D_simple_tag of the program PatPil.
-For each sequence the program check teh begining of the sequence to see at which file it belongs to.
-Only the begining of the sequence is checked and hence no primer is needed.
+The demultiplexing simple tag program will check that we are in the configuration :
+\itemize{
+\item forwardTag - Seq
+}
+
+Hence you might have some primer in your sequences but the program will only cares about the tags.
+If you would like to trim your primer see ...
+
+
+IMPORTANT : if this function is called in an other manners than by the function \link{preTreatment},
+then the function append the files if it is called several times.
+Hence you should erase your files if your would like to recall the function.
 }
 \examples{
 \dontrun{
   fastqPath<-".../test/R1.fastq"
   outputFolder <- ".../test_D_simple_tag/R1.fastq"
   barcode_path <- ".../test/barcodesV9test.txt"
+
+fastqPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_simple_tag/extendedFrags.fastq"
+outputFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_simple_tag/demultiplex/"
+barcode_path <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_simple_tag/barcodes.txt"
+
   call.D_simple_tag(fastqPath,outputFolder,barcode_path)
 }
 }

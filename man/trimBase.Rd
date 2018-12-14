@@ -28,6 +28,12 @@ trimBase(fastaPath, outputFasta, primerForward = "CYGCGGTAATTCCAGCTC",
 \description{
 trimBase
 }
+\details{
+This function will extract from the reference base the portion of interested of the sequences. Schematically we have :
+\itemize{
+\item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
+}
+}
 \examples{
 \dontrun{
 fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utax.fasta"
@@ -40,6 +46,5 @@ l_min = 60
 l_max = 600
 trimBase(fastaPath,outputFasta,primerForward,primerReverse,trim,l_min,l_max,TRUE)
 trimBase(fastaPath,outputFastaC,primerForward,primerReverse,trim,l_min,l_max,FALSE)
-
 }
 }

@@ -29,6 +29,12 @@ nothing but the file is created in pathFile
 \description{
 This function load, trim and write the PR2 database on a selected directory.
 }
+\details{
+This function will extract from the PR2 the portion of interested of the sequences. Schematically we have :
+\itemize{
+\item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
+}
+}
 \examples{
 \dontrun{
 pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2CleanKept.fasta"

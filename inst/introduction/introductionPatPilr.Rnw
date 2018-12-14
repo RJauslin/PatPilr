@@ -110,6 +110,11 @@
     {}[]
 %  \backgroundsetup{color=black,scale=3,contents={}} % remove DRAFT in red
 
+\titleformat{\subsubsection}
+{\dpastelblue\normalsize\scshape\raggedright\vspace{0cm}}
+{\thesubsubsection}
+{1em}
+{}[]
 
 
 \begin{document}
@@ -141,9 +146,6 @@ options(formatR.arrow=TRUE,width=90)
  {\huge\bfseries \par}
  \vspace{2cm}
  {\Large\itshape Rapha\"el Jauslin\par}
- \vfill
- % supervised by\par
- % Professor Stephan \textsc{Morgenthaler}
  \vfill
  {\large \today\par}
  \end{titlepage}
@@ -280,6 +282,13 @@ If you named your file with the good title, with the right format, the demultipl
 
 The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
 
+\subsection{Remove 'N' fasta}
+
+
+\section{Database}
+\subsection{PR2}
+
+\subsection{Other base}
 
 
 \section{Dereplication}

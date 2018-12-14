@@ -9,6 +9,12 @@
 #' @param l_max A value that represent the maximum length of the kept sequences.
 #' @param keepPrimer A boolean value, if you want to keep the primer?
 #'
+#'
+#' @details
+#' This function will extract from the reference base the portion of interested of the sequences. Schematically we have :
+#' \itemize{
+#' \item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
+#' }
 #' @return
 #' @export
 #'
@@ -24,7 +30,6 @@
 #' l_max = 600
 #' trimBase(fastaPath,outputFasta,primerForward,primerReverse,trim,l_min,l_max,TRUE)
 #' trimBase(fastaPath,outputFastaC,primerForward,primerReverse,trim,l_min,l_max,FALSE)
-#'
 #' }
 trimBase <- function(fastaPath,
                      outputFasta,

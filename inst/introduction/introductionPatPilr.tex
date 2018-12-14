@@ -159,6 +159,12 @@
     {1em}
     {}[]
 %  \backgroundsetup{color=black,scale=3,contents={}} % remove DRAFT in red
+
+\titleformat{\subsubsection}
+{\dpastelblue\normalsize\scshape\raggedright\vspace{0cm}}
+{\thesubsubsection}
+{1em}
+{}[]
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
@@ -184,9 +190,6 @@
  {\huge\bfseries \par}
  \vspace{2cm}
  {\Large\itshape Rapha\"el Jauslin\par}
- \vfill
- % supervised by\par
- % Professor Stephan \textsc{Morgenthaler}
  \vfill
  {\large \today\par}
  \end{titlepage}
@@ -249,7 +252,7 @@ All the pre-treatment is wrap inside a function that call the different programs
 \subsection{Merging}
 \label{subsec:merge}
 
-The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allows some possible changes.
+The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allowed some possible change.
 
 \begin{labeling}{mcccc}
 \item [m] The minimum required overlap length between two reads to provide a confident overlap.
@@ -358,12 +361,16 @@ If you named your file with the good title, with the right format, the demultipl
 
 The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
 
+\subsection{Remove 'N' fasta}
+
+
+\section{Database}
+\subsection{PR2}
+
+\subsection{Other base}
 
 
 \section{Dereplication}
-
-
-
 
 
 
