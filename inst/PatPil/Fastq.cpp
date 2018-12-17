@@ -1150,16 +1150,18 @@ void Fastq::qualCheck(double expErrThreshold,
   int countTotalseq(0);
 
 
+
   for(i = seq.begin(); i != seq.end();){
     bool keepSeq = true;
     countTotalseq++;
     string tmp = (j->second);
+
     if(tmp.size() <= minsize){
       keepSeq = false;
     }else{
       while( (tmp.size() >= slindingWindow) && (keepSeq == true) ){
         string subSeqPhred(tmp.substr(0,slindingWindow));
-        //cout << tmp << endl << endl;
+        // cout << tmp << endl << endl;
         double expErrSliding(0.0);
         double proba(0.0);
         for(unsigned int k = 0; k < subSeqPhred.size(); k++){
@@ -1167,6 +1169,7 @@ void Fastq::qualCheck(double expErrThreshold,
         }
         expErrSliding /= slindingWindow;
         proba = pow(10.0, -expErrSliding/10.0);
+        // cout << "proba :" << proba << endl;
         if(proba >= expErrThreshold){
           keepSeq = false;
           break;
@@ -1188,7 +1191,7 @@ void Fastq::qualCheck(double expErrThreshold,
       j++;
     }
   }
-  //cout << "Nombre total de sequences : " << countTotalseq << endl << endl;
+  cout << "Nombre total de sequences : " << countTotalseq << endl << endl;
 
-  //cout << "Nombre de sequences gardées : " << countKeepseq << endl << endl;
+  cout << "Nombre de sequences gardées : " << countKeepseq << endl << endl;
 }

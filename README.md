@@ -8,12 +8,24 @@ Implementation of the tools PatPil in R
 
 ## Installation
 
+*Linux
+
 ``` r
 install.packages("devtools")
 devtools::install_github("Rjauslin/PatPilr")
 library(PatPilr)
 ```
 
+*Windows
+
+You need to install a C++ complier. For that you have to install Rtools go to the URL https://cran.r-project.org/bin/windows/Rtools/ and choose Rtools35.exe. When given the option to edit your PATH, take it. 
+
+
+``` r
+install.packages("devtools")
+devtools::install_github("Rjauslin/PatPilr")
+library(PatPilr)
+```
 
 ## preTreatment
 

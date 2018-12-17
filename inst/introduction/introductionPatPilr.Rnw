@@ -284,11 +284,61 @@ The quality check currently implemented evaluating the expected error in a 50 bp
 
 \subsection{Remove 'N' fasta}
 
+\subsection{rmSmallSeq fasta}
+
 
 \section{Database}
+The package PatPilr allows you to trim primers on a reference database. In order to get some 100\% of match when you assign your sequences, you have to compare with sequences that have the same "configuration". Hence, you possibly need to trim your reference base with some primers. The package allows you to do it with two functions. The first one called trimBasePR2 \cite{doi:10.1093/nar/gks1160} and the second trimBase. Trim a reference database could also be useful to improve the amount of time needed to perform the dechimering of your sequences \cite{Edgar074252}.
+
+
 \subsection{PR2}
 
+The \texttt{trimBasePR2} have some parameters that you need to right understand.
+<<trimBasePR2,cache=FALSE,eval=FALSE>>=
+trimBase(pathFile,
+	primerForward,
+	primerReverse,
+	trim = 0,
+	l_min = 100,
+	l_max = 500,
+	keepPrimer = TRUE)
+@
+
+\begin{labeling}{primerForwardcccccc}
+	\item [pathFile] The output path file. You have to put complete path to the output file\\ i.e \texttt{...\textbackslash pr2Cleaned.fasta}
+	\item [primerForward] The character string representing your forward primer. i.e \texttt{'CYAGTA...CTC'}
+	\item [primerReverse] The character string representing your reverse primer. i.e \texttt{'CRAAG...AYG'}
+	\item [trim] A scalar integer representing the number of nucleotide that you want allow to be trimmed on the primers.
+	\item [l\_min] A scalar integer representing the minimal length of the sequences considered. Primers not taken into account.
+	\item [l\_max] A scalar integer representing the maximal length of the sequences considered. primers not taken into account.
+	\item [keepPrimer] A boolean value, if you want to keep the primers with the sequences or not.
+\end{labeling}
+
 \subsection{Other base}
+
+
+The \texttt{trimBase} is mainly the same as \texttt{trimBasePR2}. It differs only by the fact that you can pass the reference database that you want instead of let the function charging the PR2 database. It have some parameters that you need to right understand.
+<<trimBase,cache=FALSE,eval=FALSE>>=
+trimBase(fastaPath,
+	outputFasta,
+	primerForward,
+	primerReverse,
+	trim = 0,
+	l_min = 100,
+	l_max = 500,
+	keepPrimer = TRUE)
+@
+
+\begin{labeling}{primerForwardcccccc}
+	\item [fastaPath] The input path file. You have to put complete path to the output file\\ i.e \texttt{...\textbackslash dataBase.fasta}
+	\item [outputFasta] The output path file. You have to put complete path to the output file\\ i.e \texttt{...\textbackslash dataBaseCleaned.fasta}
+	\item [primerForward] The character string representing your forward primer. i.e \texttt{'CYAGTA...CTC'}
+	\item [primerReverse] The character string representing your reverse primer. i.e \texttt{'CRAAG...AYG'}
+	\item [trim] A scalar integer representing the number of nucleotide that you want allow to be trimmed on the primers.
+	\item [l\_min] A scalar integer representing the minimal length of the sequences considered. Primers not taken into account.
+	\item [l\_max] A scalar integer representing the maximal length of the sequences considered. primers not taken into account.
+	\item [keepPrimer] A boolean value, if you want to keep the primers with the sequences or not.
+\end{labeling}
 
 
 \section{Dereplication}

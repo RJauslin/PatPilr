@@ -1,16 +1,22 @@
 #' Dereplicate
 #'
-#' @param pathFolder the path to the folder files
-#' @param within the number of occurence of each sequences in a file.
-#' @param between the number of occurence of each sequence between files.
+#' Dereplicate your fasta files.
+#'
+#' @param pathFolder A character string representing the path to the folder files.
+#' @param within A scalar integer representing the threshold number of occurence of each sequences in a file.
+#' @param between A scalar integer representing the threshold number of occurence of each sequences between files.
+#'
+#' @details
+#'
+#' Works in two step. The first one dereplicate each files and the second one works one the dereplicated files.
 #'
 #' @return nothing but works on the files
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
-#' Dereplicate(pathFolder)
+#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDereplicate/"
+#' Dereplicate(pathFolder,10,5)
 #' }
 Dereplicate <- function(pathFolder,
                         within = 3,
