@@ -160,33 +160,29 @@ int main(int argc,const char **argv){
                   stringstream tmp;
 
                   //for the multi-threading
-
                   stringstream tmp2;
                   stringstream tmp3;
                   stringstream tmp4;
 
-
                   //IT CONSIDER 10^6 SEQUENCES (POSSIBLY THIS COULD BE CHANGED DEPENDING ON THE AVAILABLE RAM)
-                  while(count < 500000*4){
+                  while(count < 10000*4){
                     if(getline(flux,ligne)){
+
                       if(arg1 == "qualCheck"){
                         if(ligne.find('\n') == std::string::npos){
-
-                          if(count < 500000){
+                          if(count < 10000){
                             tmp << ligne << '\n';
-                          }else if(count >= 500000 && count <500000*2) {
+                          } else if(count >= 10000 && count <10000*2) {
                             tmp2 << ligne << '\n';
-                          } else if( count >= 500000*2 && count <500000*3){
+                          } else if( count >= 10000*2 && count <10000*3){
                             tmp3 << ligne << '\n';
-                          } else if( count >= 500000*3 && count < 500000*4){
+                          } else if( count >= 10000*3 && count < 10000*4){
                             tmp4 << ligne << '\n';
                           }
                           ++count;
                         }
                       }else{
                         if(ligne.find('\n') == std::string::npos){
-
-
                             tmp << ligne << '\n';
                             ++count;
                         }
@@ -250,7 +246,6 @@ int main(int argc,const char **argv){
                       unsigned int slindingWindow = atoi(argv[9]);//
                       string arg10 = argv[10];// -m
                       int minsize = atoi(argv[11]);//
-
 
 
                       std::thread t1(qualCheckCall,fastqChunk,pathFqFolder,expErrThreshold,slindingWindow,minsize);
