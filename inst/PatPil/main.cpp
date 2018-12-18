@@ -110,9 +110,9 @@ std::mutex mtx;
 void qualCheckCall(Fastq f, string path, double err, unsigned int sl, int m)
 {
   mtx.lock();
-  f.afficher();
+  // f.afficher();
   f.qualCheck(err,sl,m);
-  f.afficher();
+  // f.afficher();
   f.writeFasta(path,true);
   mtx.unlock();
 }

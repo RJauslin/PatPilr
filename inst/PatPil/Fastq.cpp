@@ -1191,7 +1191,7 @@ void Fastq::qualCheck(double expErrThreshold,
       j++;
     }
   }
-  cout << "Nombre total de sequences : " << countTotalseq << endl << endl;
+  // cout << "Nombre total de sequences : " << countTotalseq << endl << endl;
 
-  cout << "Nombre de sequences gardées : " << countKeepseq << endl << endl;
+  // cout << "Nombre de sequences gardées : " << countKeepseq << endl << endl;
 }
