@@ -2,8 +2,8 @@
 Implementation of the tools PatPil in R
 
 ## Current version
-* Current version : 1.1.4
-* Last update : 2018-12-14
+* Current version : 1.1.5
+* Last update : 2018-12-19
 
 
 ## Installation
@@ -18,7 +18,7 @@ library(PatPilr)
 
 * Windows
 
-You need to install a C++ complier. For that you have to install Rtools go to the URL https://cran.r-project.org/bin/windows/Rtools/ and choose Rtools35.exe. When given the option to edit your PATH, take it. 
+You need to install Rtools in order to get PatPil with the MinGW C++ compiler. Go to the URL https://cran.r-project.org/bin/windows/Rtools/ and choose Rtools35.exe. When given the option to edit your PATH, take it. 
 
 
 ``` r
@@ -29,6 +29,7 @@ library(PatPilr)
 
 ## preTreatment
 
+This function merges, demultiplex, and clean your fastq files. You are supposed to put only the fastq files specified by the ..._R1.fastq, ..._R2.fastq and the information needed for the demultiplexing. 
 
 ``` r
 #Linux
@@ -47,3 +48,16 @@ preTreatment(pathFolder,
   minlength = 60) # minimum length of sequences considered
 
 ```
+
+## Dereplication
+
+
+
+``` r
+
+Dereplicate <- function(pathFolder,
+  within = 3,
+  between = 2)
+
+```
+

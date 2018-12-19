@@ -1,7 +1,7 @@
 Package: PatPilr
 Type: Package
 Title: Tools to simplify NGS data treatment
-Version: 1.1.4
+Version: 1.1.5
 Author: Raphaël Jauslin
 Maintainer: Raphaël Jauslin <jauslin.raphael@gmail.com>
 Description: This package incorpore the program PatPil in an R package.
