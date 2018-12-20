@@ -39,7 +39,7 @@ pathFolder <- "/home/raphael/Documents/......./working_directory/"
 #Windows
 pathFolderWindows <- "C:/Users/raphael/......./working_directory/"
 
-preTreatment(pathFolder,
+preTreatment(pathFolder, # path to the working directory
   m = 10, # min overlap
   M = 100, # max overlap
   x = 0.25, # max mismatch density
@@ -70,7 +70,7 @@ CTCGCGTGTC	name8.fastq
 ```
 
 ### double tag
-You have to put in your working directory trhree files called **forwardtag.txt**, **reversetag.txt**, and **primer.txt**. It is really important that the files have the following format.
+You have to put in your working directory three files called **forwardtag.txt**, **reversetag.txt**, and **primer.txt**. It is really important that the files have the following format.
 
 * **forwardtag.txt**
 Notice that there is no extension file such as .fastq
@@ -122,5 +122,21 @@ This function dereplicate your fasta files. You are supposed to put only the fas
 Dereplicate <- function(pathFolder, # path to the working directory
   within = 3, # threshold for the number of occurence of the sequence within a file
   between = 2) # threshold for the number of occurence of the sequence between files
+```
+
+
+## trimBase
+
+The package PatPilr allows you to trim primers on a reference database. In order to get some 100% of match when you assign your sequences, you have to compare with sequences that have the same "configuration". Hence, you possibly need to trim your reference base with some primers.
+
+``` r
+trimBase(fastaPath, # path to the reference base
+  outputFasta, # path to the output
+	primerForward, # The character string representing your forward primer.
+	primerReverse, # The character string representing your reverse primer.
+	trim = 0, # A scalar integer representing the number of nucleotide that you want allowed to be trimmed on the primers.
+	l_min = 100, # A scalar integer representing the minimal length of the sequences considered.
+	l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
+	keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
 ```
 

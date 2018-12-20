@@ -295,7 +295,7 @@ The package PatPilr allows you to trim primers on a reference database. In order
 
 The \texttt{trimBasePR2} have some parameters that you need to right understand.
 <<trimBasePR2,cache=FALSE,eval=FALSE>>=
-trimBase(pathFile,
+trimBasePR2(pathFile,
 	primerForward,
 	primerReverse,
 	trim = 0,
