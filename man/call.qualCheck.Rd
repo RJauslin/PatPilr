@@ -47,11 +47,6 @@ Hence you should erase your files if your would like to recall the function.
        m = 60)
 
 
-       call.qualCheck(fastqPath = "/home/raphael/Documents/Clement/test/file1.fastq",
-       outputFasta = "/home/raphael/Documents/Clement/test/file1.fasta",
-       t = 0.2,
-       s = 50,
-       m = 100)
        call.qualCheck(fastqPath = "/home/raphael/Documents/Clement/test/file2.fastq",
        outputFasta = "/home/raphael/Documents/Clement/test/file2.fasta",
        t = 0.1,
