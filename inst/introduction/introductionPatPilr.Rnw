@@ -343,7 +343,13 @@ trimBase(fastaPath,
 
 \section{Dereplication}
 
+This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called \textit{derep\_ech} and the second one called \textit{derep}. At the end of the program inside of the \textit{derep} folder you will find two fasta files. \textbf{RC.fa} contains your passed sequences and the \textbf{RCNotpassed.fa} the sequences that have failed the selection.
 
+<<derep,cache=FALSE,eval=FALSE>>=
+Dereplicate <- function(pathFolder, # path to the working directory
+  within = 3, # threshold for the number of occurence of the sequence within a file
+  between = 2) # threshold for the number of occurence of the sequence between files
+@
 
 \bibliographystyle{apalike} % Le style est mis entre accolades.
 \bibliography{patpil} % mon fichier de base de données s'appelle bibli.bib

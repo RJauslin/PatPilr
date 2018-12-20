@@ -54,6 +54,8 @@ preTreatment(pathFolder,
 ### simple tag
 You have to put in your working directory a file called **barcode.txt**. It is really important that the barcode file have the following format.
 
+* **barcode.txt**
+
 ``` r
 ACGAGTGCGT	name1.fastq
 ACGCTCGACA	name2.fastq
@@ -70,7 +72,7 @@ CTCGCGTGTC	name8.fastq
 ### double tag
 You have to put in your working directory trhree files called **forwardtag.txt**, **reversetag.txt**, and **primer.txt**. It is really important that the files have the following format.
 
-* forwardtag.txt
+* **forwardtag.txt**
 Notice that there is no extension file such as .fastq
 ``` r
 ACACACAC	ForwardTag1
@@ -80,7 +82,7 @@ ACTATCAT	ForwardTag4
 ...
 ```
 
-* reversetag.txt
+* **reversetag.txt**
 Notice that there is no extension file such as .fastq
 ``` r
 ACACACAC	ReverseTag1
@@ -90,7 +92,7 @@ ACTATCAT	ReverseTag4
 ...
 ```
 
-* primer.txt
+* **primer.txt**
 
 ``` r
 CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
@@ -114,12 +116,11 @@ V = ACG
 
 ## Dereplication
 
+This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called *derep_ech* and the second one called *derep*. At the end of the program inside of the *derep* folder you will find two fasta files. **RC.fa** contains your passed sequences and the **RCNotpassed.fa** the sequences that have failed the selection.
 
 ``` r
-
-Dereplicate <- function(pathFolder,
-  within = 3,
-  between = 2)
-
+Dereplicate <- function(pathFolder, # path to the working directory
+  within = 3, # threshold for the number of occurence of the sequence within a file
+  between = 2) # threshold for the number of occurence of the sequence between files
 ```
 
