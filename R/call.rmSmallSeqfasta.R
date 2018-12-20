@@ -4,6 +4,7 @@
 #'
 #' @param fastaPath path to the fasta file
 #' @param outputFasta path to the output fasta file
+#' @param sizemin A scalar integer to selected the minimum size.
 #'
 #' @details
 #'
@@ -16,8 +17,10 @@
 #' @examples
 #' \dontrun{
 #' fastaPath <- ".../fastaTest.fa"
-#' fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest.fasta"
-#' outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest_rm.fasta"
+#' fastaPath <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest.fasta"
+#' outputFasta <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest_rm.fasta"
 #' call.rmSmallSeqfasta(fastaPath,outputFasta,100)
 #' }
 call.rmSmallSeqfasta <- function(fastaPath,

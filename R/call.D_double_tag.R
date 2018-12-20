@@ -37,12 +37,18 @@
 #' pR <- "..../primerreverse.txt"
 #' pF <- "..../primerforward.txt"
 #'
-#' fastqPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_double_tag/extendedFrags.fastq"
-#' outputFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_double_tag/demultiplex/"
-#' bF <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_double_tag/forwardtag.txt"
-#' bR <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_double_tag/reversetag.txt"
-#' pF <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_double_tag/primerforward.txt"
-#' pR <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_double_tag/primerreverse.txt"
+#' fastqPath <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_double_tag/extendedFrags.fastq"
+#' outputFolder <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_double_tag/demultiplex/"
+#' bF <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_double_tag/forwardtag.txt"
+#' bR <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_double_tag/reversetag.txt"
+#' pF <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_double_tag/primerforward.txt"
+#' pR <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_double_tag/primerreverse.txt"
 #'
 #'
 #' call.D_double_tag(fastqPath,

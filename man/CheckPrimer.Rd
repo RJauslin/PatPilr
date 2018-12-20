@@ -16,6 +16,8 @@ CheckPrimer(pr2, primer1, primer2, l_min, l_max, keepPrimer)
 \item{l_min}{bla}
 
 \item{l_max}{bla}
+
+\item{keepPrimer}{asdfjk}
 }
 \description{
 blabla

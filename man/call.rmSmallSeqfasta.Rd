@@ -10,6 +10,8 @@ call.rmSmallSeqfasta(fastaPath, outputFasta, sizemin = 80)
 \item{fastaPath}{path to the fasta file}
 
 \item{outputFasta}{path to the output fasta file}
+
+\item{sizemin}{A scalar integer to selected the minimum size.}
 }
 \value{
 Nothing
@@ -24,8 +26,10 @@ It simply removes the sequences that are smaller than a fixed integer.
 \examples{
 \dontrun{
 fastaPath <- ".../fastaTest.fa"
-fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest.fasta"
-outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest_rm.fasta"
+fastaPath <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest.fasta"
+outputFasta <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testrmSmallSeqfasta/fastaTest_rm.fasta"
 call.rmSmallSeqfasta(fastaPath,outputFasta,100)
 }
 }

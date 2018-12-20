@@ -19,10 +19,15 @@
 #' @return nothing but the file is created in pathFile
 #' @export
 #'
+#' @importFrom seqinr write.fasta read.fasta
+#' @importFrom devtools install_github
+#'
 #' @examples
 #' \dontrun{
-#' pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2CleanKept.fasta"
-#' pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2Clean.fasta"
+#' pathfile <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testPR2/PR2CleanKept.fasta"
+#' pathfile <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testPR2/PR2Clean.fasta"
 #' trimBasePR2(pathfile,keepPrimer = FALSE)
 #' }
 trimBasePR2 <- function(pathFile,
@@ -35,7 +40,6 @@ trimBasePR2 <- function(pathFile,
 
   #GET LAST VERSION OF pr2database
   devtools::install_github("pr2database/pr2database")
-  library(pr2database)
 
   #LOAD THE DATA BASE
   pr2full <- pr2Tofasta()
@@ -54,7 +58,7 @@ trimBasePR2 <- function(pathFile,
   pr2Rstudio <- as.fasta(pr2full,pr2tmp)
 
   #WRITE THE DATABASE
-  write.fasta(sequences = pr2Rstudio,
+  seqinr::write.fasta(sequences = pr2Rstudio,
               names = names(pr2Rstudio),
               file.out = pathFile,
               nbchar = 100000)

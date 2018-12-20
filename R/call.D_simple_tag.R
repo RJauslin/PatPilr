@@ -33,9 +33,12 @@
 #'   outputFolder <- ".../test_D_simple_tag/R1.fastq"
 #'   barcode_path <- ".../test/barcodesV9test.txt"
 #'
-#' fastqPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_simple_tag/extendedFrags.fastq"
-#' outputFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_simple_tag/demultiplex/"
-#' barcode_path <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDemux/D_simple_tag/barcodes.txt"
+#' fastqPath <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_simple_tag/extendedFrags.fastq"
+#' outputFolder <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_simple_tag/demultiplex/"
+#' barcode_path <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testDemux/D_simple_tag/barcodes.txt"
 #'
 #'   call.D_simple_tag(fastqPath,outputFolder,barcode_path)
 #' }

@@ -24,7 +24,8 @@ Works in two step. The first one dereplicate each files and the second one works
 }
 \examples{
 \dontrun{
-pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDereplicate/"
+pathFolder <- "/home/raphael/Documents/
+PatPilr_source/testPipeline/testpreTreatment/testDereplicate/"
 Dereplicate(pathFolder,10,5)
 }
 }

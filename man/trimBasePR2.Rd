@@ -37,8 +37,10 @@ This function will extract from the PR2 the portion of interested of the sequenc
 }
 \examples{
 \dontrun{
-pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2CleanKept.fasta"
-pathfile <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2Clean.fasta"
+pathfile <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testPR2/PR2CleanKept.fasta"
+pathfile <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testPR2/PR2Clean.fasta"
 trimBasePR2(pathfile,keepPrimer = FALSE)
 }
 }

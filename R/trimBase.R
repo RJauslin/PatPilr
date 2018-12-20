@@ -16,13 +16,18 @@
 #' \item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
 #' }
 #' @return
+#' @importFrom seqinr write.fasta read.fasta
+#' @importFrom devtools install_github
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utax.fasta"
-#' outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxCleanKept.fasta"
-#' outputFastaC <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxClean.fasta"
+#' fastaPath <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testPR2/utax.fasta"
+#' outputFasta <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testPR2/utaxCleanKept.fasta"
+#' outputFastaC <- "/home/raphael/Documents/PatPilr_source/
+#' testPipeline/testpreTreatment/testPR2/utaxClean.fasta"
 #' primerForward <- "GTGAATCATCGAATCTTTGAA"
 #' primerReverse <- "GCATATCAATAAGCGGAGGA"
 #' trim <- 0
@@ -40,8 +45,7 @@ trimBase <- function(fastaPath,
                      l_max = 500,
                      keepPrimer = TRUE){
   #LOAD database
-  require(seqinr)
-  database <- read.fasta(file = fastaPath,
+  database <- seqinr::read.fasta(file = fastaPath,
                          as.string = TRUE,
                          forceDNAtolower = FALSE)
 
@@ -62,7 +66,7 @@ trimBase <- function(fastaPath,
   databaseClean <- as.fasta(database,databaseCleaned)
 
   #WRITE THE DATABASE
-  write.fasta(sequences = databaseClean,
+  seqinr::write.fasta(sequences = databaseClean,
               names = names(databaseClean),
               file.out = outputFasta,
               nbchar = 100000)

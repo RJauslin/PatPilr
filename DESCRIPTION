@@ -9,5 +9,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
+SystemRequirements: GNU make
 Imports: devtools, seqinr, Rcpp, utils
+Suggests: pr2database
 LinkingTo: Rcpp

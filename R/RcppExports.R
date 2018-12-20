@@ -10,6 +10,7 @@
 #' @param primer2 vector of all possible primer 2 to consider
 #' @param l_min bla
 #' @param l_max bla
+#' @param keepPrimer asdfjk
 #'
 #' @export
 #' @useDynLib PatPilr

@@ -15,7 +15,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testDereplicate/"
+#' pathFolder <- "/home/raphael/Documents/
+#' PatPilr_source/testPipeline/testpreTreatment/testDereplicate/"
 #' Dereplicate(pathFolder,10,5)
 #' }
 Dereplicate <- function(pathFolder,
