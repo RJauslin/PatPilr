@@ -14,6 +14,7 @@ Implementation of the tools PatPil in R
 install.packages("devtools")
 devtools::install_github("Rjauslin/PatPilr")
 library(PatPilr)
+install.PatPil()
 ```
 
 * Windows
@@ -25,7 +26,10 @@ In order to get the program PatPil, you need to install Rtools. Go to the URL ht
 install.packages("devtools")
 devtools::install_github("Rjauslin/PatPilr")
 library(PatPilr)
+install.PatPil()
 ```
+
+
 
 ## preTreatment
 
@@ -119,7 +123,7 @@ V = ACG
 This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called *derep_ech* and the second one called *derep*. At the end of the program inside of the *derep* folder you will find two fasta files. **RC.fa** contains your passed sequences and the **RCNotpassed.fa** the sequences that have failed the selection.
 
 ``` r
-Dereplicate <- function(pathFolder, # path to the working directory
+Dereplicate(pathFolder, # path to the working directory
   within = 3, # threshold for the number of occurence of the sequence within a file
   between = 2) # threshold for the number of occurence of the sequence between files
 ```
@@ -132,11 +136,27 @@ The package PatPilr allows you to trim primers on a reference database. In order
 ``` r
 trimBase(fastaPath, # path to the reference base
   outputFasta, # path to the output
-	primerForward, # The character string representing your forward primer.
+  primerForward, # The character string representing your forward primer.
 	primerReverse, # The character string representing your reverse primer.
 	trim = 0, # A scalar integer representing the number of nucleotide that you want allowed to be trimmed on the primers.
 	l_min = 100, # A scalar integer representing the minimal length of the sequences considered.
 	l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
 	keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
 ```
+
+the PR2 database https://github.com/pr2database/pr2database as its own function which load the last reference database.
+
+
+``` r
+trimBasePR2(pathFile # path to the output
+  primerForward, # The character string representing your forward primer.
+	primerReverse, # The character string representing your reverse primer.
+	trim = 0, # A scalar integer representing the number of nucleotide that you want allowed to be trimmed on the primers.
+	l_min = 100, # A scalar integer representing the minimal length of the sequences considered.
+	l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
+	keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
+```
+
+
+## utils
 
