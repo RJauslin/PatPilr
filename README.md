@@ -137,11 +137,11 @@ The package PatPilr allows you to trim primers on a reference database. In order
 trimBase(fastaPath, # path to the reference base
   outputFasta, # path to the output
   primerForward, # The character string representing your forward primer.
-	primerReverse, # The character string representing your reverse primer.
-	trim = 0, # A scalar integer representing the number of nucleotide that you want allowed to be trimmed on the primers.
-	l_min = 100, # A scalar integer representing the minimal length of the sequences considered.
-	l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
-	keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
+  primerReverse, # The character string representing your reverse primer.
+  trim = 0, # A scalar integer representing the number of nucleotide that you want allowed to be trimmed on the primers.
+  l_min = 100, # A scalar integer representing the minimal length of the sequences considered.
+  l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
+  keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
 ```
 
 the PR2 database https://github.com/pr2database/pr2database as its own function which load the last reference database.
