@@ -2,19 +2,17 @@
 % Please edit documentation in R/callFlash.R
 \name{callFlash}
 \alias{callFlash}
-\title{callFlash}
+\title{call the program FLASH}
 \usage{
-callFlash(file_path, fastq1, fastq2, m = 10, M = 100, x = 0.25,
+callFlash(outputFolder, fastq1, fastq2, m = 10, M = 100, x = 0.25,
   t = 4)
 }
 \arguments{
-\item{file_path}{A character string containing the path to the fastq file. The extenstion must be .fastq}
+\item{outputFolder}{A character string containing the path to the output folder.}
 
-\item{fastq1}{A character string containing the path to the output folder with the namefile.
-The extenstion must be .fastq and contains R1.}
+\item{fastq1}{A character string containing the path to the R1 file.}
 
-\item{fastq2}{A character string containing the path to the output folder with the namefile.
-The extenstion must be .fastq and contains R2.}
+\item{fastq2}{A character string containing the path to the R2 file.}
 
 \item{m}{A scalar value that represent the minimum required overlap length between two reads to provide a confident overlap.
 Default 10.}
@@ -33,11 +31,10 @@ Nothing.
 Function that call the FLASH program. \url{https://ccb.jhu.edu/software/FLASH/}.
 }
 \examples{
-
 \dontrun{
-  file_path<-"/home/raphael/Documents/David_Singer_pipeline/Pipeline2/"
-  fastq1 <- "16.02.22_David_Singer_PlateVI_V9_R1.fastq"
-  fastq2 <- "16.02.22_David_Singer_PlateVI_V9_R2.fastq"
-  callFlash(file_path,fastq1,fastq2)
+  outputFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testFlash/"
+  fastq1 <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testFlash/PlateVI_R1.fastq"
+  fastq2 <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testFlash/PlateVI_R2.fastq"
+  callFlash(outputFolder,fastq1,fastq2)
 }
 }

@@ -2,26 +2,26 @@
 % Please edit documentation in R/call.qualCheck.R
 \name{call.qualCheck}
 \alias{call.qualCheck}
-\title{call.qualCheck}
+\title{call qualCheck}
 \usage{
 call.qualCheck(fastqPath, outputFasta, t = 0.01, s = 50, m = 60)
 }
 \arguments{
-\item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq}
+\item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq.}
 
-\item{outputFasta}{A character string containing the path to the output folder with the namefile. The extension must be .fasta}
+\item{outputFasta}{A character string containing the path to the output folder with the namefile. The extension must be .fasta.}
 
 \item{t}{A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.}
 
 \item{s}{A scalar that represent the size of the sliding window. Default = 50.}
 
-\item{m}{A scalar that represent the minimum size of the sequence to be keep. Default = 60.}
+\item{m}{A scalar that represent the minimum size of the sequence to be kept. Default = 60.}
 }
 \value{
-Nothing, but it work on the called file.
+Nothing, but work on the files.
 }
 \description{
-Function that call the quality check program of the tool PatPil.
+This function calls the qualCheck program of the tool PatPil.
 }
 \details{
 See the \url{http://taraoceans.sb-roscoff.fr/EukDiv/} for more informations on how the quality check is performed.

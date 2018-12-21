@@ -1,9 +1,9 @@
-#' call.rmSmallSeqfasta
+#' call rmSmallSeqfasta
 #'
-#' call rmSmallSeqfasta function of the PatPil program.
+#' This function calls the rmSmallSeqfasta program of the tool PatPil.
 #'
-#' @param fastaPath path to the fasta file
-#' @param outputFasta path to the output fasta file
+#' @param fastaPath A character string that represent the path to the fasta file.
+#' @param outputFasta A character string that represent the path to the output fasta file.
 #' @param sizemin A scalar integer to selected the minimum size.
 #'
 #' @details

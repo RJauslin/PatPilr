@@ -2,24 +2,24 @@
 % Please edit documentation in R/call.D_simple_tag.R
 \name{call.D_simple_tag}
 \alias{call.D_simple_tag}
-\title{call.D_simple_tag}
+\title{call D_simple_tag}
 \usage{
-call.D_simple_tag(fastqPath, outputFolder, barcode_path, mismatch = TRUE)
+call.D_simple_tag(fastqPath, outputFolder, barcodePath, mismatch = TRUE)
 }
 \arguments{
 \item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq}
 
 \item{outputFolder}{A character string containing the path to the output folder.}
 
-\item{barcode_path}{A character string containing the path to the barcode file. The extension must be a .txt}
+\item{barcodePath}{A character string containing the path to the barcode file. The extension must be a .txt}
 
 \item{mismatch}{A boolean value, if you allow one mismatch or not.}
 }
 \value{
-Nothing for now (but work on the file)
+Nothing, but work on the files
 }
 \description{
-Function that call the simple tag demultiplexing program of the tool PatPil.
+This function calls the simple tag demultiplexing program of the tool PatPil.
 }
 \details{
 The demultiplexing simple tag program will check that we are in the configuration :
@@ -32,22 +32,22 @@ If you would like to trim your primer see ...
 
 
 IMPORTANT : if this function is called in an other manners than by the function \link{preTreatment},
-then the function append the files if it is called several times.
+then the function append the files.
 Hence you should erase your files if your would like to recall the function.
 }
 \examples{
 \dontrun{
   fastqPath<-".../test/R1.fastq"
   outputFolder <- ".../test_D_simple_tag/R1.fastq"
-  barcode_path <- ".../test/barcodesV9test.txt"
+  barcodePath <- ".../test/barcodesV9test.txt"
 
 fastqPath <- "/home/raphael/Documents/PatPilr_source/
 testPipeline/testpreTreatment/testDemux/D_simple_tag/extendedFrags.fastq"
 outputFolder <- "/home/raphael/Documents/PatPilr_source/
 testPipeline/testpreTreatment/testDemux/D_simple_tag/demultiplex/"
-barcode_path <- "/home/raphael/Documents/PatPilr_source/
+barcodePath <- "/home/raphael/Documents/PatPilr_source/
 testPipeline/testpreTreatment/testDemux/D_simple_tag/barcodes.txt"
 
-  call.D_simple_tag(fastqPath,outputFolder,barcode_path)
+  call.D_simple_tag(fastqPath,outputFolder,barcodePath)
 }
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/preTreatment.R
 \name{preTreatment}
 \alias{preTreatment}
-\title{preTreatment}
+\title{Merge, demultiplex and clean your fastq files}
 \usage{
 preTreatment(pathFolder, sepFile = "_R", m = 10, M = 100, x = 0.25,
   t = 4, mismatch = FALSE, err = 0.01, slide = 50,
@@ -12,46 +12,77 @@ preTreatment(pathFolder, sepFile = "_R", m = 10, M = 100, x = 0.25,
 \item{pathFolder}{A character string containing the path where the program will work.
 It should contains the two .fastq file with R1 and R2 inside the name.}
 
-\item{sepFile}{A character string representing the separator to get the name fo the files used. Meaning that
-the names kept are on the left and side of the separator. Default = "_R"}
+\item{sepFile}{A character string representing the separator to get the name of the files. Meaning that
+the names kept are on the left hand side of the separator. Default = "_R".}
 
-\item{m}{A scalar value that represent the minimum required overlap length between
-two reads to provide a confident overlap.  Default 10.}
+\item{m}{A scalar value that represent the minimum required overlap
+length between two reads to provide a confident overlap. Default m = 10.}
 
 \item{M}{A scalar value that represent the maximum overlap length expected
-in approximately ninety percent of read pairs. Default 100.}
+in approximately ninety percent of read pairs. Default M = 100.}
 
 \item{x}{A scalar value that represent the maximum allowed ratio between the number
-of mismatched base pairs and the overlap length. Default 0.25.}
+of mismatched base pairs and the overlap length. Default x = 0.25.}
 
 \item{t}{A scalar value that represent the number of worker threads. Default t = 4.}
 
-\item{mismatch}{A boolean value if one mismatch is allowed inside the barcode. Default = FALSE}
+\item{mismatch}{A boolean value, would one mismatch is allowed inside the barcode. Default mismatch = FALSE}
 
-\item{err}{A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.}
+\item{err}{A scalar value that represent the percentage of error allowed in the sliding window. Default = 0.01.}
 
-\item{slide}{A scalar that represent the size of the sliding window. Default = 50.}
+\item{slide}{A scalar integer that represent the size of the sliding window. Default = 50.}
 
-\item{minlength}{A scalar that represent the minimum size of the sequence to be keep. Default = 60.}
+\item{minlength}{A scalar integer that represent the minimum size of the sequence to be keep. Default = 60.}
 }
 \value{
-Noting.
+Noting, but work on the files.
 }
 \description{
-Function that apply a pre-treatment on the fasq file R1 and R2.
+Function that apply a pre-treatment on the fasq files R1 and R2. See 'Details'.
 }
 \details{
-The pathFolder argument should contain : namefile_R1.fastq namefile_r2.fastq barcode.txt. The function create the different folder by its own.
+This function merges, demultiplex, and clean your fastq files. You are supposed to put only the fastq files
+ specified by the ..._R1.fastq, ..._R2.fastq and the information needed for the demultiplexing.
 
-1) The function will firstly apply the FLASH to merge the R1 and R2 fastq file. A folder is created, named "merged", with the output of the FLASH programs
+\enumerate{
+\item simple tag :
+You have to put in your working directory a file called \strong{barcode.txt}.
+ It is really important that the barcode file have the following format.
+ \itemize{
+  \item ACGAGTGCGT	name1.fastq
+  \item ACGCTCGACA	name2.fastq
+  \item AGACGCACTC	name3.fastq
+  \item ...
+ }
+\item double tag : You have to put in your working directory three files called \strong{forwardtag.txt}, \strong{reversetag.txt}, and \strong{primer.txt}.
+ It is really important that the files have the following format.
 
-2) Secondly the function call the simple demultiplexing function of the tool PatPil. The main folder needs to contains a barcode.txt file such that :
+  \itemize{
+  \item ACGAGTGCGT	forwardTag1
+  \item ACGCTCGACA	forwardTag2
+  \item AGACGCACTC	forwardTag3
+  \item ...
+ }
+ \strong{reversetag.txt}
+  \itemize{
+  \item ACGAGTGCGT	reverseTag1
+  \item ACGCTCGACA	reverseTag2
+  \item AGACGCACTC	reverseTag3
+  \item ...
+ }
+ \strong{primer.txt}
+  \itemize{
+  \item CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
+ }
+}
 
-barcode TAB < nameoffile.fq >
-
-A folder is create named "demultiplex" which contains the demultiplexed file.
-
-3) Finally, the function call the qualChek function of the tool PatPil. A folder is create named "clean" which contains the fasta files clean by the TARA quality check \url{http://taraoceans.sb-roscoff.fr/EukDiv/}.
+If you would like to have more information on each step see :
+\itemize{
+\item \code{\link{callFlash}}
+\item \code{\link{call.D_simple_tag}}
+\item \code{\link{call.D_double_tag}}
+\item \code{\link{call.qualCheck}}
+}
 }
 \examples{
 \dontrun{

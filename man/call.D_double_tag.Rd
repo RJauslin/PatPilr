@@ -2,43 +2,43 @@
 % Please edit documentation in R/call.D_double_tag.R
 \name{call.D_double_tag}
 \alias{call.D_double_tag}
-\title{call.D_double_tag}
+\title{call D_double_tag}
 \usage{
 call.D_double_tag(fastqPath, outputFolder, bF, bR, pF, pR,
   mismatch = FALSE)
 }
 \arguments{
-\item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq}
+\item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq.}
 
 \item{outputFolder}{A character string containing the path to the output folder.}
 
-\item{bF}{A character string containing the path to the barcode forward file. The extension must be a .txt}
+\item{bF}{A character string containing the path to the forward barcodes file. The extension must be a .txt.}
 
-\item{bR}{A character string containing the path to the barcode reverse file. The extension must be a .txt}
+\item{bR}{A character string containing the path to the reverse barcodes file. The extension must be a .txt.}
 
-\item{pF}{A character string containing the path to the primer forward file. The extension must be a .txt}
+\item{pF}{A character string containing the path to the forward primers file. The extension must be a .txt.}
 
-\item{pR}{A character string containing the path to the primer reverse file. The extension must be a .txt}
+\item{pR}{A character string containing the path to the reverse primers file. The extension must be a .txt.}
 
 \item{mismatch}{A boolean value, if you allow one mismatch or not.}
 }
 \value{
-Nothing for now (but work on the file)
+Nothing, but work on the files
 }
 \description{
 This function calls the double tag demultiplexing program of the tool PatPil.
 }
 \details{
-The demultiplexing program will check that we are in the configuration :
+The demultiplexing program will check that the sequences are in configuration :
 \itemize{
 \item forwardTag - primerForward - Seq - primerReverse - reverseTag
 }
 
 Hence you should verifiy that your primerReverse and reverseTag are in the right direction
-and so possibly you might want to reverse complement your primer sequences.
+and so possibly you might need to reverse complement your primer sequences.
 
 IMPORTANT : if this function is called in an other manners than by the function \link{preTreatment},
-then the function append the files if it is called several times.
+then the function append the files.
 Hence you should erase your files if your would like to recall the function.
 }
 \examples{

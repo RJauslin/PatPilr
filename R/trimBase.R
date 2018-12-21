@@ -1,10 +1,13 @@
-#' trimBase
+#' trim reference database
 #'
-#' @param fastaPath A character string that represent the path to the input file (absolute path needed)
-#' @param outputFasta A character string that represent the path to the output file (absolute path needed)
-#' @param primerForward A character string that represent the forward primer (uncertain nucleotide allowed)
-#' @param primerReverse A character string that represent the reverse primer (uncertain nucleotide allowed)
-#' @param trim A value that represent the number of nucleotide that you want trim in the primer
+#' In order to get some 100% of match when you assign your sequences, you have to compare with sequences that have the same "configuration".
+#'Hence, you possibly need to trim your reference base with some primers.
+#'
+#' @param fastaPath A character string that represent the path to the input file.
+#' @param outputFasta A character string that represent the path to the output file.
+#' @param primerForward A character string that represent the forward primer. Uncertain nucleotide allowed.
+#' @param primerReverse A character string that represent the reverse primer. Uncertain nucleotide allowed.
+#' @param trim A value that represent the number of nucleotide that you want trim in the primer.
 #' @param l_min A value that represent the mininum length of the kept sequences.
 #' @param l_max A value that represent the maximum length of the kept sequences.
 #' @param keepPrimer A boolean value, if you want to keep the primer?

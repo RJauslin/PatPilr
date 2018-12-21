@@ -1,12 +1,12 @@
-#' call.qualCheck
+#' call qualCheck
 #'
-#' Function that call the quality check program of the tool PatPil.
+#' This function calls the qualCheck program of the tool PatPil.
 #'
-#' @param fastqPath A character string containing the path to the fastq file. The extenstion must be .fastq
-#' @param outputFasta A character string containing the path to the output folder with the namefile. The extension must be .fasta
+#' @param fastqPath A character string containing the path to the fastq file. The extenstion must be .fastq.
+#' @param outputFasta A character string containing the path to the output folder with the namefile. The extension must be .fasta.
 #' @param t A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.
 #' @param s A scalar that represent the size of the sliding window. Default = 50.
-#' @param m A scalar that represent the minimum size of the sequence to be keep. Default = 60.
+#' @param m A scalar that represent the minimum size of the sequence to be kept. Default = 60.
 #'
 #' @details
 #'
@@ -16,7 +16,7 @@
 #' then the function append the files if it is called several times.
 #' Hence you should erase your files if your would like to recall the function.
 #'
-#' @return Nothing, but it work on the called file.
+#' @return Nothing, but work on the files.
 #' @export
 #'
 #' @examples

@@ -24,10 +24,10 @@ trimBasePR2(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
 \item{keepPrimer}{A boolean value, if you want to keep the primer?}
 }
 \value{
-nothing but the file is created in pathFile
+Nothing, but the file is created in pathFile.
 }
 \description{
-This function load, trim and write the PR2 database on a selected directory.
+This function load, trim and write the PR2 database on a selected directory. See \url{https://github.com/pr2database/pr2database}.
 }
 \details{
 This function will extract from the PR2 the portion of interested of the sequences. Schematically we have :

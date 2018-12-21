@@ -1,16 +1,16 @@
-#' Perform All primer (trimmed or uncertain nucleotide)
+#' Perform all primer combinations
 #'
 #' This function is supposed to be internal and is used to create the primerforward.txt and primerreverse.txt files
 #'  for the function \code{\link{preTreatment}}.
-#'   It could be used if you would like to have all possible combinations of a primer with uncertain nucleotide.
+#'  It could be used if you would like to have all possible combinations of a primer with uncertain nucleotides.
 #'
-#' @param primer A character string with uncertain nucleotide
-#' @param direction A character string : "none", "forward" or "reverse"
-#' @param trim_nuc A scalar value representing the number of nucleotide trimmed (in the choosed direction). Ignored if "none"
+#' @param primer A character string with uncertain nucleotide.
+#' @param direction A character string : "none", "forward" or "reverse".
+#' @param trim_nuc A scalar value representing the number of nucleotide trimmed (in the chosen direction). Ignored if "none".
 #'
-#' @details Arguments which should be a character string for example : "CATTGAARARTTGVAT"
+#' @details
 #'
-#' The uncertain characters are then transformed by following the transformations :
+#' Uncertain nucleotides are transformed with the combinations :
 #'
 #' \itemize{
 #' \item R = "AG"
@@ -27,7 +27,7 @@
 #'
 #' Careful about the number of uncertain nucleotide in the primer,
 #'  the number of possible combinations can become very large.
-#'
+#'   Moreover, if you allowed a great trim number \code{trim} then the possible combinations increased as well.
 #'
 #'
 #' @return A vector containing all unique combinations depending on the uncerain nucleotides.

@@ -2,24 +2,24 @@
 % Please edit documentation in R/call.RemoveNfasta.R
 \name{call.RemoveNfasta}
 \alias{call.RemoveNfasta}
-\title{call.RemoveNfasta}
+\title{call RemoveNfasta}
 \usage{
 call.RemoveNfasta(fastaPath, outputFasta)
 }
 \arguments{
-\item{fastaPath}{path to the fasta file}
+\item{fastaPath}{path to the fasta file.}
 
-\item{outputFasta}{path to the output fasta file}
+\item{outputFasta}{path to the output fasta file.}
 }
 \value{
-Nothing
+Nothing, but work on the file.
 }
 \description{
-call RemoveNfasta function of the PatPil program.
+This function calls the RemoveNfasta program of the tool PatPil.
 }
 \details{
 This function applies the RemoveNfasta tools of the PatPil program.
-It simply removes the sequences that contains at least one nucleotide 'N' .
+It simply removes the sequences that contains at least one nucleotide 'N'.
 }
 \examples{
 \dontrun{

@@ -1,16 +1,16 @@
-#' call.RemoveNfasta
+#' call RemoveNfasta
 #'
-#' call RemoveNfasta function of the PatPil program.
+#' This function calls the RemoveNfasta program of the tool PatPil.
 #'
-#' @param fastaPath path to the fasta file
-#' @param outputFasta path to the output fasta file
+#' @param fastaPath path to the fasta file.
+#' @param outputFasta path to the output fasta file.
 #'
 #' @details
 #'
 #' This function applies the RemoveNfasta tools of the PatPil program.
-#' It simply removes the sequences that contains at least one nucleotide 'N' .
+#' It simply removes the sequences that contains at least one nucleotide 'N'.
 #'
-#' @return Nothing
+#' @return Nothing, but work on the file.
 #' @export
 #'
 #' @examples

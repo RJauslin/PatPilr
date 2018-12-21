@@ -1,10 +1,10 @@
 #' primer forward and reverse demultiplexing
 #'
-#' Function that create forwardtag.txt and reversetag.txt for the double tag demultiplexing
+#' internal function that create forwardtag.txt and reversetag.txt for the double tag demultiplexing.
 #'
-#' @param pathFile A character string that represent path where the folder on which there is primer.txt
+#' @param pathFile A character string that represent path where to the folder on which there is primer.txt
 #'
-#' @return Nothing
+#' @return Nothing, but write the two need files.
 #'
 #' @importFrom utils read.delim
 #' @importFrom utils write.table

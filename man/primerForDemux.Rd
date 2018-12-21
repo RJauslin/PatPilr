@@ -7,13 +7,13 @@
 primerForDemux(pathFile)
 }
 \arguments{
-\item{pathFile}{A character string that represent path where the folder on which there is primer.txt}
+\item{pathFile}{A character string that represent path where to the folder on which there is primer.txt}
 }
 \value{
-Nothing
+Nothing, but write the two need files.
 }
 \description{
-Function that create forwardtag.txt and reversetag.txt for the double tag demultiplexing
+internal function that create forwardtag.txt and reversetag.txt for the double tag demultiplexing.
 }
 \examples{
 \dontrun{

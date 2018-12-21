@@ -2,14 +2,14 @@
 % Please edit documentation in R/call.rmSmallSeqfasta.R
 \name{call.rmSmallSeqfasta}
 \alias{call.rmSmallSeqfasta}
-\title{call.rmSmallSeqfasta}
+\title{call rmSmallSeqfasta}
 \usage{
 call.rmSmallSeqfasta(fastaPath, outputFasta, sizemin = 80)
 }
 \arguments{
-\item{fastaPath}{path to the fasta file}
+\item{fastaPath}{A character string that represent the path to the fasta file.}
 
-\item{outputFasta}{path to the output fasta file}
+\item{outputFasta}{A character string that represent the path to the output fasta file.}
 
 \item{sizemin}{A scalar integer to selected the minimum size.}
 }
@@ -17,7 +17,7 @@ call.rmSmallSeqfasta(fastaPath, outputFasta, sizemin = 80)
 Nothing
 }
 \description{
-call rmSmallSeqfasta function of the PatPil program.
+This function calls the rmSmallSeqfasta program of the tool PatPil.
 }
 \details{
 This function applies the rmSmallSeqfasta tools of the PatPil program.

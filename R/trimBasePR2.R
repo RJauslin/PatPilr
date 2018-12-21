@@ -1,6 +1,6 @@
 #' Trim the PR2 reference database
 #'
-#' This function load, trim and write the PR2 database on a selected directory.
+#' This function load, trim and write the PR2 database on a selected directory. See \url{https://github.com/pr2database/pr2database}.
 #'
 #' @param pathFile A character string that represent the path to file (absolute path needed)
 #' @param trim A value that represent the number of nucleotide that you want trim in the primer
@@ -16,7 +16,7 @@
 #' \item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
 #' }
 #'
-#' @return nothing but the file is created in pathFile
+#' @return Nothing, but the file is created in pathFile.
 #' @export
 #'
 #' @importFrom seqinr write.fasta read.fasta

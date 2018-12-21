@@ -10,5 +10,5 @@ install.pr2()
 Nothing
 }
 \description{
-install the PR2 package \url{https://github.com/pr2database/pr2database}
+install the PR2 reference database with the R package \url{https://github.com/pr2database/pr2database}.
 }

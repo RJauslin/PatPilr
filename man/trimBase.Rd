@@ -2,22 +2,22 @@
 % Please edit documentation in R/trimBase.R
 \name{trimBase}
 \alias{trimBase}
-\title{trimBase}
+\title{trim reference database}
 \usage{
 trimBase(fastaPath, outputFasta, primerForward = "CYGCGGTAATTCCAGCTC",
   primerReverse = "CRAAGAYGATYAGATACCRT", trim = 0, l_min = 100,
   l_max = 500, keepPrimer = TRUE)
 }
 \arguments{
-\item{fastaPath}{A character string that represent the path to the input file (absolute path needed)}
+\item{fastaPath}{A character string that represent the path to the input file.}
 
-\item{outputFasta}{A character string that represent the path to the output file (absolute path needed)}
+\item{outputFasta}{A character string that represent the path to the output file.}
 
-\item{primerForward}{A character string that represent the forward primer (uncertain nucleotide allowed)}
+\item{primerForward}{A character string that represent the forward primer. Uncertain nucleotide allowed.}
 
-\item{primerReverse}{A character string that represent the reverse primer (uncertain nucleotide allowed)}
+\item{primerReverse}{A character string that represent the reverse primer. Uncertain nucleotide allowed.}
 
-\item{trim}{A value that represent the number of nucleotide that you want trim in the primer}
+\item{trim}{A value that represent the number of nucleotide that you want trim in the primer.}
 
 \item{l_min}{A value that represent the mininum length of the kept sequences.}
 
@@ -26,7 +26,8 @@ trimBase(fastaPath, outputFasta, primerForward = "CYGCGGTAATTCCAGCTC",
 \item{keepPrimer}{A boolean value, if you want to keep the primer?}
 }
 \description{
-trimBase
+In order to get some 100% of match when you assign your sequences, you have to compare with sequences that have the same "configuration".
+Hence, you possibly need to trim your reference base with some primers.
 }
 \details{
 This function will extract from the reference base the portion of interested of the sequences. Schematically we have :

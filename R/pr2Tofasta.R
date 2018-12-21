@@ -1,13 +1,13 @@
-#' pr2Tofasta
+#' Extract the PR2 adn write it in a fasta file
 #'
-#' Function that install and load the PR2 database \url{https://github.com/pr2database/pr2database}
+#' Function that install and load the PR2 database \url{https://github.com/pr2database/pr2database}.
 #'
 #' Check \code{\link{trimBasePR2}} if you would like trimmed database PR2.
 #'
-#' @param file optional path to an output file to write the PR2 as a fasta file.
+#' @param file optional character string representing the path to an output file to write the PR2 as a fasta file.
 #'  If ommited the database is only loaded in the working environment.
 #'
-#' @return a \code{\link{list}} that contains the pr2 full
+#' @return a \code{\link{list}} that contains the pr2 full.
 #'
 #' @export
 #'
