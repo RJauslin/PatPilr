@@ -29,18 +29,25 @@ using namespace std;
 
 int rmSmallSeq(Fastq fastqChunk, string pathFqFolder, int argc, const char **argv){
 
+  if(argc < 7){
+    cerr << "you didn't pass enough arguments, "
+         << "probably the '-m' argument is missing. "<<endl;
+    return 1;
+  }
+
 	string arg6 = argv[6];// -m
-    if(arg6 == "-m"){
+    if(arg6 == "-m" && argc > 7){
 	    stringstream convert(argv[7]);
     	int minLength(0);
         if (!(convert >> minLength)){ // do the conversion
-            minLength = 0;
+          cerr << "You gave a string or a char but not a number" <<endl;
+          return 1;
         }
     	fastqChunk.rmSmallSeq(minLength);
-        fastqChunk.writeFastq(pathFqFolder,true);
-        return 0;
+      fastqChunk.writeFastq(pathFqFolder,true);
+      return 0;
     }else{
-    	//Help(argc,argv);
-    	return 1;
+      cerr << "You forget the '-m' argument" << endl;
+      return 1;
     }
 }

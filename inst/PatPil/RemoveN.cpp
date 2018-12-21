@@ -30,7 +30,6 @@
 using namespace std;
 
 void RemoveN(Fastq fastqChunk, string pathFqFolder){
-
   	fastqChunk.removeN();
     fastqChunk.writeFastq(pathFqFolder,true);
 }
