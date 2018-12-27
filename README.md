@@ -9,6 +9,12 @@ Implementation of the tools PatPil in R
 ## Installation
 
 * Linux
+Before install the package you need to be sure that the package devtools is right installed on your machine. If you have any error messages when you try to install the package devtools then try to copy/paste the following dependencies on a terminal.
+
+``` r
+sudo apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+```
+and the in Rstudio or R :
 
 ``` r
 install.packages("devtools")
