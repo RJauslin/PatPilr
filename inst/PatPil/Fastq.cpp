@@ -443,7 +443,7 @@ void Fastq::rmSmallSeq(unsigned int minLen)
     }
   }
 
-  cout << "Sequences smaller than "<< minLen << ": " << count << endl << endl;
+  cout << "Sequences smaller than "<< minLen << " : " << count << endl << endl;
 }
 
 

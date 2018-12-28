@@ -15,11 +15,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' fastaPath <- ".../fastaTest.fa"
-#' fastaPath <- "/home/raphael/Documents/PatPilr_source/
-#' testPipeline/testpreTreatment/testRemoveNfasta/fastaTest.fasta"
-#' outputFasta <- "/home/raphael/Documents/PatPilr_source/
-#' testPipeline/testpreTreatment/testRemoveNfasta/fastaTest_N.fasta"
+  #' fastaPath <- ".../fastaTest.fa"
+#' fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest.fasta"
+#' outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest_N.fasta"
 #' call.RemoveNfasta(fastaPath,outputFasta)
 #' }
 call.RemoveNfasta <- function(fastaPath,

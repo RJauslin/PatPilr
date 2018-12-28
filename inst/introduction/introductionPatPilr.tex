@@ -202,20 +202,43 @@
 
 \section{Overview}
 
-This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools an implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. This will supposed that you have two .fastq R1 and R2 and a barcode file that contains the information for the demultiplexing step. Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. You should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
+This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools is implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. Moreover it explains some useful function that you could used on your fastq or fastq files.\\
+
+preTreatment will work correctly if you put your files in a folder that contain two files ".fastq" with R1, R2 in the file's name. It should also contain the information need for the demultiplexing step. See Section \ref{subsec:demux}.\\
+
+Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. Depending on your OS the installation is different.  If you are on Linux, you should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{install.packages}\hlstd{(}\hlstr{"devtools"}\hlstd{)}
 \hlstd{devtools}\hlopt{::}\hlkwd{install_github}\hlstd{(}\hlstr{"Rjauslin/PatPilr@master"}\hlstd{)}
+\hlkwd{library}\hlstd{(PatPilr)}
+\hlkwd{install.PatPil}\hlstd{()}
+\hlkwd{install.flash}\hlstd{()}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
 
+\begin{description}
+	
+	\item[Linux :] It is possible that you have never installed the package \textbf{devtools}. If this is the case, it is possible that you have some errors during the installation of the packages. You need to install the dependencies of the packages. Open a terminal and copy paste the following command.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+sudo apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+	\item[Windows .] You need to install Rtools. Go to the URL \url{https://cran.r-project.org/bin/windows/Rtools/} and choose Rtools35.exe. Follow the setup instructions and when given the option to edit your PATH, take it.
+\end{description}
+
+
+\newpage
+
 \section{Pre-treatment}
 \label{sec:pretreatment}
-This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the information needed for the demultiplexing (see Section \ref{subsec:demux}).
+This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will suppose that you have put only the two fastq files and the information needed for the demultiplexing (see Section \ref{subsec:demux}).
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -361,11 +384,102 @@ If you named your file with the good title, with the right format, the demultipl
 
 The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
 
-\subsection{Remove 'N' fasta}
+
+\subsection{Remove 'N'}
+
+This function simply removes the sequences of a fasta or a fastq files that contains a nucleotide 'N'.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{fastaPath} \hlkwb{<-} \hlstr{".../file.fasta"}
+\hlstd{outputFasta} \hlkwb{<-} \hlstr{".../fileWithoutN.fasta"}
+\hlkwd{call.RemoveNfasta}\hlstd{(fastaPath,outputFasta)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+If you want to use the tool PatPil directly then you can by the following command.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+./PatPil RemoveNfasta -f \hlstr{".../file.fasta"} -o \hlstr{".../fileWithoutN.fasta"}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+If you want to apply it on a fastq file.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{fastqPath} \hlkwb{<-} \hlstr{".../file.fastq"}
+\hlstd{outputFastq} \hlkwb{<-} \hlstr{".../fileWithoutN.fastq"}
+\hlkwd{call.RemoveNfastq}\hlstd{(fastaPath,outputFastq)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+If you want to use the tool PatPil directly then you can by the following command.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+./PatPil RemoveN -f \hlstr{".../file.fastq"} -o \hlstr{".../fileWithoutN.fastq"}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
 
 \subsection{rmSmallSeq fasta}
 
 
+
+This function simply removes the sequences of a fasta or a fastq files that are smaller than a fixed integer.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{fastaPath} \hlkwb{<-} \hlstr{".../file.fasta"}
+\hlstd{outputFasta} \hlkwb{<-} \hlstr{".../fileWithoutN.fasta"}
+\hlkwd{call.rmSmallSeqfasta}\hlstd{(fastaPath,}
+        \hlstd{outputFasta,}
+        \hlkwc{sizemin} \hlstd{=} \hlnum{80}\hlstd{)} \hlcom{# minimum size}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+If you want to use the tool PatPil directly then you can by the following command.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+./PatPil rmSmallSeqfasta -f \hlstr{".../file.fasta"} -o \hlstr{".../fileWithoutN.fasta"} -m 80
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+If you want to apply it on a fastq file.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{fastqPath} \hlkwb{<-} \hlstr{".../file.fastq"}
+\hlstd{outputFastq} \hlkwb{<-} \hlstr{".../fileWithoutN.fastq"}
+\hlkwd{call.rmSmallSeqfastq}\hlstd{(fastqPath,}
+        \hlstd{outputFastq,}
+        \hlkwc{sizemin} \hlstd{=} \hlnum{80}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+If you want to use the tool PatPil directly then you can by the following command.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+./PatPil rmSmallSeq -f \hlstr{".../file.fastq"} -o \hlstr{".../fileWithoutN.fastq"} -m 80
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\newpage
 \section{Database}
 The package PatPilr allows you to trim primers on a reference database. In order to get some 100\% of match when you assign your sequences, you have to compare with sequences that have the same "configuration". Hence, you possibly need to trim your reference base with some primers. The package allows you to do it with two functions. The first one called trimBasePR2 \cite{doi:10.1093/nar/gks1160} and the second trimBase. Trim a reference database could also be useful to improve the amount of time needed to perform the dechimering of your sequences \cite{Edgar074252}.
 
@@ -376,7 +490,7 @@ The \texttt{trimBasePR2} have some parameters that you need to right understand.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{trimBase}\hlstd{(pathFile,}
+\hlkwd{trimBasePR2}\hlstd{(pathFile,}
         \hlstd{primerForward,}
         \hlstd{primerReverse,}
         \hlkwc{trim} \hlstd{=} \hlnum{0}\hlstd{,}
@@ -428,9 +542,10 @@ The \texttt{trimBase} is mainly the same as \texttt{trimBasePR2}. It differs onl
 \end{labeling}
 
 
+\newpage
 \section{Dereplication}
 
-This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called \textit{derep\_ech} and the second one called \textit{derep}. At the end of the program inside of the \textit{derep} folder you will find two fasta files. \textbf{RC.fa} contains your passed sequences and the \textbf{RCNotpassed.fa} the sequences that have failed the selection.
+This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called \textit{derep\_ech} and the second one called \textit{derep}. At the end of the program, inside of the \textit{derep} folder, you will find two fasta files. \textbf{RC.fasta} contains your passed sequences and \textbf{RCNotpassed.fasta} the sequences that have failed the selection.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -442,6 +557,8 @@ Dereplicate <- \hlkwd{function}(pathFolder, \hlcom{# path to the working directo
 \end{kframe}
 \end{knitrout}
 
+\newpage
+\renewcommand\refname{References}
 \bibliographystyle{apalike} % Le style est mis entre accolades.
 \bibliography{patpil} % mon fichier de base de données s'appelle bibli.bib
 
