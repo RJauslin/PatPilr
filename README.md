@@ -168,7 +168,7 @@ trimBasePR2(pathFile # path to the output
 
 Some functions that could be useful.
 
-# quality check
+### quality check
 The quality check currently implemented evaluating the expected error in a sliding window and discarding sequences with more than percentage of error in the worst quality window http://taraoceans.sb-roscoff.fr/EukDiv/.
 
 **IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
@@ -181,7 +181,7 @@ call.qualCheck(fastqPath,
   m = 60) # minimum sequence length
 ```
 
-# Remove 'N'
+### Remove 'N'
 
 These functions simply remove sequences of a fasta or a fastq files that contains a nucleotide 'N'.
 
@@ -200,7 +200,7 @@ outputFastq <- ".../fileWithoutN.fastq"
 call.RemoveNfastq(fastaPath,outputFastq)
 ```
 
-# rmSmallSeq
+### rmSmallSeq
 
 This function simply removes the sequences of a fasta or a fastq files that are smaller than a fixed integer.
 
