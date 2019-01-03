@@ -8,7 +8,8 @@ Implementation of the tools PatPil in R
 
 ## Installation
 
-* Linux
+### Linux
+
 Before install the package you need to be sure that the package devtools is right installed on your machine. If you have any error messages when you try to install the package devtools then try to copy/paste the following dependencies on a terminal.
 
 ``` r
@@ -23,7 +24,7 @@ library(PatPilr)
 install.PatPil()
 ```
 
-* Windows
+### Windows
 
 In order to get the program PatPil, you need to install Rtools. Go to the URL https://cran.r-project.org/bin/windows/Rtools/ and choose Rtools35.exe. Follow the setup instructions and when given the option to edit your PATH, take it. 
 
@@ -83,6 +84,7 @@ CTCGCGTGTC	name8.fastq
 You have to put in your working directory three files called **forwardtag.txt**, **reversetag.txt**, and **primer.txt**. It is really important that the files have the following format.
 
 * **forwardtag.txt**
+
 Notice that there is no extension file such as .fastq
 ``` r
 ACACACAC	ForwardTag1
@@ -93,6 +95,7 @@ ACTATCAT	ForwardTag4
 ```
 
 * **reversetag.txt**
+
 Notice that there is no extension file such as .fastq
 ``` r
 ACACACAC	ReverseTag1
