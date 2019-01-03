@@ -167,7 +167,7 @@ trimBasePR2(pathFile # path to the output
 ```
 
 
-## utils
+## Utils
 
 Some functions that could be useful.
 
@@ -227,7 +227,7 @@ call.rmSmallSeqfastq(fastqPath,
 	sizemin = 80)
 ```
 
-## call.D_simple_tag
+### call.D_simple_tag
 
 **IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
 
@@ -238,7 +238,7 @@ call.D_simple_tag(fastqPath, # A character string containing the path to the fas
   mismatch = TRUE) # A boolean value, if you allow one mismatch or not.
 ```
 
-## call.D_double_tag
+### call.D_double_tag
 
 **IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
 
