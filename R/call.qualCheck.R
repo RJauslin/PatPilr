@@ -25,11 +25,9 @@
 #'   fastqPath<-".../test/R1.fastq"
 #'   outputFasta <- ".../test/R1.fasta"
 #'
-#'   fastqPath <- "/home/raphael/Documents/PatPilr_source/
-#'   testPipeline/testpreTreatment/testqualCheck/unknown.fastq"
-#'   outputFasta <- "/home/raphael/Documents/PatPilr_source/
-#'   testPipeline/testpreTreatment/testqualCheck/unknownClean.fasta"
-#'
+#'   fastqPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testqualCheck/unknown.fastq"
+#'   outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testqualCheck/unknownClean.fasta"
+#'  call.qualCheck(fastqPath,outputFasta,t = 0.01,s = 50, m = 60)
 #' }
 call.qualCheck <- function(fastqPath,
                            outputFasta,
