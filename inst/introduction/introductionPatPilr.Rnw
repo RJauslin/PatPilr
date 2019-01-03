@@ -299,7 +299,17 @@ If you named your file with the good title, with the right format, the demultipl
 \subsection{Quality check}
 \label{subsec:qualcheck}
 
-The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
+The quality check currently implemented evaluating the expected error in a sliding window and discarding sequences with more than percentage of error in the worst quality window \cite{DeVargas2015}.
+
+
+<<qualCheck, cache = FALSE, eval = FALSE>>=
+call.qualCheck(fastqPath,
+	outputFasta,
+	t = 0.01, # expected error
+	s = 50, # sligind window
+	m = 60) # minimum sequence length
+@
+
 
 
 \subsection{Remove 'N'}

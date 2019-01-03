@@ -2,8 +2,8 @@
 Implementation of the tools PatPil in R
 
 ## Current version
-* Current version : 1.1.6
-* Last update : 2018-12-20
+* Current version : 1.1.7
+* Last update : 2019-01-03
 
 
 ## Installation
@@ -165,4 +165,64 @@ trimBasePR2(pathFile # path to the output
 
 
 ## utils
+
+Some functions that could be useful.
+
+# quality check
+The quality check currently implemented evaluating the expected error in a sliding window and discarding sequences with more than percentage of error in the worst quality window http://taraoceans.sb-roscoff.fr/EukDiv/.
+
+**IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
+
+``` r
+call.qualCheck(fastqPath,
+  outputFasta,
+  t = 0.01, # expected error
+  s = 50, # sligind window
+  m = 60) # minimum sequence length
+```
+
+# Remove 'N'
+
+These functions simply remove sequences of a fasta or a fastq files that contains a nucleotide 'N'.
+
+* **fasta**
+
+``` r
+fastaPath <- ".../file.fasta"
+outputFasta <- ".../fileWithoutN.fasta"
+call.RemoveNfasta(fastaPath,outputFasta)
+```
+* **fastq**
+
+``` r
+fastqPath <- ".../file.fastq"
+outputFastq <- ".../fileWithoutN.fastq"
+call.RemoveNfastq(fastaPath,outputFastq)
+```
+
+# rmSmallSeq
+
+This function simply removes the sequences of a fasta or a fastq files that are smaller than a fixed integer.
+
+* **fasta**
+
+``` r
+fastaPath <- ".../file.fasta"
+outputFasta <- ".../fileWithoutN.fasta"
+call.rmSmallSeqfasta(fastaPath,
+	outputFasta,
+	sizemin = 80) # minimum size
+```
+
+* **fastq**
+
+``` r
+fastqPath <- ".../file.fastq"
+outputFastq <- ".../fileWithoutN.fastq"
+call.rmSmallSeqfastq(fastqPath,
+	outputFastq,
+	sizemin = 80)
+```
+
+
 

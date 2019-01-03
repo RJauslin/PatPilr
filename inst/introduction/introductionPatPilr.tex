@@ -382,7 +382,21 @@ If you named your file with the good title, with the right format, the demultipl
 \subsection{Quality check}
 \label{subsec:qualcheck}
 
-The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
+The quality check currently implemented evaluating the expected error in a sliding window and discarding sequences with more than percentage of error in the worst quality window \cite{DeVargas2015}.
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{call.qualCheck}\hlstd{(fastqPath,}
+        \hlstd{outputFasta,}
+        \hlkwc{t} \hlstd{=} \hlnum{0.01}\hlstd{,} \hlcom{# expected error}
+        \hlkwc{s} \hlstd{=} \hlnum{50}\hlstd{,} \hlcom{# sligind window}
+        \hlkwc{m} \hlstd{=} \hlnum{60}\hlstd{)} \hlcom{# minimum sequence length}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
 
 
 \subsection{Remove 'N'}
