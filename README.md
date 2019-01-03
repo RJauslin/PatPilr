@@ -186,7 +186,7 @@ call.qualCheck(fastqPath,
 
 ### Remove 'N'
 
-These functions simply remove sequences of a fasta or a fastq files that contains a nucleotide 'N'.
+This function simply remove sequences of a fasta or a fastq files that contains a nucleotide 'N'.
 
 * **fasta**
 
@@ -227,5 +227,27 @@ call.rmSmallSeqfastq(fastqPath,
 	sizemin = 80)
 ```
 
+## call.D_simple_tag
 
+**IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
 
+``` r
+call.D_simple_tag(fastqPath, # A character string containing the path to the fastq file. The extenstion must be .fastq
+  outputFolder, # A character string containing the path to the output folder.
+  barcodePath, # A character string containing the path to the barcode file. The extension must be a .txt
+  mismatch = TRUE) # A boolean value, if you allow one mismatch or not.
+```
+
+## call.D_double_tag
+
+**IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
+
+``` r
+call.D_double_tag(fastqPath, # A character string containing the path to the fastq file. The extenstion must be .fastq.
+  outputFolder, # A character string containing the path to the output folder.
+  bF, # A character string containing the path to the forward barcodes file. The extension must be a .txt.
+  bR, # A character string containing the path to the reverse barcodes file. The extension must be a .txt.
+  pF, # A character string containing the path to the forward primers file. The extension must be a .txt.
+  pR, # A character string containing the path to the reverse primers file. The extension must be a .txt.
+  mismatch = FALSE) # A boolean value, if you allow one mismatch or not.
+```
