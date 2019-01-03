@@ -2,18 +2,20 @@
 % Please edit documentation in R/as.fasta.R
 \name{as.fasta}
 \alias{as.fasta}
-\title{as.fasta}
+\title{Create the cleaned database}
 \usage{
-as.fasta(pr2full, pr2clean)
+as.fasta(full, clean)
 }
 \arguments{
-\item{pr2full}{the full pr2}
+\item{full}{A list that represent the full database.}
 
-\item{pr2clean}{the clean pr2}
+\item{clean}{A list that represent the cleaned database. Output from \code{\link{CheckPrimer}}.}
 }
 \value{
-the pr2 as a list
+the cleaned database in the right format
 }
 \description{
-Transform output from CheckPrimer to a list that can be write with write.fasta
+Internal function that is used in \code{\link{trimBasePR2}} and \code{\link{trimBase}}.
+Transform output from \code{\link{CheckPrimer}} to
+a list that can be write with \code{\link[seqinr:write.fasta]{write.fasta}}.
 }

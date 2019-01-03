@@ -110,6 +110,11 @@
     {}[]
 %  \backgroundsetup{color=black,scale=3,contents={}} % remove DRAFT in red
 
+\titleformat{\subsubsection}
+{\dpastelblue\normalsize\scshape\raggedright\vspace{0cm}}
+{\thesubsubsection}
+{1em}
+{}[]
 
 
 \begin{document}
@@ -142,9 +147,6 @@ options(formatR.arrow=TRUE,width=90)
  \vspace{2cm}
  {\Large\itshape Rapha\"el Jauslin\par}
  \vfill
- % supervised by\par
- % Professor Stephan \textsc{Morgenthaler}
- \vfill
  {\large \today\par}
  \end{titlepage}
 
@@ -156,16 +158,35 @@ options(formatR.arrow=TRUE,width=90)
 
 \section{Overview}
 
-This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools are implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. This will supposed that you have two .fastq R1 and R2 and a barcode file that contains the informations for the demultiplexing step. Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. You should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
+This package is a tool to facilitate the pre-treatment and the treatment of NGS data. The tools is implemented to work on fastq and fasta file. This introduction will, step-by-step, explain how to use the package and which functions you should use in order to obtain your data merged, demultiplexed and cleaned. Moreover it explains some useful function that you could used on your fastq or fastq files.\\
+
+preTreatment will work correctly if you put your files in a folder that contain two files ".fastq" with R1, R2 in the file's name. It should also contain the information need for the demultiplexing step. See Section \ref{subsec:demux}.\\
+
+Firstly, we need to download and install the package PatPilr. You could find the package in the github repository : \url{https://github.com/RJauslin/PatPilr}. Depending on your OS the installation is different.  If you are on Linux, you should launch the following commands in \texttt{R} or \texttt{Rstudio} in order to install PatPilr.
 
 <<install,cache=FALSE,eval=FALSE>>=
 install.packages("devtools")
 devtools::install_github("Rjauslin/PatPilr@master")
+library(PatPilr)
+install.PatPil()
+install.flash()
 @
+
+\begin{description}
+	
+	\item[Linux :] It is possible that you have never installed the package \textbf{devtools}. If this is the case, it is possible that you have some errors during the installation of the packages. You need to install the dependencies of the packages. Open a terminal and copy paste the following command.
+	<<installDep,cache = FALSE,eval = FALSE>>=
+	sudo apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+	@ 
+	\item[Windows .] You need to install Rtools. Go to the URL \url{https://cran.r-project.org/bin/windows/Rtools/} and choose Rtools35.exe. Follow the setup instructions and when given the option to edit your PATH, take it.
+\end{description}
+
+
+\newpage
 
 \section{Pre-treatment}
 \label{sec:pretreatment}
-This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will supposed that you have put only the two fastq files and the informations needed for the demultiplexing (see Section \ref{subsec:demux}).
+This is the first step of the pipeline. The inputs are the original files from the server. They are probably named something like \texttt{xxx\_R1.fastq} and \texttt{xxx\_R2.fastq}. We will explain how the program deal with the main three steps, merging, demultiplexing, and cleaning. During all the process we will suppose that you have put only the two fastq files and the information needed for the demultiplexing (see Section \ref{subsec:demux}).
 
 <<load,cache=FALSE,eval=FALSE>>=
 library(PatPilr)
@@ -195,7 +216,7 @@ preTreatment(pathFolder,
 \subsection{Merging}
 \label{subsec:merge}
 
-The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allows some possible changes.
+The merging step currently implemented is done by the program FLASH \cite{Magoc2011}. We have allowed some possible change.
 
 \begin{labeling}{mcccc}
 \item [m] The minimum required overlap length between two reads to provide a confident overlap.
@@ -209,7 +230,7 @@ The merging step currently implemented is done by the program FLASH \cite{Magoc2
 We will here define the requirements for the demultiplexing part.
 
 \subsubsection{Simple tag}
- In case of simple barcode you should only put one additional file called \texttt{barcode.txt}. The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls the tools \texttt{D\_simple\_tag} that could be used from the shell by the following command. So it is really important that the barcode file have the right format.
+ In case of simple barcode you should only put one additional file called \texttt{barcode.txt}. The demultiplexing step is implemented by the program \texttt{PatPil} that is hide in the package. The function calls tools \texttt{D\_simple\_tag} that could be used from the shell by the following command. So it is really important that the barcode file have the right format.
 
 <<demultiplex_simple,cache=FALSE,eval=FALSE,size ='footnotesize'>>=
 ./PatPil D_simple_tag -f ./merged.fastq -o ./outputFolder/ -b ./barcodes.txt -mismatch
@@ -233,7 +254,7 @@ If your barcode file follow all these requirements, the demultiplexing part shou
 
 \subsubsection{Double tag}
  In case of double barcode you should only put three additional files called \texttt{forwardtag.txt},
- \texttt{reversetag.txt} and \texttt{primer.txt}. The forwardtag and reversetag contains the barcodes that it supposed to be at the beginning and at the end of your sequences. \textbf{You should not include some extension file such as .fastq or .fq in these two files}.
+ \texttt{reversetag.txt} and \texttt{primer.txt}. The forwardtag and reversetag contains the barcodes that it supposed to be at the beginning and at the end of your sequences. \textbf{You should not include some extensions file such as .fastq or .fq in these two files}.
 
 
 <<forwardTag,cache=FALSE,eval=FALSE>>=
@@ -253,8 +274,8 @@ ACTATCAT	ReverseTag4
 @
 
 
-The \texttt{primer.txt} should contains only two informations, that forward primer and the reverse primer \textbf{in this order}.
-The primers could have some incertain nucleotide. The program transform and do all the combination by creating two new file called primerforward and primerreverse. The transformations are done with the following table.
+The \texttt{primer.txt} should contain only two information, that forward primer and the reverse primer \textbf{in this order}.
+The primers could have some uncertain nucleotide. The program transform and do all the combination by creating two new files called primerforward and primerreverse. The transformations are done with the following table.
 
 <<Primertxt,cache=FALSE,eval=FALSE>>=
 CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
@@ -273,22 +294,154 @@ H = ACT
 V = ACG
 @
 
-If you named your file with the good title, with the right format, the demultiplexing part should work proprely.
+If you named your file with the good title, with the right format, the demultiplexing part should work properly.
 
 \subsection{Quality check}
 \label{subsec:qualcheck}
 
-The quality check currently implemented evaluating the expected error in a 50 bp sliding window and discarding sequences with more than 1\% of error in the worst quality window \cite{DeVargas2015}.
+The quality check currently implemented evaluating the expected error in a sliding window and discarding sequences with more than percentage of error in the worst quality window \cite{DeVargas2015}.
+
+
+<<qualCheck, cache = FALSE, eval = FALSE>>=
+call.qualCheck(fastqPath,
+	outputFasta,
+	t = 0.01, # expected error
+	s = 50, # sligind window
+	m = 60) # minimum sequence length
+@
 
 
 
+\subsection{Remove 'N'}
+
+This function simply removes the sequences of a fasta or a fastq files that contains a nucleotide 'N'.
+
+<<RemoveNfasta, cache=FALSE, eval = FALSE>>=
+fastaPath <- ".../file.fasta"
+outputFasta <- ".../fileWithoutN.fasta"
+call.RemoveNfasta(fastaPath,outputFasta)
+@
+
+If you want to use the tool PatPil directly then you can by the following command.
+<<RemoveNfastaPatPil, cache = FALSE, eval = FALSE>>=
+./PatPil RemoveNfasta -f ".../file.fasta" -o ".../fileWithoutN.fasta"
+@
+
+If you want to apply it on a fastq file.
+
+<<RemoveNfastq, cache=FALSE, eval = FALSE>>=
+fastqPath <- ".../file.fastq"
+outputFastq <- ".../fileWithoutN.fastq"
+call.RemoveNfastq(fastaPath,outputFastq)
+@
+
+If you want to use the tool PatPil directly then you can by the following command.
+<<RemoveN, cache = FALSE, eval = FALSE>>=
+./PatPil RemoveN -f ".../file.fastq" -o ".../fileWithoutN.fastq"
+@
+
+
+\subsection{rmSmallSeq fasta}
+
+
+
+This function simply removes the sequences of a fasta or a fastq files that are smaller than a fixed integer.
+
+<<rmSmallSeqfasta, cache=FALSE, eval = FALSE>>=
+fastaPath <- ".../file.fasta"
+outputFasta <- ".../fileWithoutN.fasta"
+call.rmSmallSeqfasta(fastaPath,
+	outputFasta,
+	sizemin = 80) # minimum size
+@
+
+If you want to use the tool PatPil directly then you can by the following command.
+<<rmSmallSeqfastaPatPil, cache = FALSE, eval = FALSE>>=
+./PatPil rmSmallSeqfasta -f ".../file.fasta" -o ".../fileWithoutN.fasta" -m 80
+@
+
+If you want to apply it on a fastq file.
+
+<<rmSmallSeqfastq, cache=FALSE, eval = FALSE>>=
+fastqPath <- ".../file.fastq"
+outputFastq <- ".../fileWithoutN.fastq"
+call.rmSmallSeqfastq(fastqPath,
+	outputFastq,
+	sizemin = 80)
+@
+If you want to use the tool PatPil directly then you can by the following command.
+<<rmSmallSeqfastqPatPil, cache = FALSE, eval = FALSE>>=
+./PatPil rmSmallSeq -f ".../file.fastq" -o ".../fileWithoutN.fastq" -m 80
+@
+
+\newpage
+\section{Database}
+The package PatPilr allows you to trim primers on a reference database. In order to get some 100\% of match when you assign your sequences, you have to compare with sequences that have the same "configuration". Hence, you possibly need to trim your reference base with some primers. The package allows you to do it with two functions. The first one called trimBasePR2 \cite{doi:10.1093/nar/gks1160} and the second trimBase. Trim a reference database could also be useful to improve the amount of time needed to perform the dechimering of your sequences \cite{Edgar074252}.
+
+
+\subsection{PR2}
+
+The \texttt{trimBasePR2} have some parameters that you need to right understand.
+<<trimBasePR2,cache=FALSE,eval=FALSE>>=
+trimBasePR2(pathFile,
+	primerForward,
+	primerReverse,
+	trim = 0,
+	l_min = 100,
+	l_max = 500,
+	keepPrimer = TRUE)
+@
+
+\begin{labeling}{primerForwardcccccc}
+	\item [pathFile] The output path file. You have to put complete path to the output file\\ i.e \texttt{...\textbackslash pr2Cleaned.fasta}
+	\item [primerForward] The character string representing your forward primer. i.e \texttt{'CYAGTA...CTC'}
+	\item [primerReverse] The character string representing your reverse primer. i.e \texttt{'CRAAG...AYG'}
+	\item [trim] A scalar integer representing the number of nucleotide that you want allow to be trimmed on the primers.
+	\item [l\_min] A scalar integer representing the minimal length of the sequences considered. Primers not taken into account.
+	\item [l\_max] A scalar integer representing the maximal length of the sequences considered. primers not taken into account.
+	\item [keepPrimer] A boolean value, if you want to keep the primers with the sequences or not.
+\end{labeling}
+
+\subsection{Other base}
+
+
+The \texttt{trimBase} is mainly the same as \texttt{trimBasePR2}. It differs only by the fact that you can pass the reference database that you want instead of let the function charging the PR2 database. It have some parameters that you need to right understand.
+<<trimBase,cache=FALSE,eval=FALSE>>=
+trimBase(fastaPath,
+	outputFasta,
+	primerForward,
+	primerReverse,
+	trim = 0,
+	l_min = 100,
+	l_max = 500,
+	keepPrimer = TRUE)
+@
+
+\begin{labeling}{primerForwardcccccc}
+	\item [fastaPath] The input path file. You have to put complete path to the output file\\ i.e \texttt{...\textbackslash dataBase.fasta}
+	\item [outputFasta] The output path file. You have to put complete path to the output file\\ i.e \texttt{...\textbackslash dataBaseCleaned.fasta}
+	\item [primerForward] The character string representing your forward primer. i.e \texttt{'CYAGTA...CTC'}
+	\item [primerReverse] The character string representing your reverse primer. i.e \texttt{'CRAAG...AYG'}
+	\item [trim] A scalar integer representing the number of nucleotide that you want allow to be trimmed on the primers.
+	\item [l\_min] A scalar integer representing the minimal length of the sequences considered. Primers not taken into account.
+	\item [l\_max] A scalar integer representing the maximal length of the sequences considered. primers not taken into account.
+	\item [keepPrimer] A boolean value, if you want to keep the primers with the sequences or not.
+\end{labeling}
+
+
+\newpage
 \section{Dereplication}
 
+This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called \textit{derep\_ech} and the second one called \textit{derep}. At the end of the program, inside of the \textit{derep} folder, you will find two fasta files. \textbf{RC.fasta} contains your passed sequences and \textbf{RCNotpassed.fasta} the sequences that have failed the selection.
 
+<<derep,cache=FALSE,eval=FALSE>>=
+Dereplicate <- function(pathFolder, # path to the working directory
+  within = 3, # threshold for the number of occurence of the sequence within a file
+  between = 2) # threshold for the number of occurence of the sequence between files
+@
 
-
-
-
+\newpage
+\renewcommand\refname{References}
 \bibliographystyle{apalike} % Le style est mis entre accolades.
 \bibliography{patpil} % mon fichier de base de données s'appelle bibli.bib
 

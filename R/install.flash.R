@@ -20,6 +20,10 @@ install.flash <- function(){
     system2("make")
     setwd(filIni)
   }else if(info[1] == "Windows"){
-    print("Already installed in the package for the Windows OS")
+    filIni <- getwd()
+    path <- system.file("flash", package = "PatPilr")
+    setwd(path)
+    system2("make",args = c('-f','Makefile.win'))
+    setwd(filIni)
   }
 }

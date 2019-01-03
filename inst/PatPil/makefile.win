@@ -4,10 +4,10 @@ LDFLAGS = -lm -pthread
 
 all : PatPil
 
-PatPil : main.o Fastq.o RemoveN.o RemoveNfasta.o rmSmallSeq.o D_simple_tag.o D_double_tag.o derep.o derep_ech.o swmPrePars.o DNA.o
+PatPil : main.o Fastq.o RemoveN.o RemoveNfasta.o rmSmallSeq.o rmSmallSeqfasta.o D_simple_tag.o D_double_tag.o derep.o derep_ech.o swmPrePars.o DNA.o
 	$(CC) $^ -o $@ $(LDFLAGS)
 
-main.o  : main.cpp Fastq.h RemoveN.h RemoveNfasta.h rmSmallSeq.h D_simple_tag.h derep.h derep_ech.h swmPrePars.h DNA.h
+main.o  : main.cpp Fastq.h RemoveN.h RemoveNfasta.h rmSmallSeq.h rmSmallSeqfasta.h D_simple_tag.h derep.h derep_ech.h swmPrePars.h DNA.h
 	$(CC) main.cpp -c $(CFLAGS)
 
 Fastq.o : Fastq.h Fastq.cpp
@@ -20,6 +20,9 @@ RemoveNfasta.o : RemoveNfasta.h Fastq.h RemoveNfasta.cpp
 	$(CC) $*.cpp -c $(CFLAGS)
 
 rmSmallSeq.o : rmSmallSeq.h Fastq.h rmSmallSeq.cpp
+	$(CC) $*.cpp -c $(CFLAGS)
+
+rmSmallSeqfasta.o : rmSmallSeqfasta.h Fastq.h rmSmallSeqfasta.cpp
 	$(CC) $*.cpp -c $(CFLAGS)
 
 D_simple_tag.o : D_simple_tag.h Fastq.h D_simple_tag.cpp

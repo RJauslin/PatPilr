@@ -2,22 +2,26 @@
 % Please edit documentation in R/pr2Tofasta.R
 \name{pr2Tofasta}
 \alias{pr2Tofasta}
-\title{pr2Tofasta}
+\title{Extract the PR2 adn write it in a fasta file}
 \usage{
 pr2Tofasta(file)
 }
 \arguments{
-\item{file}{chemin et nom du fichier ex: "/home/test.fasta"}
+\item{file}{optional character string representing the path to an output file to write the PR2 as a fasta file.
+If ommited the database is only loaded in the working environment.}
 }
 \value{
-a file
+a \code{\link{list}} that contains the pr2 full.
 }
 \description{
-pr2Tofasta
+Function that install and load the PR2 database \url{https://github.com/pr2database/pr2database}.
+}
+\details{
+Check \code{\link{trimBasePR2}} if you would like trimmed database PR2.
 }
 \examples{
 \dontrun{
 pr2full <-
-pr2Tofasta("/home/raphael/Documents/David_Singer_pipeline/Pipeline2/PR2/DB/pr2Rstudio.fa")
+pr2Tofasta("/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/PR2.fasta")
 }
 }

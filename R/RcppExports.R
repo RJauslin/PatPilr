@@ -10,11 +10,12 @@
 #' @param primer2 vector of all possible primer 2 to consider
 #' @param l_min bla
 #' @param l_max bla
+#' @param keepPrimer asdfjk
 #'
 #' @export
 #' @useDynLib PatPilr
 #' @importFrom Rcpp sourceCpp
-CheckPrimer <- function(pr2, primer1, primer2, l_min, l_max) {
-    .Call('_PatPilr_CheckPrimer', PACKAGE = 'PatPilr', pr2, primer1, primer2, l_min, l_max)
+CheckPrimer <- function(pr2, primer1, primer2, l_min, l_max, keepPrimer) {
+    .Call('_PatPilr_CheckPrimer', PACKAGE = 'PatPilr', pr2, primer1, primer2, l_min, l_max, keepPrimer)
 }
 

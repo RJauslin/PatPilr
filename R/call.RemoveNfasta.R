@@ -1,30 +1,41 @@
 #' call RemoveNfasta
 #'
-#' call RemoveNfasta function of the PatPil program.
+#' This function calls the RemoveNfasta program of the tool PatPil.
 #'
-#' @param fasta_path path to the fasta file
-#' @param outputFolder path to the output fasta file
+#' @param fastaPath path to the fasta file.
+#' @param outputFasta path to the output fasta file.
 #'
 #' @details
 #'
 #' This function applies the RemoveNfasta tools of the PatPil program.
+#' It simply removes the sequences that contains at least one nucleotide 'N'.
 #'
-#' @return Nothing
+#' @return Nothing, but work on the file.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' path <- "/home/raphael/Documents/PatPilr_source/fastaTest.fa"
-#' outputFolder <- "/home/raphael/Documents/PatPilr_source/fastaTest_N.fa"
-#' call.RemoveNfasta(path,outputFolder)
+  #' fastaPath <- ".../fastaTest.fa"
+#' fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest.fasta"
+#' outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest_N.fasta"
+#' call.RemoveNfasta(fastaPath,outputFasta)
 #' }
-call.RemoveNfasta <- function(fasta_path,
-                              outputFolder){
-  pathIni <- getwd();
-  path <- system.file("PatPil", package = "PatPilr")
-  path <- paste(path,"/PatPil",sep = "")
+call.RemoveNfasta <- function(fastaPath,
+                              outputFasta){
 
-  system2(path,args = c('RemoveNfasta','-f',fasta_path,'-o',outputFolder))
+  if(file.exists(fastaPath)){ #check if fasta files exists
+    info <- Sys.info()
+    path <- system.file("PatPil", package = "PatPilr")
+    if(info[1] == "Linux"){
+      path <- paste(path,"/PatPil",sep = "")
+    }else if(info[1] == "Windows"){
+      path <- paste(path,"/PatPil.exe",sep = "")
+    }
 
-  setwd(pathIni)
+    system2(path,args = c('RemoveNfasta',
+                          '-f',fastaPath,
+                          '-o',outputFasta))
+  }else{
+    stop("call.RemoveNfasta : the file of the argument fastaPath does not exist...")
+  }
 }

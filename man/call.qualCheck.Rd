@@ -2,39 +2,44 @@
 % Please edit documentation in R/call.qualCheck.R
 \name{call.qualCheck}
 \alias{call.qualCheck}
-\title{call.qualCheck}
+\title{call qualCheck}
 \usage{
-call.qualCheck(fastq_path, outputFolder, t = 0.01, s = 50, m = 60)
+call.qualCheck(fastqPath, outputFasta, t = 0.01, s = 50, m = 60)
 }
 \arguments{
-\item{fastq_path}{A character string containing the path to the fastq file. The extenstion must be *.fastq}
+\item{fastqPath}{A character string containing the path to the fastq file. The extenstion must be .fastq.}
 
-\item{outputFolder}{A character string containing the path to the output folder with the namefile. The extension must be *.fa}
+\item{outputFasta}{A character string containing the path to the output folder with the namefile. The extension must be .fasta.}
 
 \item{t}{A scalar that represent the percentage of error allowed in the sliding window. Default = 0.01.}
 
 \item{s}{A scalar that represent the size of the sliding window. Default = 50.}
 
-\item{m}{A scalar that represent the minimum size of the sequence to be keep. Default = 60.}
+\item{m}{A scalar that represent the minimum size of the sequence to be kept. Default = 60.}
 }
 \value{
-Nothing, but it work on the called file.
+Nothing, but work on the files.
 }
 \description{
-Function that call the quality check program of the tool PatPil.
+This function calls the qualCheck program of the tool PatPil.
 }
 \details{
 See the \url{http://taraoceans.sb-roscoff.fr/EukDiv/} for more informations on how the quality check is performed.
+
+IMPORTANT : if this function is called in an other manners than by the function \link{preTreatment},
+then the function append the files if it is called several times.
+Hence you should erase your files if your would like to recall the function.
 }
 \examples{
 
 \dontrun{
-  fastq_path<-"./inst/PatPil_source/test/R1.fastq"
-  outputFolder <- "./inst/PatPil_source/test/test_D_simple_tag/R1.fastq"
-  barcode_path <- "./inst/PatPil_source/test/barcodesV9test.txt"
-  call.D_simple_tag(fastq_path,outputFolder,barcode_path)
+  fastqPath<-".../test/R1.fastq"
+  outputFasta <- ".../test/R1.fasta"
+
+  fastqPath <- "/home/raphael/Documents/PatPilr_source/
+  testPipeline/testpreTreatment/testqualCheck/unknown.fastq"
+  outputFasta <- "/home/raphael/Documents/PatPilr_source/
+  testPipeline/testpreTreatment/testqualCheck/unknownClean.fasta"
 
 }
-
-
 }

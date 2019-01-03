@@ -11,7 +11,7 @@
 \item{packageLocation}{location of the main folder of the package}
 }
 \description{
-Update the package version
+onyl useful for github update, but if you find another application tell me. :-)
 }
 \examples{
 \dontrun{

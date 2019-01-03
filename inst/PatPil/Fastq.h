@@ -34,6 +34,7 @@ class Fastq
         void removeN();
         void removeNfasta();
         void rmSmallSeq(unsigned int minLen);
+        void rmSmallSeqfasta(unsigned int minLen);
         void reverseComplement();
         void demultiplex(std::string pathBarcode,
             std::string outputFolder,

@@ -16,6 +16,22 @@
 \newblock {Eukaryotic plankton diversity in the sunlit ocean}.
 \newblock {\em Science}, 348(6237).
 
+\bibitem[Edgar, 2016]{Edgar074252}
+Edgar, R. (2016).
+\newblock {UCHIME2: improved chimera prediction for amplicon sequencing}.
+\newblock {\em bioRxiv}.
+
+\bibitem[Guillou et~al., 2013]{doi:10.1093/nar/gks1160}
+Guillou, L., Bachar, D., Audic, S., Bass, D., Berney, C., Bittner, L., Boutte,
+  C., Burgaud, G., de~Vargas, C., Decelle, J., del Campo, J., Dolan, J.~R.,
+  Dunthorn, M., Edvardsen, B., Holzmann, M., Kooistra, W. H. C.~F., Lara, E.,
+  {Le Bescot}, N., Logares, R., Mah{\'{e}}, F., Massana, R., Montresor, M.,
+  Morard, R., Not, F., Pawlowski, J., Probert, I., Sauvadet, A.-L., Siano, R.,
+  Stoeck, T., Vaulot, D., Zimmermann, P., and Christen, R. (2013).
+\newblock {The Protist Ribosomal Reference database (PR2): a catalog of
+  unicellular eukaryote Small Sub-Unit rRNA sequences with curated taxonomy}.
+\newblock {\em Nucleic Acids Research}, 41(D1):D597--D604.
+
 \bibitem[Mago{\v{c}} and Salzberg, 2011]{Magoc2011}
 Mago{\v{c}}, T. and Salzberg, S.~L. (2011).
 \newblock {FLASH: Fast length adjustment of short reads to improve genome

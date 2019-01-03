@@ -4,26 +4,28 @@
 \alias{call.RemoveNfasta}
 \title{call RemoveNfasta}
 \usage{
-call.RemoveNfasta(fasta_path, outputFolder)
+call.RemoveNfasta(fastaPath, outputFasta)
 }
 \arguments{
-\item{fasta_path}{path to the fasta file}
+\item{fastaPath}{path to the fasta file.}
 
-\item{outputFolder}{path to the output fasta file}
+\item{outputFasta}{path to the output fasta file.}
 }
 \value{
-Nothing
+Nothing, but work on the file.
 }
 \description{
-call RemoveNfasta function of the PatPil program.
+This function calls the RemoveNfasta program of the tool PatPil.
 }
 \details{
 This function applies the RemoveNfasta tools of the PatPil program.
+It simply removes the sequences that contains at least one nucleotide 'N'.
 }
 \examples{
 \dontrun{
-path <- "/home/raphael/Documents/PatPilr_source/fastaTest.fa"
-outputFolder <- "/home/raphael/Documents/PatPilr_source/fastaTest_N.fa"
-call.RemoveNfasta(path,outputFolder)
+fastaPath <- ".../fastaTest.fa"
+fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest.fasta"
+outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testRemoveNfasta/fastaTest_N.fasta"
+call.RemoveNfasta(fastaPath,outputFasta)
 }
 }

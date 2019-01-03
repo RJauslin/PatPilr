@@ -7,21 +7,25 @@
 Dereplicate(pathFolder, within = 3, between = 2)
 }
 \arguments{
-\item{pathFolder}{the path to the folder files}
+\item{pathFolder}{A character string representing the path to the working directory.}
 
-\item{within}{the number of occurence of each sequences in a file.}
+\item{within}{A scalar integer representing the threshold number of occurence of each sequences in a file.}
 
-\item{between}{the number of occurence of each sequence between files.}
+\item{between}{A scalar integer representing the threshold number of occurence of each sequences between files.}
 }
 \value{
-nothing but works on the files
+Nothing, works on the files
 }
 \description{
-Dereplicate
+Dereplicate your fasta files.
+}
+\details{
+It works in two step. The first one dereplicate each files and the second one works one the dereplicated files.
 }
 \examples{
 \dontrun{
-pathFolder <- "/home/raphael/Documents/Rpackage/pipelineR/inst/PatPil/test/test_derepRaph/"
-Dereplicate(pathFolder)
+pathFolder <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testDereplicate/"
+Dereplicate(pathFolder,10,5)
 }
 }

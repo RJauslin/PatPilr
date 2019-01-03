@@ -2,34 +2,53 @@
 % Please edit documentation in R/trimBase.R
 \name{trimBase}
 \alias{trimBase}
-\title{trim the primer of a reference database}
+\title{trim reference database}
 \usage{
-trimBase(pathFile, primerForward = "CYGCGGTAATTCCAGCTC",
+trimBase(fastaPath, outputFasta, primerForward = "CYGCGGTAATTCCAGCTC",
   primerReverse = "CRAAGAYGATYAGATACCRT", trim = 0, l_min = 100,
-  l_max = 500)
+  l_max = 500, keepPrimer = TRUE)
 }
 \arguments{
-\item{pathFile}{path to the file}
+\item{fastaPath}{A character string that represent the path to the input file.}
 
-\item{primerForward}{character string that represent the forward primer}
+\item{outputFasta}{A character string that represent the path to the output file.}
 
-\item{primerReverse}{character string that represent the reverse primer}
+\item{primerForward}{A character string that represent the forward primer. Uncertain nucleotide allowed.}
 
-\item{trim}{number of nucleotide that you want possibly trim to the primer}
+\item{primerReverse}{A character string that represent the reverse primer. Uncertain nucleotide allowed.}
 
-\item{l_min}{min length of the keep sequences}
+\item{trim}{A value that represent the number of nucleotide that you want trim in the primer.}
 
-\item{l_max}{max lenght of the keep sequences}
-}
-\value{
-nothing but the file is created in pathFile
+\item{l_min}{A value that represent the mininum length of the kept sequences.}
+
+\item{l_max}{A value that represent the maximum length of the kept sequences.}
+
+\item{keepPrimer}{A boolean value, if you want to keep the primer?}
 }
 \description{
-trim the primer of a reference database
+In order to get some 100% of match when you assign your sequences, you have to compare with sequences that have the same "configuration".
+Hence, you possibly need to trim your reference base with some primers.
+}
+\details{
+This function will extract from the reference base the portion of interested of the sequences. Schematically we have :
+\itemize{
+\item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
+}
 }
 \examples{
 \dontrun{
-pathfile <- "/home/raphael/Documents/PR2.fa"
-PR2V4(pathfile)
+fastaPath <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testPR2/utax.fasta"
+outputFasta <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testPR2/utaxCleanKept.fasta"
+outputFastaC <- "/home/raphael/Documents/PatPilr_source/
+testPipeline/testpreTreatment/testPR2/utaxClean.fasta"
+primerForward <- "GTGAATCATCGAATCTTTGAA"
+primerReverse <- "GCATATCAATAAGCGGAGGA"
+trim <- 0
+l_min = 60
+l_max = 600
+trimBase(fastaPath,outputFasta,primerForward,primerReverse,trim,l_min,l_max,TRUE)
+trimBase(fastaPath,outputFastaC,primerForward,primerReverse,trim,l_min,l_max,FALSE)
 }
 }

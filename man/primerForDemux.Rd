@@ -2,18 +2,18 @@
 % Please edit documentation in R/primerForDemux.R
 \name{primerForDemux}
 \alias{primerForDemux}
-\title{function used in the preTreatment for double tag}
+\title{primer forward and reverse demultiplexing}
 \usage{
 primerForDemux(pathFile)
 }
 \arguments{
-\item{pathFile}{the path where the folder on which there is Primer.txt}
+\item{pathFile}{A character string that represent path where to the folder on which there is primer.txt}
 }
 \value{
-Nothing
+Nothing, but write the two need files.
 }
 \description{
-function used in the preTreatment for double tag
+internal function that create forwardtag.txt and reversetag.txt for the double tag demultiplexing.
 }
 \examples{
 \dontrun{

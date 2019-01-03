@@ -2,45 +2,50 @@
 % Please edit documentation in R/AllPrimer.R
 \name{AllPrimer}
 \alias{AllPrimer}
-\title{Perform All combination}
+\title{Perform all primer combinations}
 \usage{
 AllPrimer(primer, direction = "none", trim_nuc = 0)
 }
 \arguments{
-\item{primer}{A character string with wobble nucleotide}
+\item{primer}{A character string with uncertain nucleotide.}
 
-\item{direction}{A character string between "none", "forward" or "reverse"}
+\item{direction}{A character string : "none", "forward" or "reverse".}
 
-\item{trim_nuc}{A scalar value representing the number of nucleotide trimmed (in the direction forward or reverse)}
+\item{trim_nuc}{A scalar value representing the number of nucleotide trimmed (in the chosen direction). Ignored if "none".}
 }
 \value{
-A data.frame containing all combination depending on the wobble. See Details
+A vector containing all unique combinations depending on the uncerain nucleotides.
 }
 \description{
-This function is used to create the primer forward and reverse for the function \link{preTreatment}
+This function is supposed to be internal and is used to create the primerforward.txt and primerreverse.txt files
+ for the function \code{\link{preTreatment}}.
+ It could be used if you would like to have all possible combinations of a primer with uncertain nucleotides.
 }
 \details{
-Arguments which should be a character string for example : "CATTGAARARTTGVAT"
+Uncertain nucleotides are transformed with the combinations :
 
-The character are then transform following the transformation :
+\itemize{
+\item R = "AG"
+\item Y = "CT
+\item S = "GC",
+\item W = "AT",
+\item K = "GT",
+\item M = "AC",
+\item B = "CGT",
+\item D = "AGT",
+\item H = "ACT",
+\item V = "ACG".
+}
 
-R = "AG",
-Y = "CT",
-S = "GC",
-W = "AT",
-K = "GT",
-M = "AC",
-B = "CGT",
-D = "AGT",
-H = "ACT",
-V = "ACG".
-
-Careful about the number of wobble in the primer, the number of possible combinations can become very large.
+Careful about the number of uncertain nucleotide in the primer,
+ the number of possible combinations can become very large.
+  Moreover, if you allowed a great trim number \code{trim} then the possible combinations increased as well.
 }
 \examples{
-primer <- "CYGCGGTAATTCCAGCTC"
-primer <- "CRAAGAYGATYAGATSWMBACCRT"
 \dontrun{
+primer <- "CATTGAARARTTGVAT"
+primer <- "CRAAGAYGATYAGATSWMBACCRT"
 AllPrimer(primer,direction = "forward",trim_nuc = 2)
-}
+AllPrimer(primer,direction = "reverse",trim_nuc = 10)
+AllPrimer(primer,direction = "none",trim_nuc = 0)}
 }

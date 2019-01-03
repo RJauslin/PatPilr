@@ -4,20 +4,11 @@
 \alias{install.pr2}
 \title{install pr2}
 \usage{
-install.pr2(force = FALSE)
-}
-\arguments{
-\item{force}{force argument of install_github}
+install.pr2()
 }
 \value{
 Nothing
 }
 \description{
-install pr2
-}
-\examples{
-\dontrun{
-# install.packages(devtools)
-}
-
+install the PR2 reference database with the R package \url{https://github.com/pr2database/pr2database}.
 }

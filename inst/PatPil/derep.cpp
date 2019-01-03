@@ -47,34 +47,35 @@
 
 using namespace std;
 
-
-
 int derep(int argc,const char **argv){
 
 
   	//./PatPil	derep	-folder	dossier	-good	nameoffasta.fasta	-bad	nameoffasta.fasta	-s seuil
   	//0			1		2		3		4		5					6		7					8	9
 
-  	string arg1 = argv[1]; //derep
 
 
-  	string arg2 = argv[2]; // -folder
-  	string pathDosFaIn = argv[3];
+  	if(argc < 10){
+  	  cerr << "You didn't pass enough argument check ./PatPil -h" << endl;
+  	  return 1;
+  	}else{
+  	  string arg1 = argv[1]; //derep
 
 
-  	string arg4 = argv[4]; // -good
-  	string pathFaOut = argv[5];
+  	  string arg2 = argv[2]; // -folder
+  	  string pathDosFaIn = argv[3];
 
 
-  	string arg6 = argv[6]; // -bad
-  	string pathFaNoPassedOut = argv[7];
+  	  string arg4 = argv[4]; // -good
+  	  string pathFaOut = argv[5];
 
 
-  	string arg8 = argv[8];// -s
-  	int seuilNbRep = atoi(argv[9]);
+  	  string arg6 = argv[6]; // -bad
+  	  string pathFaNoPassedOut = argv[7];
 
 
-
+  	  string arg8 = argv[8];// -s
+  	  int seuilNbRep = atoi(argv[9]);
 
   	ofstream outPathFH(pathFaOut);
   	ofstream outPathNotPassed(pathFaNoPassedOut);
@@ -237,4 +238,5 @@ int derep(int argc,const char **argv){
 
 
   	return 0;
+  	}
 }

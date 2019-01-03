@@ -1,9 +1,13 @@
-#' function used in the preTreatment for double tag
+#' primer forward and reverse demultiplexing
 #'
-#' @param pathFile the path where the folder on which there is Primer.txt
+#' internal function that create forwardtag.txt and reversetag.txt for the double tag demultiplexing.
 #'
-#' @return Nothing
+#' @param pathFile A character string that represent path where to the folder on which there is primer.txt
 #'
+#' @return Nothing, but write the two need files.
+#'
+#' @importFrom utils read.delim
+#' @importFrom utils write.table
 #' @examples
 #' \dontrun{
 #'  pathFile <- "/home/raphael/Documents/PatPilr_source/testPipeline/"
