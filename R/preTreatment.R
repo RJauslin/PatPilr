@@ -102,6 +102,8 @@ preTreatment <- function(pathFolder,
 
 
 
+
+
   #############################
   #   MERGING
   #############################
@@ -115,15 +117,55 @@ preTreatment <- function(pathFolder,
                             which(grepl("tag",files)),
                             which(grepl("primer",files)))] # CHECK LES primer ou tag
 
+
+
+
   #-----------------
   ###  DELETES THE FOLDER ALREADY CREATE IF THE preTreatment is rerun
   #-----------------
+  mergingStep <- TRUE
+  demultiStep <- TRUE
+  cleanStep <- TRUE
+
   if(any(grepl("merged",files))){
-    unlink(file.path(pathFolder,"merged",fsep = ""),recursive = TRUE)
+    # cat("The program found a folder named 'merged' this potentially means that you have already merged data. Would you like to do merging step once again ?")
+    mergingStep <- switch(menu(c("Yes", "No"),
+                               title = "\n The program find a folder named 'merged'.\n This potentially means that you have already merged data. \n Would you like to do merging step once again ?") + 1,
+           cat("Nothing done\n"), TRUE, FALSE)
+
+    #IF ANALYSIS MUST BE DONE ONCE AGAIN
+    if(mergingStep == TRUE){
+      unlink(file.path(pathFolder,"merged",fsep = ""),recursive = TRUE)
+      if(any(grepl("demultiplex",files))){
+        unlink(file.path(pathFolder,"demultiplex",fsep = ""),recursive = TRUE)
+      }
+      if(any(grepl("clean",files))){
+        unlink(file.path(pathFolder,"clean",fsep = ""),recursive = TRUE)
+      }
+    }else{ # IF MERGING STEP IS OMITTED
+      if(any(grepl("demultiplex",files))){ # CHECK IF DEMULTIPLEX MUST BE OMMITED
+        demultiStep <- switch(menu(c("Yes", "No"),
+                    title = "\n The program found a folder named 'demultiplex'.\n This potentially means that you have already demultiplexed data. \n Would you like to do merging step once again ?") + 1,
+               cat("Nothing done\n"), TRUE, FALSE)
+        # IF DEMULTIPLEX IS DONE ONCE AGAIN
+        if(demultiStep == TRUE){
+          unlink(file.path(pathFolder,"demultiplex",fsep = ""),recursive = TRUE)
+          if(any(grepl("clean",files))){
+            unlink(file.path(pathFolder,"clean",fsep = ""),recursive = TRUE)
+          }
+        }
+      }else{
+        if(any(grepl("clean",files))){
+          unlink(file.path(pathFolder,"clean",fsep = ""),recursive = TRUE)
+        }
+      }
+    }
   }
-  if(any(grepl("demultiplex",files))){
-    unlink(file.path(pathFolder,"demultiplex",fsep = ""),recursive = TRUE)
-  }
+
+
+  # if(any(grepl("demultiplex",files))){
+  #   unlink(file.path(pathFolder,"demultiplex",fsep = ""),recursive = TRUE)
+  # }
   if(any(grepl("clean",files))){
     unlink(file.path(pathFolder,"clean",fsep = ""),recursive = TRUE)
   }
@@ -136,124 +178,132 @@ preTreatment <- function(pathFolder,
   namefile <- unique(namefile)
 
 
-  #-----------------
-  # CREATE THE FOLDER merged
-  #-----------------
-  if(!dir.exists(file.path(pathFolder,"merged",fsep ="" ))){
-    dir.create(file.path(pathFolder,"merged",fsep ="" ))
+  if(mergingStep == TRUE){
+
+    #-----------------
+    # CREATE THE FOLDER merged
+    #-----------------
+    if(!dir.exists(file.path(pathFolder,"merged",fsep ="" ))){
+      dir.create(file.path(pathFolder,"merged",fsep ="" ))
+    }
+
+    #-----------------
+    # LOOP ON THE R1 AND R2
+    #-----------------
+    for( i in 1:length(namefile)){
+      tmp <- filesPAIREND[which(grepl(namefile[i],filesPAIREND))]
+
+      R1 <- tmp[which(grepl("R1",tmp))]
+      R2 <- tmp[which(grepl("R2",tmp))]
+
+      R1 <- file.path(pathFolder,R1,fsep = "")
+      R2 <- file.path(pathFolder,R2,fsep = "")
+
+      system2(pathFlash,args = c('-m',m,
+                                 '-M',M,
+                                 '-x',x,
+                                 '-t',t,
+                                 '-d',file.path(pathFolder,"merged",fsep ="" ),
+                                 '-o',namefile[i],
+                                 R1,
+                                 R2))
+    }
+
+    #-----------------
+    # ORGANIZED THE FILES IN merged
+    #-----------------
+    if(!dir.exists(file.path(pathFolder,"merged/extFrags",fsep ="" ))){
+      dir.create(file.path(pathFolder,"merged/extFrags",fsep ="" ))
+    }
+    if(!dir.exists(file.path(pathFolder,"merged/hFrags",fsep ="" ))){
+      dir.create(file.path(pathFolder,"merged/hFrags",fsep ="" ))
+    }
+    if(!dir.exists(file.path(pathFolder,"merged/notCombFrags",fsep ="" ))){
+      dir.create(file.path(pathFolder,"merged/notCombFrags",fsep ="" ))
+    }
+
+    extended <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
+    extended <- extended[which(grepl("extendedFrags",extended))]
+
+    histo <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
+    histo <- histo[which(grepl("hist",histo))]
+
+    notComb <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
+    notComb <- notComb[which(grepl("notCombined",notComb))]
+
+    for(i in 1:length(extended)){
+      file.rename(from =  file.path(pathFolder,"merged/",extended[i],fsep ="" ),
+                  to =  file.path(pathFolder,"merged/extFrags/",extended[i],fsep ="" ))
+    }
+    for(i in 1:length(histo)){
+      file.rename(from =  file.path(pathFolder,"merged/",histo[i],fsep ="" ),
+                  to =  file.path(pathFolder,"merged/hFrags/",histo[i],fsep ="" ))
+    }
+    for(i in 1:length(notComb)){
+      file.rename(from =  file.path(pathFolder,"merged/",notComb[i],fsep ="" ),
+                  to =  file.path(pathFolder,"merged/notCombFrags/",notComb[i],fsep ="" ))
+    }
+  }else{
+    extended <- list.files(file.path(pathFolder,"merged/extFrags/",fsep = ""))
   }
 
-  #-----------------
-  # LOOP ON THE R1 AND R2
-  #-----------------
-  for( i in 1:length(namefile)){
-    tmp <- filesPAIREND[which(grepl(namefile[i],filesPAIREND))]
-
-    R1 <- tmp[which(grepl("R1",tmp))]
-    R2 <- tmp[which(grepl("R2",tmp))]
-
-    R1 <- file.path(pathFolder,R1,fsep = "")
-    R2 <- file.path(pathFolder,R2,fsep = "")
-
-    system2(pathFlash,args = c('-m',m,
-                               '-M',M,
-                               '-x',x,
-                               '-t',t,
-                               '-d',file.path(pathFolder,"merged",fsep ="" ),
-                               '-o',namefile[i],
-                               R1,
-                               R2))
-  }
-
-  #-----------------
-  # ORGANIZED THE FILES IN merged
-  #-----------------
-  if(!dir.exists(file.path(pathFolder,"merged/extFrags",fsep ="" ))){
-    dir.create(file.path(pathFolder,"merged/extFrags",fsep ="" ))
-  }
-
-  if(!dir.exists(file.path(pathFolder,"merged/hFrags",fsep ="" ))){
-    dir.create(file.path(pathFolder,"merged/hFrags",fsep ="" ))
-  }
-  if(!dir.exists(file.path(pathFolder,"merged/notCombFrags",fsep ="" ))){
-    dir.create(file.path(pathFolder,"merged/notCombFrags",fsep ="" ))
-  }
-
-  extended <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
-  extended <- extended[which(grepl("extendedFrags",extended))]
-
-  histo <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
-  histo <- histo[which(grepl("hist",histo))]
-
-  notComb <- list.files(file.path(pathFolder,"merged/",fsep ="" ))
-  notComb <- notComb[which(grepl("notCombined",notComb))]
-
-  for(i in 1:length(extended)){
-    file.rename(from =  file.path(pathFolder,"merged/",extended[i],fsep ="" ),
-                to =  file.path(pathFolder,"merged/extFrags/",extended[i],fsep ="" ))
-  }
-  for(i in 1:length(histo)){
-    file.rename(from =  file.path(pathFolder,"merged/",histo[i],fsep ="" ),
-                to =  file.path(pathFolder,"merged/hFrags/",histo[i],fsep ="" ))
-  }
-  for(i in 1:length(notComb)){
-    file.rename(from =  file.path(pathFolder,"merged/",notComb[i],fsep ="" ),
-                to =  file.path(pathFolder,"merged/notCombFrags/",notComb[i],fsep ="" ))
-  }
 
 
   #############################
   #   DEMULTIPLEXING
   #############################
 
-  nfiles <- length(list.files(file.path(pathFolder,"merged/extFrags/",fsep = "")))
-  ## CREATE DEMULTIPLEX FOLDER
-  pathDemulti <- file.path(pathFolder,"demultiplex/",fsep ="" )
-  if(!dir.exists(pathDemulti)){
-    dir.create(pathDemulti)
-  }
+  if(demultiStep == TRUE){
+
+    nfiles <- length(list.files(file.path(pathFolder,"merged/extFrags/",fsep = "")))
+    ## CREATE DEMULTIPLEX FOLDER
+    pathDemulti <- file.path(pathFolder,"demultiplex/",fsep ="" )
+    if(!dir.exists(pathDemulti)){
+      dir.create(pathDemulti)
+    }
 
 
-  if(nfiles == 1){
+    if(nfiles == 1){
 
 
-    if(any(grepl("barcode",filesPrimerTag))){
-      fileBarcode <- file.path(pathFolder,files[which(grepl("barcode",files))],fsep = "")
+      if(any(grepl("barcode",filesPrimerTag))){
+        fileBarcode <- file.path(pathFolder,files[which(grepl("barcode",files))],fsep = "")
 
-      call.D_simple_tag(fastqPath = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
-                        outputFolder = pathDemulti,
-                        barcodePath = fileBarcode,
-                        mismatch = mismatch)
-
-    }else{
-      filePrimer <-  file.path(pathFolder,files[which(grepl("primer",files))],fsep = "")
-      fileForwardTag <- file.path(pathFolder,files[which(grepl("forwardtag",files))],fsep = "")
-      fileReverseTag <- file.path(pathFolder,files[which(grepl("reversetag",files))],fsep = "")
-
-
-      if(length(filePrimer) != 0 && length(fileReverseTag) != 0 && length(fileForwardTag) != 0 ){
-        primerForDemux(pathFolder)
-        call.D_double_tag(fastqPath = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
+        call.D_simple_tag(fastqPath = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
                           outputFolder = pathDemulti,
-                          bF = file.path(pathFolder,files[which(grepl("forwardtag",files))],fsep = ""),
-                          bR = file.path(pathFolder,files[which(grepl("reversetag",files))],fsep = ""),
-                          pF = file.path(pathFolder,"primerforward.txt",fsep = ""),
-                          pR = file.path(pathFolder,"primerreverse.txt",fsep = ""),
-                          mismatch = FALSE)
+                          barcodePath = fileBarcode,
+                          mismatch = mismatch)
 
+      }else{
+        filePrimer <-  file.path(pathFolder,files[which(grepl("primer",files))],fsep = "")
+        fileForwardTag <- file.path(pathFolder,files[which(grepl("forwardtag",files))],fsep = "")
+        fileReverseTag <- file.path(pathFolder,files[which(grepl("reversetag",files))],fsep = "")
+
+
+        if(length(filePrimer) != 0 && length(fileReverseTag) != 0 && length(fileForwardTag) != 0 ){
+          primerForDemux(pathFolder)
+          call.D_double_tag(fastqPath = file.path(pathFolder,"merged/extFrags/",extended[1],fsep ="" ),
+                            outputFolder = pathDemulti,
+                            bF = file.path(pathFolder,files[which(grepl("forwardtag",files))],fsep = ""),
+                            bR = file.path(pathFolder,files[which(grepl("reversetag",files))],fsep = ""),
+                            pF = file.path(pathFolder,"primerforward.txt",fsep = ""),
+                            pR = file.path(pathFolder,"primerreverse.txt",fsep = ""),
+                            mismatch = FALSE)
+
+        }
       }
+    }else{
+
+      prefixfile <- do.call(rbind,strsplit(extended,split = ".extendedFrags"))[,1]
+      # ext <- unique(do.call(rbind,strsplit(filesDemultiplexed,split = ".extendedFrags"))[,2])
+
+      for(i in 1:length(extended)){
+        file.rename(from =  file.path(pathFolder,"merged/extFrags/",extended[i],fsep ="" ),
+                    to =  file.path(pathDemulti,prefixfile[i],".fastq",fsep ="" ))
+      }
+
+
     }
-  }else{
-
-    prefixfile <- do.call(rbind,strsplit(extended,split = ".extendedFrags"))[,1]
-    # ext <- unique(do.call(rbind,strsplit(filesDemultiplexed,split = ".extendedFrags"))[,2])
-
-    for(i in 1:length(extended)){
-      file.rename(from =  file.path(pathFolder,"merged/extFrags/",extended[i],fsep ="" ),
-                  to =  file.path(pathDemulti,prefixfile[i],".fastq",fsep ="" ))
-    }
-
-
   }
 
   #############################
