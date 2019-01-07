@@ -4,9 +4,8 @@
 \alias{trimBase}
 \title{trim reference database}
 \usage{
-trimBase(fastaPath, outputFasta, primerForward = "CYGCGGTAATTCCAGCTC",
-  primerReverse = "CRAAGAYGATYAGATACCRT", trim = 0, l_min = 100,
-  l_max = 500, keepPrimer = TRUE)
+trimBase(fastaPath, outputFasta, primerForward, primerReverse, trim = 0,
+  l_min = 100, l_max = 500, keepPrimer = TRUE)
 }
 \arguments{
 \item{fastaPath}{A character string that represent the path to the input file.}

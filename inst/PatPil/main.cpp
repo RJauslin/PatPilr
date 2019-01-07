@@ -45,6 +45,7 @@
 #include "derep_ech.h"
 #include "DNA.h"
 #include "swmPrePars.h"
+#include "trimPrimer.h"
 
 using namespace std;
 
@@ -156,7 +157,7 @@ int main(int argc,const char **argv){
         if(arg1 == "-h"){
           Help(argc,argv);
           return 0;
-        }else if((arg1 == "RemoveN" or arg1 == "RemoveNfasta" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "rmSmallSeqfasta" or arg1 == "D_simple_tag" or arg1 == "D_double_tag")){
+        }else if((arg1 == "trimPrimer" or arg1 == "RemoveN" or arg1 == "RemoveNfasta" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "rmSmallSeqfasta" or arg1 == "D_simple_tag" or arg1 == "D_double_tag")){
 
           /*
            * CHECK THAT THE ARGUMENT ARE PASSED CORRECTLY
@@ -278,6 +279,13 @@ int main(int argc,const char **argv){
                       return 1;
                     }
 
+                  }else if(arg1 == "trimPrimer"){
+                    Fastq fastaChunk(pathFqIn,tmp,true);
+                    int fstate = trimPrimer(fastaChunk, pathFqFolder, argc, argv);
+                    if(fstate == 1){
+                      cerr << "ERROR in trimPrimer function" << endl;
+                      return 1;
+                    }
                   }else if(arg1 == "qualCheck"){
 
                     Fastq fastqChunk(pathFqIn,tmp);

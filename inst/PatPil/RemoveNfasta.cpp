@@ -31,5 +31,5 @@ using namespace std;
 
 void RemoveNfasta(Fastq fastqChunk, string pathFqFolder){
   fastqChunk.removeNfasta();
-  fastqChunk.writeFasta(pathFqFolder,false);
+  fastqChunk.writeFasta(pathFqFolder,true);
 }

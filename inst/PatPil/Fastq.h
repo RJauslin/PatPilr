@@ -48,6 +48,11 @@ class Fastq
         void qualCheck(double expErrThreshold,
             unsigned int slindingWindow,
             unsigned int minsize);
+        void trimPrimer( std::vector<std::string> primer1,
+                         std::vector<std::string> primer2,
+                         unsigned int l_min,
+                         unsigned int l_max,
+                         bool keepPrimer);
 
 
 

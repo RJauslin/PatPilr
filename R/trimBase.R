@@ -41,8 +41,8 @@
 #' }
 trimBase <- function(fastaPath,
                      outputFasta,
-                     primerForward = "CYGCGGTAATTCCAGCTC",
-                     primerReverse =  "CRAAGAYGATYAGATACCRT",
+                     primerForward,
+                     primerReverse,
                      trim = 0,
                      l_min = 100,
                      l_max = 500,
