@@ -87,13 +87,12 @@ int trimPrimer(Fastq fastaChunk, string pathFqFolder, int argc, const char **arg
     }
 
 
-    fastaChunk.afficher();
     if(argv[14] == NULL){
       fastaChunk.trimPrimer(primer1,
                             primer2,
                             l_min,
                             l_max,
-                            true);
+                            false);
     }else{
       string arg16 = argv[14];
       if(arg16 == "-keepPrimer"){
@@ -101,7 +100,7 @@ int trimPrimer(Fastq fastaChunk, string pathFqFolder, int argc, const char **arg
                               primer2,
                               l_min,
                               l_max,
-                              false);
+                              true);
       }else{
         cerr << "You must give the argument -keepPrimer if you would like to add primer" << endl;
         return 1;

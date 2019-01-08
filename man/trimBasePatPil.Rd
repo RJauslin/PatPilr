@@ -2,7 +2,7 @@
 % Please edit documentation in R/trimBasePatPil.R
 \name{trimBasePatPil}
 \alias{trimBasePatPil}
-\title{trim reference database}
+\title{trim reference database with PatPil}
 \usage{
 trimBasePatPil(fastaPath, outputFasta, forwardPath, reversePath,
   l_min = 100, l_max = 500, keepPrimer = TRUE)
@@ -12,17 +12,15 @@ trimBasePatPil(fastaPath, outputFasta, forwardPath, reversePath,
 
 \item{outputFasta}{A character string that represent the path to the output file.}
 
+\item{forwardPath}{A character string that represent the path to the forward primer.}
+
+\item{reversePath}{A c haracter string that represent the path to the reverse primer.}
+
 \item{l_min}{A value that represent the mininum length of the kept sequences.}
 
 \item{l_max}{A value that represent the maximum length of the kept sequences.}
 
 \item{keepPrimer}{A boolean value, if you want to keep the primer?}
-
-\item{primerForward}{A character string that represent the forward primer. Uncertain nucleotide allowed.}
-
-\item{primerReverse}{A character string that represent the reverse primer. Uncertain nucleotide allowed.}
-
-\item{trim}{A value that represent the number of nucleotide that you want trim in the primer.}
 }
 \description{
 In order to get some 100% of match when you assign your sequences, you have to compare with sequences that have the same "configuration".
@@ -33,9 +31,13 @@ This function will extract from the reference base the portion of interested of 
 \itemize{
 \item SeqPart1 - primerForward - Seq - primerReverse - SeqPart2
 }
+
+See \link{AllPrimer} or \link{primerForDemux} if you would like to extract all primers with some uncertain nucleotide.
 }
 \examples{
 \dontrun{
+
+
 fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utax.fasta"
 outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxCleanKeptPatPil.fasta"
 outputFastaC <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxCleanPatPil.fasta"
@@ -43,12 +45,8 @@ outputFastaC <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTrea
 forwardPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/forwardUTAX.txt"
 reversePath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/reverseUTAX.txt"
 
-
-primerForward <- "GTGAATCATCGAATCTTTGAA"
-primerReverse <- "GCATATCAATAAGCGGAGGA"
-trim <- 0
-l_min = 60
-l_max = 600
+l_min = 100
+l_max = 500
 trimBasePatPil(fastaPath,outputFasta,forwardPath,reversePath,l_min,l_max,TRUE)
 trimBasePatPil(fastaPath,outputFastaC,primerForward,primerReverse,l_min,l_max,FALSE)
 }

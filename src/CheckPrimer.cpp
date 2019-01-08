@@ -51,41 +51,33 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
     for(int j = 0; j < m1; j++){
       // CHECK IF PRIMER1 IS INSIDE TMP
       if(tmp.find(primer1[j]) != std::string::npos){
-        // std::cout << "found primer1 !" << '\n';
+
         std::size_t pos1 = tmp.find(primer1[j]);
         int len_pos1 = primer1[j].size();
+
         // LOOP ON THE FIRST PRIMER
         for(int k = 0; k < m2; k++){
-
           // CHECK IF PRIMER1 IS INSIDE TMP
           if(tmp.find(primer2[k]) != std::string::npos){
 
             int len_pos2 = primer2(k).size();
-
             std::size_t pos2 = tmp.find(primer2[k]);
             std::size_t len = pos2 + len_pos2 - pos1;
             std::string str3 = tmp.substr (pos1,len);
             std::string strSeq = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
-
             if(keepPrimer == false){
               str3 = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
             }
-
             if(std::find(out2.begin(), out2.end(), str3) != out2.end()){
               dbl.push_back((i+1));
-             break;
             }else{
               if(strSeq.length() >= l_min & strSeq.length() <= l_max){
                   out2.push_back(str3);
                   out.push_back((i+1));
-                  break;
-              }else{
-                break;
               }
             }
           }
         }
-        break;
       }
     }
   }

@@ -46,6 +46,7 @@
 #include "DNA.h"
 #include "swmPrePars.h"
 #include "trimPrimer.h"
+#include "uniqueFasta.h"
 
 using namespace std;
 
@@ -359,6 +360,7 @@ int main(int argc,const char **argv){
                  << "that would not work Sorry\n  check ./PatPil -h \n";
             return 1;
           }
+          cout << "\n------- " << arg1 <<" -------\n";
           int f_state = derep(argc,argv);
           if(f_state == 1){
             cerr << "Error in derep function" << endl;
@@ -370,6 +372,7 @@ int main(int argc,const char **argv){
                  << "that would not work Sorry\n  check ./PatPil -h \n";
             return 1;
           }
+          cout << "\n------- " << arg1 <<" -------\n";
           int f_state = derep_ech(argc,argv);
           if(f_state == 1){
             cerr << "Error in derep_ech function" << endl;
@@ -381,9 +384,22 @@ int main(int argc,const char **argv){
                  << "that would not work Sorry\n  check ./PatPil -h \n";
             return 1;
           }
+          cout << "\n------- " << arg1 <<" -------\n";
           int f_state = swmPrePars(argc,argv);
           if(f_state == 1){
             cerr << "Error in swmPrePars function" << endl;
+            return 1;
+          }
+        }else if (arg1 == "uniqueFasta"){
+          if(argc < 3){
+            cerr << "You only give the name of the program and no arguments... That... that..."
+                 << "that would not work Sorry\n  check ./PatPil -h \n";
+            return 1;
+          }
+          cout << "\n------- " << arg1 <<" -------\n";
+          int f_state = uniqueFasta(argc,argv);
+          if(f_state == 1){
+            cerr << "Error in uniqueFasta function" << endl;
             return 1;
           }
         }else{

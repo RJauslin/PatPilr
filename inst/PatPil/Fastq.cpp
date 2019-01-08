@@ -30,6 +30,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <set>
 #include <algorithm>
 #include <sstream>
 #include <math.h>
@@ -1205,71 +1206,72 @@ void Fastq::trimPrimer(std::vector<std::string> primer1,
                 bool keepPrimer)
 {
 
+
   // INITIALIZE VARIABLE
   map<string,string>::iterator i;
   int m1 = primer1.size();
   int m2 = primer2.size();
+  set<string> addSeq;
 
 
-  int count(0);
+  // LOOP ON THE MAP
+  for(i = seq.begin(); i != seq.end();){
 
-  for(i = seq.begin(); i != seq.end();i++){
-    if(count % 10000){
-      cout << count << endl;
-    }
-    count++;
+    // WE SUPPOSED AT FIRST THAT WE DO NOT KEEP THE SEQUENCE
+    bool keepSeq = false;
 
-    // bool keepSeq = true;
+
     string tmp = (i -> second);
-    // cout << (i -> first) << endl;
 
-    // LOOP ON THE FIRST PRIMER
+
+    // LOOP ON THE PRIMER1
     for(int j = 0; j < m1; j++){
-
+      //CHECK IF PRIMER1 IS INSIDE TMP
       if(tmp.find(primer1[j]) != std::string::npos){
-        //cout << "primer1 found" << endl;
-        // cout << (i -> first) << endl;
 
         std::size_t pos1 = tmp.find(primer1[j]);
         int len_pos1 = primer1[j].size();
 
         // LOOP ON THE SECOND PRIMER
         for(int k = 0; k < m2; k++){
+
           // CHECK IF PRIMER2 IS INSIDE TMP
           if(tmp.find(primer2[k]) != std::string::npos){
-            // cout << "primer2 found" << endl;
-            int len_pos2 = primer2[k].size();
 
+            int len_pos2 = primer2[k].size();
             std::size_t pos2 = tmp.find(primer2[k]);
             std::size_t len = pos2 + len_pos2 - pos1;
             std::string str3 = tmp.substr (pos1,len);
             std::string strSeq = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
-
             if(keepPrimer == false){
               str3 = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
             }
-            // cout << l_min << endl;
-            // cout << l_max << endl;
-            // cout << strSeq.length() << endl;
-            if( (strSeq.length() >= l_min) && (strSeq.length() <= l_max)){
-              // cout << "change seq "<< endl;
 
+            // CHECK THE SIZE OF THE SEQ
+            if((strSeq.length() >= l_min) && (strSeq.length() <= l_max)){
               (i->second) = str3;
-              // i++;
-              // out2.push_back(str3);
-              // out.push_back((i+1));
-              break;
-            }else{
-              i = seq.erase(i);
-              break;
+              if(addSeq.find(str3) == addSeq.end()){ // CHECK IF WE DOES NOT HAVE ALREADY SEEN THE SAME VALUE
+                addSeq.insert(str3);
+                keepSeq = true;
+              }
+
             }
+
           }
+
         }
-      }else{
-        i = seq.erase(i);
-        break;
+
       }
+
     }
+
+    // CHECK IF WE KEEP THE SEQUENCE OR NOT
+    if(keepSeq == true){
+      i++;
+    }else{
+      i = seq.erase(i);
+    }
+
   }
 }
 
