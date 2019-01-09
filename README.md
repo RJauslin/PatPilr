@@ -2,8 +2,8 @@
 Implementation of the tools PatPil in R
 
 ## Current version
-* Current version : 1.1.8
-* Last update : 2019-01-08
+* Current version : 1.1.9
+* Last update : 2019-01-09
 
 
 ## Installation
@@ -152,6 +152,26 @@ trimBase(fastaPath, # path to the reference base
   l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
   keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
 ```
+If the database is a very large file you can use the function **trimBasePatPil**. You have to give the path to two more files that represent the primers. The format of the file must be .txt and have the following form :
+
+``` r
+AAACTCAAAGAAATTGACGG
+AAACTTAAAGAAATTGACGG
+AAACTCAAATAAATTGACGG
+AAACTTAAATAAATTGACGG
+...
+```
+
+``` r
+trimBasePatPil(fastaPath, # path to the reference base
+  outputFasta, # path to the output
+  forwardPath, # path to the forward primer
+  reversePath, # path to the reverse primer
+  l_min = 100, # A scalar integer representing the minimal length of the sequences considered.
+  l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
+  keepPrimer = TRUE)  # A boolean value, if you want to keep the primers with the sequences or not.
+```
+
 
 the PR2 database https://github.com/pr2database/pr2database as its own function which load the last reference database.
 
