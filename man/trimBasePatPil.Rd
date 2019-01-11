@@ -45,9 +45,19 @@ outputFastaC <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTrea
 forwardPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/forwardUTAX.txt"
 reversePath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/reverseUTAX.txt"
 
+
+
+fastaPath <- "/home/raphael/Documents/Cadavre/fungi_bacteria/SILVA/SILVA132SSURefNr99.fasta"
+outputFasta <- "/home/raphael/Documents/Cadavre/fungi_bacteria/SILVA/SILVA132SSURefNr99CLEANED.fasta"
+forwardPath <- "/home/raphael/Documents/Cadavre/fungi_bacteria/SILVA/primer1.txt"
+reversePath <- "/home/raphael/Documents/Cadavre/fungi_bacteria/SILVA/primer2.txt"
 l_min = 100
-l_max = 500
+l_max = 3500
 trimBasePatPil(fastaPath,outputFasta,forwardPath,reversePath,l_min,l_max,TRUE)
-trimBasePatPil(fastaPath,outputFastaC,primerForward,primerReverse,l_min,l_max,FALSE)
+
+
+
+
+trimBasePatPil(fastaPath,outputFastaC,forwardPath,reversePath,l_min,l_max,FALSE)
 }
 }

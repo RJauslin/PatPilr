@@ -38,8 +38,7 @@ This function will extract from the reference base the portion of interested of 
 \dontrun{
 fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utax.fasta"
 outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxCleanKept.fasta"
-outputFastaC <- "/home/raphael/Documents/PatPilr_source/
-testPipeline/testpreTreatment/testPR2/utaxClean.fasta"
+outputFastaC <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxClean.fasta"
 primerForward <- "GTGAATCATCGAATCTTTGAA"
 primerReverse <- "GCATATCAATAAGCGGAGGA"
 trim <- 0
