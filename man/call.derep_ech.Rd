@@ -2,7 +2,7 @@
 % Please edit documentation in R/call.derep_ech.R
 \name{call.derep_ech}
 \alias{call.derep_ech}
-\title{derep}
+\title{call derep_ech}
 \usage{
 call.derep_ech(pathFolder, within = 3)
 }
@@ -15,10 +15,10 @@ call.derep_ech(pathFolder, within = 3)
 Nothing, works on the files
 }
 \description{
-Dereplicate each of your fasta files.
+This function call the function derep_ech of the tools PatPil.
 }
 \details{
-Dereplicate each files and the second one works one the dereplicated files.
+It dereplicate each files of the directory 'pathFolder'. See Dereplicate for more infos.
 }
 \examples{
 \dontrun{

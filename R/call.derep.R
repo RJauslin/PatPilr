@@ -1,13 +1,13 @@
-#' derep
+#' call derep
 #'
-#' Dereplicate each of your fasta files.
+#' This function call the function derep_ech of the tools PatPil.
 #'
+#' @param between A scalar integer representing the threshold number of occurence of each sequences between files.
 #' @param pathFolder A character string representing the path to the working directory.
-#' @param within A scalar integer representing the threshold number of occurence of each sequences in a file.
 #'
 #' @details
 #'
-#' Dereplicate each files and the second one works one the dereplicated files.
+#' It takes the dereplicated files of the directory 'pathFolder' and calculate how many times they appears. See Dereplicate for more infos.
 #'
 #' @return Nothing, works on the files
 #' @export

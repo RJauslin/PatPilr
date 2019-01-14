@@ -65,6 +65,10 @@
 #'
 #' @return Noting, but work on the files.
 #' @export
+#'
+#'
+#' @importFrom utils menu
+#'
 #' @examples
 #' \dontrun{
 #' pathFolder <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testSimple/"
@@ -129,7 +133,7 @@ preTreatment <- function(pathFolder,
 
   if(any(grepl("merged",files))){
     # cat("The program found a folder named 'merged' this potentially means that you have already merged data. Would you like to do merging step once again ?")
-    mergingStep <- switch(menu(c("Yes", "No"),
+    mergingStep <- switch(utils::menu(c("Yes", "No"),
                                title = "\n The program find a folder named 'merged'.\n This potentially means that you have already merged data. \n Would you like to do merging step once again ?") + 1,
            cat("Nothing done\n"), TRUE, FALSE)
 
@@ -144,7 +148,7 @@ preTreatment <- function(pathFolder,
       }
     }else{ # IF MERGING STEP IS OMITTED
       if(any(grepl("demultiplex",files))){ # CHECK IF DEMULTIPLEX MUST BE OMMITED
-        demultiStep <- switch(menu(c("Yes", "No"),
+        demultiStep <- switch(utils::menu(c("Yes", "No"),
                     title = "\n The program found a folder named 'demultiplex'.\n This potentially means that you have already demultiplexed data. \n Would you like to do merging step once again ?") + 1,
                cat("Nothing done\n"), TRUE, FALSE)
         # IF DEMULTIPLEX IS DONE ONCE AGAIN
