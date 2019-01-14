@@ -45,6 +45,8 @@
 #include "derep_ech.h"
 #include "DNA.h"
 #include "swmPrePars.h"
+#include "trimPrimer.h"
+#include "uniqueFasta.h"
 
 using namespace std;
 
@@ -156,7 +158,7 @@ int main(int argc,const char **argv){
         if(arg1 == "-h"){
           Help(argc,argv);
           return 0;
-        }else if((arg1 == "RemoveN" or arg1 == "RemoveNfasta" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "rmSmallSeqfasta" or arg1 == "D_simple_tag" or arg1 == "D_double_tag")){
+        }else if((arg1 == "trimPrimer" or arg1 == "RemoveN" or arg1 == "RemoveNfasta" or arg1 == "qualCheck" or arg1 == "rmSmallSeq" or arg1 == "rmSmallSeqfasta" or arg1 == "D_simple_tag" or arg1 == "D_double_tag")){
 
           /*
            * CHECK THAT THE ARGUMENT ARE PASSED CORRECTLY
@@ -278,6 +280,13 @@ int main(int argc,const char **argv){
                       return 1;
                     }
 
+                  }else if(arg1 == "trimPrimer"){
+                    Fastq fastaChunk(pathFqIn,tmp,true);
+                    int fstate = trimPrimer(fastaChunk, pathFqFolder, argc, argv);
+                    if(fstate == 1){
+                      cerr << "ERROR in trimPrimer function" << endl;
+                      return 1;
+                    }
                   }else if(arg1 == "qualCheck"){
 
                     Fastq fastqChunk(pathFqIn,tmp);
@@ -351,6 +360,7 @@ int main(int argc,const char **argv){
                  << "that would not work Sorry\n  check ./PatPil -h \n";
             return 1;
           }
+          cout << "\n------- " << arg1 <<" -------\n";
           int f_state = derep(argc,argv);
           if(f_state == 1){
             cerr << "Error in derep function" << endl;
@@ -362,6 +372,7 @@ int main(int argc,const char **argv){
                  << "that would not work Sorry\n  check ./PatPil -h \n";
             return 1;
           }
+          cout << "\n------- " << arg1 <<" -------\n";
           int f_state = derep_ech(argc,argv);
           if(f_state == 1){
             cerr << "Error in derep_ech function" << endl;
@@ -373,9 +384,22 @@ int main(int argc,const char **argv){
                  << "that would not work Sorry\n  check ./PatPil -h \n";
             return 1;
           }
+          cout << "\n------- " << arg1 <<" -------\n";
           int f_state = swmPrePars(argc,argv);
           if(f_state == 1){
             cerr << "Error in swmPrePars function" << endl;
+            return 1;
+          }
+        }else if (arg1 == "uniqueFasta"){
+          if(argc < 3){
+            cerr << "You only give the name of the program and no arguments... That... that..."
+                 << "that would not work Sorry\n  check ./PatPil -h \n";
+            return 1;
+          }
+          cout << "\n------- " << arg1 <<" -------\n";
+          int f_state = uniqueFasta(argc,argv);
+          if(f_state == 1){
+            cerr << "Error in uniqueFasta function" << endl;
             return 1;
           }
         }else{

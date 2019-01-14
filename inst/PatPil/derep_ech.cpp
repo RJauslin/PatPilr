@@ -70,8 +70,8 @@ int derep_ech( int argc,const char **argv) {
     int seuil = atoi(argv[7]);
 
 
-    cout << pathFaIn << endl;
-    cout << pathFaOut << endl;
+    // cout << pathFaIn << endl;
+    // cout << pathFaOut << endl;
 
     //string pathFaIn = argv[1],
     //       pathFaOut = argv[2];

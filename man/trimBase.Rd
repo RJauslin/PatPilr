@@ -4,9 +4,8 @@
 \alias{trimBase}
 \title{trim reference database}
 \usage{
-trimBase(fastaPath, outputFasta, primerForward = "CYGCGGTAATTCCAGCTC",
-  primerReverse = "CRAAGAYGATYAGATACCRT", trim = 0, l_min = 100,
-  l_max = 500, keepPrimer = TRUE)
+trimBase(fastaPath, outputFasta, primerForward, primerReverse, trim = 0,
+  l_min = 100, l_max = 500, keepPrimer = TRUE)
 }
 \arguments{
 \item{fastaPath}{A character string that represent the path to the input file.}
@@ -37,17 +36,14 @@ This function will extract from the reference base the portion of interested of 
 }
 \examples{
 \dontrun{
-fastaPath <- "/home/raphael/Documents/PatPilr_source/
-testPipeline/testpreTreatment/testPR2/utax.fasta"
-outputFasta <- "/home/raphael/Documents/PatPilr_source/
-testPipeline/testpreTreatment/testPR2/utaxCleanKept.fasta"
-outputFastaC <- "/home/raphael/Documents/PatPilr_source/
-testPipeline/testpreTreatment/testPR2/utaxClean.fasta"
+fastaPath <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utax.fasta"
+outputFasta <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxCleanKept.fasta"
+outputFastaC <- "/home/raphael/Documents/PatPilr_source/testPipeline/testpreTreatment/testPR2/utaxClean.fasta"
 primerForward <- "GTGAATCATCGAATCTTTGAA"
 primerReverse <- "GCATATCAATAAGCGGAGGA"
 trim <- 0
-l_min = 60
-l_max = 600
+l_min = 100
+l_max = 500
 trimBase(fastaPath,outputFasta,primerForward,primerReverse,trim,l_min,l_max,TRUE)
 trimBase(fastaPath,outputFastaC,primerForward,primerReverse,trim,l_min,l_max,FALSE)
 }

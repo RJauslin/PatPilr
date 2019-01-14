@@ -30,6 +30,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <set>
 #include <algorithm>
 #include <sstream>
 #include <math.h>
@@ -1192,6 +1193,86 @@ void Fastq::qualCheck(double expErrThreshold,
     }
   }
   // cout << "Nombre total de sequences : " << countTotalseq << endl << endl;
-
+  //
   // cout << "Nombre de sequences gardées : " << countKeepseq << endl << endl;
 }
+
+
+
+void Fastq::trimPrimer(std::vector<std::string> primer1,
+                std::vector<std::string> primer2,
+                unsigned int l_min,
+                unsigned int l_max,
+                bool keepPrimer)
+{
+
+
+  // INITIALIZE VARIABLE
+  map<string,string>::iterator i;
+  int m1 = primer1.size();
+  int m2 = primer2.size();
+  set<string> addSeq;
+
+
+  // LOOP ON THE MAP
+  for(i = seq.begin(); i != seq.end();){
+
+    // WE SUPPOSED AT FIRST THAT WE DO NOT KEEP THE SEQUENCE
+    bool keepSeq = false;
+
+
+    string tmp = (i -> second);
+
+
+    // LOOP ON THE PRIMER1
+    for(int j = 0; j < m1; j++){
+      //CHECK IF PRIMER1 IS INSIDE TMP
+      if(tmp.find(primer1[j]) != std::string::npos){
+
+        std::size_t pos1 = tmp.find(primer1[j]);
+        int len_pos1 = primer1[j].size();
+
+        // LOOP ON THE SECOND PRIMER
+        for(int k = 0; k < m2; k++){
+
+          // CHECK IF PRIMER2 IS INSIDE TMP
+          if(tmp.find(primer2[k]) != std::string::npos){
+
+            int len_pos2 = primer2[k].size();
+            std::size_t pos2 = tmp.find(primer2[k]);
+            std::size_t len = pos2 + len_pos2 - pos1;
+            std::string str3 = tmp.substr (pos1,len);
+            std::string strSeq = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
+            if(keepPrimer == false){
+              str3 = tmp.substr(pos1 + len_pos1,len - len_pos1 -len_pos2);
+            }
+
+            // CHECK THE SIZE OF THE SEQ
+            if((strSeq.length() >= l_min) && (strSeq.length() <= l_max)){
+              (i->second) = str3;
+              if(addSeq.find(str3) == addSeq.end()){ // CHECK IF WE DOES NOT HAVE ALREADY SEEN THE SAME VALUE
+                addSeq.insert(str3);
+                keepSeq = true;
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+    // CHECK IF WE KEEP THE SEQUENCE OR NOT
+    if(keepSeq == true){
+      i++;
+    }else{
+      i = seq.erase(i);
+    }
+
+  }
+}
+
+

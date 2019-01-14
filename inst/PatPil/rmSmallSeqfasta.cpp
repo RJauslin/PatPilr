@@ -43,7 +43,7 @@ int rmSmallSeqfasta(Fastq fastqChunk, string pathFqFolder, int argc, const char 
       return 1;
     }
     fastqChunk.rmSmallSeqfasta(minLength);
-    fastqChunk.writeFasta(pathFqFolder,false);
+    fastqChunk.writeFasta(pathFqFolder,true);
     // fastqChunk.writeFastq(pathFqFolder,true);
     return 0;
   }else{
