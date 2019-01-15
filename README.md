@@ -1,47 +1,64 @@
 # PatPilr
-Implementation of the tools PatPil in R
+Implementation of the tools PatPil in R. This package is a tool to facilitate the pre-treatment and some part of the treatment of Next-Generation Sequencing data.
 
 ## Current version
-* Current version : 1.1.11
-* Last update : 2019-01-14
+* Current version : 1.1.12
+* Last update : 2019-01-15
 
 
 ## Installation
 
 ### Linux
 
-Before install the package you need to be sure that the package devtools is right installed on your machine. If you have any error messages when you try to install the package devtools then try to copy/paste the following dependencies on a terminal.
+Before installing the package PatPilr in R or Rstudio, you need to be sure that the package devtools is right installed on your machine. 
+
+``` r
+install.packages("devtools")
+```
+
+If you have any error messages when you try to install the package devtools then try to copy/paste the following dependencies on a Linux terminal.
 
 ``` r
 sudo apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
 ```
-and the in Rstudio or R :
+
+Finally install the PatPilr package from the github repository by copy/paste the following command in Rstudio or R :
 
 ``` r
-install.packages("devtools")
-devtools::install_github("Rjauslin/PatPilr")
-library(PatPilr)
-install.PatPil()
+devtools::install_github("Rjauslin/PatPilr@master")
+library(PatPilr) # load R package 
+install.PatPil() # install the program PatPil in the package
 ```
 
 ### Windows
 
-In order to get the program PatPil, you need to install Rtools. Go to the URL https://cran.r-project.org/bin/windows/Rtools/ and choose Rtools35.exe. Follow the setup instructions and when given the option to edit your PATH, take it. 
+In order to be able to install the program PatPil from R or Rstudio, you need to install Rtools. Go to the URL https://cran.r-project.org/bin/windows/Rtools/ and choose Rtools35.exe. Follow the setup instructions, select the folder *C:\Rtools* and when given the option to edit your PATH, take it. To check that you have right install Rtools you can copy/paste the following command in R.
 
+``` r
+Sys.getenv('PATH')
+```
+If you correctly take the option to edit your PATH, you should see something like,
+
+``` r
+....c:\Rtools\bin;c:\Rtools\MinGW\bin;...
+```
+Then you can install the pacakge *devtools*.
 
 ``` r
 install.packages("devtools")
-devtools::install_github("Rjauslin/PatPilr")
-library(PatPilr)
-install.PatPil()
 ```
+Finally install the package PatPilr. 
 
+``` r
+devtools::install_github("Rjauslin/PatPilr")
+library(PatPilr)  # load R package 
+install.PatPil() # install the program PatPil in the package
+```
 
 
 ## preTreatment
 
-This function merges, demultiplex, and clean your fastq files. You are supposed to put only the fastq files specified by the ..._R1.fastq, ..._R2.fastq and the information needed for the demultiplexing.
-
+This function merges, demultiplex, and clean your fastq files. You are supposed to put only the fastq files specified by the xxx_R1.fastq, xxx_R2.fastq and the informations needed for the demultiplexing part. See **simple tag** and **double tag** sections.  
 
 
 ``` r
@@ -63,7 +80,7 @@ preTreatment(pathFolder, # path to the working directory
 ```
 
 ### simple tag
-You have to put in your working directory a file called **barcode.txt**. It is really important that the barcode file have the following format.
+You have to put in your working directory a file called **barcode.txt**. It is really important that the barcode file have the following configuration.
 
 * **barcode.txt**
 
@@ -81,7 +98,7 @@ CTCGCGTGTC	name8.fastq
 ```
 
 ### double tag
-You have to put in your working directory three files called **forwardtag.txt**, **reversetag.txt**, and **primer.txt**. It is really important that the files have the following format.
+You have to put in your working directory three files called **forwardtag.txt**, **reversetag.txt**, and **primer.txt**. It is really important that the files have the following configuration.
 
 * **forwardtag.txt**
 
@@ -111,7 +128,7 @@ ACTATCAT	ReverseTag4
 CAAAATCATAAAGATATTGGDAC	GAAATTTCCDGGDTATMGAATGG
 ```
 
-uncertain allowed nucleotide :
+wobble nucleotide allowed :
 
 ``` r
 R = AG
@@ -129,13 +146,26 @@ V = ACG
 
 ## Dereplication
 
-This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called *derep_ech* and the second one called *derep*. At the end of the program inside of the *derep* folder you will find two fasta files. **RC.fa** contains your passed sequences and the **RCNotpassed.fa** the sequences that have failed the selection.
+This function dereplicate your fasta files. You are supposed to put only the fasta files inside the working directory. The function will create two folders for temporary work. The first one is called *derep_ech* and the second one *derep*. At the end of the program inside of the *derep* folder you will find two fasta files. **RC.fa** contains your passed sequences and the **RCNotpassed.fa** the sequences that have failed the selection based on the option *within* and *between*.
 
 ``` r
 Dereplicate(pathFolder, # path to the working directory
   within = 3, # threshold for the number of occurence of the sequence within a file
   between = 2) # threshold for the number of occurence of the sequence between files
 ```
+If you would like to apply a dechimering step on your dereplicated fasta files, you can do the two steps of the dereplication by hand with the functions *call.derep_ech* and *call.derep*.
+
+``` r
+call.derep_ech(pathFolder, # path to the working directory (non-dereplicated files)
+  within = 3)  # threshold for the number of occurence of the sequence within a file
+```
+
+
+``` r
+call.derep(pathFolder, # path to the working directory (already dereplicated files)
+  between = 2) # threshold for the number of occurence of the sequence between files
+```
+
 
 
 ## trimBase
@@ -152,7 +182,7 @@ trimBase(fastaPath, # path to the reference base
   l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
   keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
 ```
-If the database is a very large file you can use the function **trimBasePatPil**. You have to give the path to two more files that represent the primers. The format of the file must be .txt and have the following form :
+If the database is a very large file, it is possible that the function trimBase won't be able to load it without crashing. In this case you can use the function **trimBasePatPil**. You have to give the path to two more files that represent the primers. The format of the file must be *.txt* and have the following configuration. (**Unknown nucleotide is not allowed in these two files, onyl A, C, T and G**)
 
 ``` r
 AAACTCAAAGAAATTGACGG
@@ -173,7 +203,7 @@ trimBasePatPil(fastaPath, # path to the reference base
 ```
 
 
-the PR2 database https://github.com/pr2database/pr2database as its own function which load the last reference database.
+The PR2 database https://github.com/pr2database/pr2database as its own function which load the last reference database.
 
 
 ``` r
@@ -194,11 +224,11 @@ Some functions that could be useful.
 ### quality check
 The quality check currently implemented evaluating the expected error in a sliding window and discarding sequences with more than percentage of error in the worst quality window http://taraoceans.sb-roscoff.fr/EukDiv/.
 
-**IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
+**IMPORTANT** : if this function is called in an other way than inside the function **preTreatment**, then the function append the file. Hence you should erase your file if your would like to recall the function or be sure that the output file does not exist.
 
 ``` r
-call.qualCheck(fastqPath,
-  outputFasta,
+call.qualCheck(fastqPath, # input fastq files
+  outputFasta, # output fasta file
   t = 0.01, # expected error
   s = 50, # sligind window
   m = 60) # minimum sequence length
