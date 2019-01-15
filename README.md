@@ -182,7 +182,7 @@ trimBase(fastaPath, # path to the reference base
   l_max = 500, # A scalar integer representing the maximal length of the sequences considered.
   keepPrimer = TRUE) # A boolean value, if you want to keep the primers with the sequences or not.
 ```
-If the database is a very large file, it is possible that the function trimBase won't be able to load it without crashing. In this case you can use the function **trimBasePatPil**. You have to give the path to two more files that represent the primers. The format of the file must be *.txt* and have the following configuration. (**Unknown nucleotide is not allowed in these two files, onyl A, C, T and G**)
+If the database is a very large file, it is possible that the function trimBase won't be able to load it without crashing. In this case you can use the function **trimBasePatPil**. You have to give the path to two more files that represent the primers. The format of the file must be *.txt* and have the following configuration. (**Wobble nucleotide is not allowed in these two files, onyl A, C, T and G**)
 
 ``` r
 AAACTCAAAGAAATTGACGG
@@ -219,12 +219,12 @@ trimBasePR2(pathFile # path to the output
 
 ## Utils
 
-Some functions that could be useful.
+Some functions that could be useful for some treatments.
 
 ### quality check
 The quality check currently implemented evaluating the expected error in a sliding window and discarding sequences with more than percentage of error in the worst quality window http://taraoceans.sb-roscoff.fr/EukDiv/.
 
-**IMPORTANT** : if this function is called in an other way than inside the function **preTreatment**, then the function append the file. Hence you should erase your file if your would like to recall the function or be sure that the output file does not exist.
+**IMPORTANT** : sequences will be appended to the output file. Hence you should erase your file if your would like to recall the function or be sure that the output file does not exist.
 
 ``` r
 call.qualCheck(fastqPath, # input fastq files
@@ -237,6 +237,9 @@ call.qualCheck(fastqPath, # input fastq files
 ### Remove 'N'
 
 This function simply remove sequences of a fasta or a fastq files that contains a nucleotide 'N'.
+
+**IMPORTANT** : sequences will be appended to the output file. Hence you should erase your file if your would like to recall the function or be sure that the output file does not exist.
+
 
 * **fasta**
 
@@ -256,6 +259,8 @@ call.RemoveNfastq(fastaPath,outputFastq)
 ### rmSmallSeq
 
 This function simply removes the sequences of a fasta or a fastq files that are smaller than a fixed integer.
+
+**IMPORTANT** : sequences will be appended to the output file. Hence you should erase your file if your would like to recall the function or be sure that the output file does not exist.
 
 * **fasta**
 
@@ -279,7 +284,7 @@ call.rmSmallSeqfastq(fastqPath,
 
 ### call.D_simple_tag
 
-**IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
+**IMPORTANT** : sequences will be appended to the output files. Hence you should erase your files if your would like to recall the function or be sure that the output file does not exist.
 
 ``` r
 call.D_simple_tag(fastqPath, # A character string containing the path to the fastq file. The extenstion must be .fastq
@@ -290,7 +295,7 @@ call.D_simple_tag(fastqPath, # A character string containing the path to the fas
 
 ### call.D_double_tag
 
-**IMPORTANT** : if this function is called in an other manners than by the function **preTreatment**, then the function append the files if it is called several times. Hence you should erase your files if your would like to recall the function.
+**IMPORTANT** :  sequences will be appended to the output files. Hence you should erase your files if your would like to recall the function or be sure that the output file does not exist.
 
 ``` r
 call.D_double_tag(fastqPath, # A character string containing the path to the fastq file. The extenstion must be .fastq.
