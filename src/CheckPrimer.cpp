@@ -70,10 +70,14 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
             }
             if(std::find(out2.begin(), out2.end(), str3) != out2.end()){
               dbl.push_back((i+1));
+              break;
             }else{
               if(strSeq.length() >= l_min & strSeq.length() <= l_max){
                   out2.push_back(str3);
                   out.push_back((i+1));
+                  break;
+              }else{
+                break;
               }
             }
           }
@@ -83,6 +87,7 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
   }
   return Rcpp::List::create(Rcpp::Named("Fasta") = Rcpp::DataFrame::create( Named("index")= out, Named("seq") = out2),
                             Rcpp::Named("doublons") = Rcpp::DataFrame::create(Named("doublons") = dbl));
+
 }
 
 
