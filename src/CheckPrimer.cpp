@@ -28,7 +28,8 @@ Rcpp::List CheckPrimer(Rcpp::List pr2,
                      bool keepPrimer)
   {
 
-  // OUTPUT
+
+    // OUTPUT
   int n = pr2.size();
   int m1 = primer1.size();
   int m2 = primer2.size();
