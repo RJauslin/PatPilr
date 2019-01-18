@@ -1,14 +1,14 @@
 Package: PatPilr
 Type: Package
 Title: Tools to simplify NGS data treatment
-Version: 1.1.12
+Version: 1.1.13
 Author: Raphaël Jauslin
 Maintainer: Raphaël Jauslin <jauslin.raphael@gmail.com>
 Description: This package incorpore the program PatPil in an R package.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 SystemRequirements: GNU make
 Imports: devtools, seqinr, Rcpp, utils
 Suggests: pr2database

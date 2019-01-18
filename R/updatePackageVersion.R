@@ -9,7 +9,7 @@
 #'  updatePackageVersion()
 #' }
 #'
-updatePackageVersion <- function(packageLocation ="/home/raphael/Documents/PatPilr_source/PatPilr"){
+updatePackageVersion <- function(packageLocation ="/home/raphael/Documents/PatPilr-source/PatPilr"){
 
   ## Read DESCRIPTION file
   desc <- readLines(file.path(packageLocation, "DESCRIPTION"))

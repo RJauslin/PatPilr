@@ -44,5 +44,6 @@ Hence you should erase your files if your would like to recall the function.
   s = 50,
   m = 60)
 
+ call.qualCheck(fastqPath,outputFasta,t = 0.01,s = 50, m = 60)
 }
 }

@@ -2,8 +2,8 @@
 Implementation of the tools PatPil in R. This package is a tool to facilitate the pre-treatment and some part of the treatment of Next-Generation Sequencing data.
 
 ## Current version
-* Current version : 1.1.12
-* Last update : 2019-01-15
+* Current version : 1.1.13
+* Last update : 2019-01-18
 
 
 ## Installation
